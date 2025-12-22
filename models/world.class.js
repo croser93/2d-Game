@@ -1,5 +1,5 @@
 class World {
-
+    
     character = new Character();
     enemies = level_1.enemies;
     background = level_1.background;
@@ -20,9 +20,8 @@ class World {
 
     }
 
-    setWorld(){
+    setWorld() {
         this.character.world = this;
-        this.character.animate();
     }
 
     draw(){
