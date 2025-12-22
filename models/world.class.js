@@ -33,16 +33,24 @@ class World {
         new Backgroundassetsunder('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_06.png', 560),
         new Backgroundassetsunder('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_13.png', 640),
     ]
-
+    keyboard;
     ctx;
-    constructor(canvas){
+    constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
+        this.keyboard = keyboard
         this.draw();
+        this.setWorld();
 
 
 
     }
+
+    setWorld(){
+        this.character.world = this;
+        this.character.animate();
+    }
+
     draw(){
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height) //cleart die funktion
 
@@ -70,7 +78,20 @@ class World {
     }
 
     addToMap(item, x) {
-    this.ctx.drawImage(item.img, item.x, item.y, item.height, item.width);
+        if (item.otherDirection) {
+            this.ctx.save();
+            this.ctx.translate(item.width, 0);
+            this.ctx.scale(-1, 1);
+            item.x = item.x * -1 ;    
+        }
+         this.ctx.drawImage(item.img, item.x, item.y, item.height, item.width);
+
+        if (item.otherDirection) {
+            item.x = item.x * -1 ;
+            this.ctx.restore();
+
+            
+        }
 
     }
 
