@@ -1,4 +1,5 @@
 class Archer extends Character{
+    
         IMAGES_IDLE = [
             'gameassets/Archer/PNG/PNG Sequences/Idle/0_Archer_Idle_000.png',
             'gameassets/Archer/PNG/PNG Sequences/Idle/0_Archer_Idle_001.png',

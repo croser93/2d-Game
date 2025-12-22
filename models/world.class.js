@@ -1,40 +1,14 @@
 class World {
 
     character = new Character();
-    enemies = [
-        new Archer(),
-        new Archer(),
-    ]
-    background = [
-        new Background('./gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Background/Background_01.png'),
-        new Background('./gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Background/Background_02.png')
-    ]
-    
-    backgroundassets = [
-        new Backgroundassets('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_04.png', 0),
-        new Backgroundassets('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_02.png', 80),
-        new Backgroundassets('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_02.png', 160),
-        new Backgroundassets('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_02.png', 240),
-        new Backgroundassets('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_02.png', 320),
-        new Backgroundassets('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_02.png', 400),
-        new Backgroundassets('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_02.png', 480),
-        new Backgroundassets('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_02.png', 560),
-        new Backgroundassets('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_08.png', 640),
-    ]
+    enemies = level_1.enemies;
+    background = level_1.background;
+    backgroundassets = level_1.backgroundassets;
+    backgroundassetsunderworld = level_1.backgroundassetsunderworld;
 
-    backgroundassetsunderworld = [
-        new Backgroundassetsunder('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_09.png', 0),
-        new Backgroundassetsunder('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_06.png', 80),
-        new Backgroundassetsunder('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_06.png', 160),
-        new Backgroundassetsunder('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_06.png', 240),
-        new Backgroundassetsunder('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_06.png', 320),
-        new Backgroundassetsunder('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_06.png', 400),
-        new Backgroundassetsunder('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_06.png', 480),
-        new Backgroundassetsunder('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_06.png', 560),
-        new Backgroundassetsunder('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_13.png', 640),
-    ]
     keyboard;
     ctx;
+    camera_x = 0;
     constructor(canvas, keyboard){
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -54,12 +28,15 @@ class World {
     draw(){
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height) //cleart die funktion
 
+        this.ctx.translate(this.camera_x, 0)
+
         this.addObjectsToMap(this.background)
         this.addObjectsToMap(this.backgroundassets)
         this.addObjectsToMap(this.backgroundassetsunderworld)
         this.addToMap(this.character)
 
         this.addObjectsToMap(this.enemies)
+        this.ctx.translate(-this.camera_x, 0)
         
 
         // Draw wird immer wieder aufgrufen / this funktioniert nicht mehr, daher wird es in eine variable gespeichert
@@ -82,7 +59,7 @@ class World {
             this.ctx.save();
             this.ctx.translate(item.width, 0);
             this.ctx.scale(-1, 1);
-            item.x = item.x * -1 ;    
+            item.x = item.x * -1;    
         }
          this.ctx.drawImage(item.img, item.x, item.y, item.height, item.width);
 

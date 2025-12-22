@@ -23,6 +23,7 @@ class Character extends MovableObject{
     ];
     world;
     currentImage = 0;
+    endOfMap = 620
 
     constructor() {
         super().loadImage('gameassets/Elves/PNG/PNG Sequences/Kicking/0_Dark_Elves_Kicking_000.png')
@@ -33,15 +34,16 @@ class Character extends MovableObject{
 
     animate() {
           setInterval(() => {
-        if(this.world.keyboard.RIGHT) {
+        if(this.world.keyboard.RIGHT && this.x < this.endOfMap) {
             this.x += this.speed;
             this.otherDirection = false;
         }  
 
-        if(this.world.keyboard.LEFT) {
+        if(this.world.keyboard.LEFT && this.x > 0) {
         this.x -= this.speed;
         this.otherDirection = true;
-        }  
+        }
+        this.world.camera_x = -this.x + 100;
     },1000 / 60);
 
         if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT){
