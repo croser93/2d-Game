@@ -2,7 +2,7 @@ const level_1 = new Level(
    [
         new Archer(),
         new Archer(),
-        // new Endboss(),
+        new Endboss(),
         ],
 [       new Background('./gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Background/Background_01.png', -720),
         new Background('./gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Background/Background_02.png', -720),

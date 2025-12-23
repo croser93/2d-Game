@@ -20,6 +20,7 @@ class Archer extends MovableObject{
             'gameassets/Archer_2/PNG/PNG Sequences/Idle/0_Archer_Idle_016.png',
             'gameassets/Archer_2/PNG/PNG Sequences/Idle/0_Archer_Idle_017.png',
         ];
+        
         IMAGES_WALK = [
             'gameassets/Archer_2/PNG/PNG Sequences/Running/0_Archer_Running_000.png',
             'gameassets/Archer_2/PNG/PNG Sequences/Running/0_Archer_Running_001.png',
@@ -45,20 +46,22 @@ class Archer extends MovableObject{
         this.loadImages(this.IMAGES_WALK);
         this.speed = 0.15 + Math.random() * 0.2; 
         this.otherDirection = true;
-        this.moveLeft()
         this.animateEnemiesRunLeft()
+        this.applyGravity();
+        
 
         
     }
 
         animateEnemiesRunLeft() {
             setInterval(() => {
-                let i = this.currentImage % this.IMAGES_WALK.length;
-                let path = this.IMAGES_WALK[i];
-                this.img = this.imageChache[path];
-                this.currentImage++;
-            }, 
-            1000 / 10);
+                this.playAnimation(this.IMAGES_WALK)
+            }, 1000 / 10);
+
+            setInterval(() =>{
+            this.moveLeft();
+            }, 1000 / 60);
+            
         }
     
 }

@@ -37,15 +37,38 @@ class Character extends MovableObject{
             'gameassets/Elves/PNG/PNG Sequences/Running/0_Dark_Elves_Running_011.png',
     ];
 
+       IMAGES_JUMPING = [
+            'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_000.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_001.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_002.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_003.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_004.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_005.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Loop/0_Dark_Elves_Jump Loop_000.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Loop/0_Dark_Elves_Jump Loop_001.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Loop/0_Dark_Elves_Jump Loop_002.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Loop/0_Dark_Elves_Jump Loop_003.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Loop/0_Dark_Elves_Jump Loop_004.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Loop/0_Dark_Elves_Jump Loop_005.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_005.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_004.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_003.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_001.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_002.png',
+            'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_000.png',
+    ];
+
     currentImage = 0;
     world;
     endOfMap = 620
-    movement = this.IMAGES_IDLE
+
 
     constructor() {
         super().loadImage('gameassets/Elves/PNG/PNG Sequences/Kicking/0_Dark_Elves_Kicking_000.png')
-        this.loadImages(this.movement);
+        this.loadImages(this.IMAGES_IDLE);
+        this.loadImages(this.IMAGES_JUMPING);
         this.animate();
+        this.applyGravity();
 
     }
 
@@ -54,28 +77,33 @@ class Character extends MovableObject{
         setInterval(() => {
 
             if (this.world.keyboard.RIGHT && this.x < this.endOfMap) {
-                this.x += this.speed;
+                this.moveRight()
                 this.otherDirection = false;
             }  
 
             if (this.world.keyboard.LEFT && this.x > 0) {
-                this.x -= this.speed;
+                this.moveLeft()
                 this.otherDirection = true;
+            }
+
+            if(this.world.keyboard.UP && !this.isAboveGround()){
+                this.jump();
             }
             this.world.camera_x = -this.x + 100;
         },1000 / 60);
 
-        {
+        
 
         
-            setInterval(() => {
-                let i = this.currentImage % this.IMAGES_IDLE.length;
-                let path = this.IMAGES_IDLE[i];
-                this.img = this.imageChache[path];
-                this.currentImage++;
-            }, 
-            1000 / 10);
+        setInterval(() => {
+        if (this.isAboveGround()) {
+           this.playAnimation(this.IMAGES_JUMPING)  
+        }else{
+            this.playAnimation(this.IMAGES_IDLE)
         }
+        }, 
+        1000 / 10);
+        
     }
 }
 
