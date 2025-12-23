@@ -37,7 +37,7 @@ class Character extends MovableObject{
             'gameassets/Elves/PNG/PNG Sequences/Running/0_Dark_Elves_Running_011.png',
     ];
 
-       IMAGES_JUMPING = [
+    IMAGES_JUMPING = [
             'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_000.png',
             'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_001.png',
             'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_002.png',
@@ -58,15 +58,52 @@ class Character extends MovableObject{
             'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_000.png',
     ];
 
+    IMAGES_HURT = [
+        'gameassets/Elves/PNG/PNG Sequences/Hurt/0_Dark_Elves_Hurt_000.png',
+        'gameassets/Elves/PNG/PNG Sequences/Hurt/0_Dark_Elves_Hurt_001.png',
+        'gameassets/Elves/PNG/PNG Sequences/Hurt/0_Dark_Elves_Hurt_002.png',
+        'gameassets/Elves/PNG/PNG Sequences/Hurt/0_Dark_Elves_Hurt_003.png',
+        'gameassets/Elves/PNG/PNG Sequences/Hurt/0_Dark_Elves_Hurt_004.png',
+        'gameassets/Elves/PNG/PNG Sequences/Hurt/0_Dark_Elves_Hurt_005.png',
+        'gameassets/Elves/PNG/PNG Sequences/Hurt/0_Dark_Elves_Hurt_006.png',
+        'gameassets/Elves/PNG/PNG Sequences/Hurt/0_Dark_Elves_Hurt_007.png',
+        'gameassets/Elves/PNG/PNG Sequences/Hurt/0_Dark_Elves_Hurt_008.png',
+        'gameassets/Elves/PNG/PNG Sequences/Hurt/0_Dark_Elves_Hurt_009.png',
+        'gameassets/Elves/PNG/PNG Sequences/Hurt/0_Dark_Elves_Hurt_010.png',
+        'gameassets/Elves/PNG/PNG Sequences/Hurt/0_Dark_Elves_Hurt_011.png',
+    ]
+
+        IMAGES_DYING = [
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_000.png',
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_001.png',
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_002.png',
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_003.png',
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_004.png',
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_005.png',
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_006.png',
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_007.png',
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_008.png',
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_009.png',
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_010.png',
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_011.png',
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_012.png',
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_013.png',
+        'gameassets/Elves/PNG/PNG Sequences7Dying70_Dark_Elves_Dying_014.png',  
+    ]
+
+
     currentImage = 0;
     world;
     endOfMap = 620
+    live = 100;
 
 
     constructor() {
         super().loadImage('gameassets/Elves/PNG/PNG Sequences/Kicking/0_Dark_Elves_Kicking_000.png')
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_JUMPING);
+        this.loadImages(this.IMAGES_HURT);
+        this.loadImages(this.IMAGES_DYING);
         this.animate();
         this.applyGravity();
 
@@ -93,17 +130,26 @@ class Character extends MovableObject{
         },1000 / 60);
 
         
-
-        
         setInterval(() => {
         if (this.isAboveGround()) {
            this.playAnimation(this.IMAGES_JUMPING)  
         }else{
             this.playAnimation(this.IMAGES_IDLE)
-        }
+            }
         }, 
         1000 / 10);
         
+    }
+
+    hit() {
+        this.live -= 5 ;
+        if (this.live < 0) {
+            this.live = 0
+            
+        }else{
+
+        this.playAnimation(this.IMAGES_HURT)   
+        }
     }
 }
 
