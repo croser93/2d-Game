@@ -70,12 +70,22 @@ class MovableObject {
         this.x -= this.speed;
     }
 
-    playAnimation(images){
+    playAnimationLoop(images){
         let i = this.currentImage % images.length;
         let path = images[i];
         this.img = this.imageChache[path];
         this.currentImage++;       
     }
+
+   playAnimationOnce(images) {
+    let index = Math.min(this.currentImage, images.length - 1);
+    let path = images[index];
+    this.img = this.imageChache[path];
+
+    if (this.currentImage < images.length) {
+        this.currentImage++;
+    }
+}
 
     jump(){
         this.speedY = 15

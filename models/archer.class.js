@@ -46,7 +46,7 @@ class Archer extends MovableObject{
         this.loadImages(this.IMAGES_WALK);
         this.speed = 0.15 + Math.random() * 0.2; 
         this.otherDirection = true;
-        this.animateEnemiesRunLeft()
+        // this.animateEnemiesRunLeft()
         this.applyGravity();
         
 
@@ -55,7 +55,7 @@ class Archer extends MovableObject{
 
         animateEnemiesRunLeft() {
             setInterval(() => {
-                this.playAnimation(this.IMAGES_WALK)
+                this.playAnimationLoop(this.IMAGES_WALK)
             }, 1000 / 10);
 
             setInterval(() =>{
