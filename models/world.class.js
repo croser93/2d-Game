@@ -7,8 +7,12 @@ class World {
     backgroundassets = level_1.backgroundassets;
     backgroundassetsunderworld = level_1.backgroundassetsunderworld;
     statusBar = new StatusBar();
+    manaBar = new ManaBar();
+    collecableBar = new CollectableBar();
     coins = new CollectableItem();
     strong = new CollectableStrong();
+   
+    
 
     keyboard;
     ctx;
@@ -19,10 +23,7 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard
         this.draw();
-        this.checkCollisions();
-        
-        
-        
+        this.checkCollisions(); 
     }
     
     
@@ -56,6 +57,8 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
+        this.addToMap(this.manaBar);
+        this.addToMap(this.collecableBar);
         this.ctx.translate(this.camera_x, 0)
 
 
