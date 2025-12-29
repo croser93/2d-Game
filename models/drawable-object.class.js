@@ -21,9 +21,9 @@ class DrawableObject {
         this.img = new Image();
         this.img.src = path;
     }
-    
+
     drawFrame(ctx){
-        if (this instanceof Character || this instanceof Archer || this instanceof Endboss) {
+        if (this instanceof Character || this instanceof Archer || this instanceof Endboss || this instanceof CollectableItem) {
             ctx.beginPath();
             ctx.lineWidth = ('2');
             ctx.strokeStyle = ('red');

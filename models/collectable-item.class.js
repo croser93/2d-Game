@@ -1,6 +1,6 @@
 class CollectableItem extends MovableObject {
 
-    IMAGE_SPIN = [
+    IMAGE_COIN = [
         "gameassets/Collectable Object/Coin_01.png",
         "gameassets/Collectable Object/Coin_02.png",
         "gameassets/Collectable Object/Coin_03.png",
@@ -13,7 +13,7 @@ class CollectableItem extends MovableObject {
 
     constructor(){
         super().loadImage('gameassets/Collectable Object/Coin_01.png')
-        this.loadImages(this.IMAGE_SPIN);
+        this.loadImages(this.IMAGE_COIN);
         this.height = 32
         this.width = 32
         this.y = 310
@@ -23,7 +23,7 @@ class CollectableItem extends MovableObject {
 
         animateCollectable() {
             setInterval(() => {
-                this.playAnimationLoop(this.IMAGE_SPIN)
+                this.playAnimationLoop(this.IMAGE_COIN)
             }, 1000 / 10);
         }
 }

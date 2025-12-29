@@ -3,9 +3,27 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0px;
+
 }
 
 canvas{
 
     background-color: black;
+}
+
+h1 {
+    font-size: 4rem;
+    flex-wrap: nowrap;
+    font-family: 'FreckleFace-Regular';
+
+
+}
+
+@font-face {
+font-family: 'FreckleFace-Regular';
+src: url('./gameassets/fonts/Freckle_Face/FreckleFace-Regular.ttf') format("truetype");
+font-weight: 400;
+font-style: normal;
+font-display: swap;
 }

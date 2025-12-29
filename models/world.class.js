@@ -8,6 +8,7 @@ class World {
     backgroundassetsunderworld = level_1.backgroundassetsunderworld;
     statusBar = new StatusBar();
     coins = new CollectableItem();
+    strong = new CollectableStrong();
 
     keyboard;
     ctx;
@@ -51,6 +52,7 @@ class World {
         this.addObjectsToMap(this.backgroundassetsunderworld);
         this.addToMap(this.character);
         this.addToMap(this.coins)
+        this.addToMap(this.strong)
 
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
