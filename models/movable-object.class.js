@@ -1,10 +1,10 @@
-class MovableObject {
-    x = 0;
-    y = 180;
-    img;
-    height = 100;
-    width = 100;
-    imageChache = {};
+class MovableObject extends DrawableObject {
+    // x = 0;
+    // y = 180;
+    // img;
+    // height = 100;
+    // width = 100;
+    // imageCache = {};
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
@@ -21,34 +21,6 @@ class MovableObject {
 
     isAboveGround(){
         return this.y < 250
-    }
-
-    loadImage(path){
-        this.img = new Image();
-        this.img.src = path;
-    }
-
-    loadImages(arr){
-        arr.forEach((path) => {   
-            let img = new Image();
-            img.src = path;
-            this.imageChache[path] = img;
-        });
-    }
-
-    drawItem(ctx){
-    ctx.drawImage(this.img, this.x, this.y, this.height, this.width);
-    }
-
-    drawFrame(ctx){
-        if (this instanceof Character || this instanceof Archer || this instanceof Endboss) {
-            ctx.beginPath();
-            ctx.lineWidth = ('2');
-            ctx.strokeStyle = ('red');
-            ctx.rect(this.x, this.y, this.height , this.width);
-            ctx.stroke();
-            
-        }
     }
 
     isColliding(item){
@@ -73,14 +45,14 @@ class MovableObject {
     playAnimationLoop(images){
         let i = this.currentImage % images.length;
         let path = images[i];
-        this.img = this.imageChache[path];
+        this.img = this.imageCache[path];
         this.currentImage++;       
     }
 
    playAnimationOnce(images) {
     let index = Math.min(this.currentImage, images.length - 1);
     let path = images[index];
-    this.img = this.imageChache[path];
+    this.img = this.imageCache[path];
 
     if (this.currentImage < images.length) {
         this.currentImage++;

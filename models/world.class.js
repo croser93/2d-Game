@@ -6,33 +6,34 @@ class World {
     background = level_1.background;
     backgroundassets = level_1.backgroundassets;
     backgroundassetsunderworld = level_1.backgroundassetsunderworld;
+    statusBar = new StatusBar();
+    coins = new CollectableItem();
 
     keyboard;
     ctx;
     camera_x = 0;
     constructor(canvas, keyboard){
+        this.setWorld();
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard
         this.draw();
-        this.setWorld();
         this.checkCollisions();
-
-
-
-    }
-
-    setWorld() {
-        this.character.world = this;
-  
+        
+        
         
     }
-
+    
+    
+    setWorld() {
+        this.character.world = this; 
+    }
     checkCollisions(){
         setInterval(() => {
             this.level_1.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)){
-                    this.character.hit()                                
+                    this.character.hit()
+                    this.statusBar.setPercentage(this.character.live)                       
                 }
             })
 
@@ -45,13 +46,19 @@ class World {
 
         this.ctx.translate(this.camera_x, 0)
 
-        this.addObjectsToMap(this.background)
-        this.addObjectsToMap(this.backgroundassets)
-        this.addObjectsToMap(this.backgroundassetsunderworld)
-        this.addToMap(this.character)
+        this.addObjectsToMap(this.background);
+        this.addObjectsToMap(this.backgroundassets);
+        this.addObjectsToMap(this.backgroundassetsunderworld);
+        this.addToMap(this.character);
+        this.addToMap(this.coins)
 
-        this.addObjectsToMap(this.enemies)
-        this.ctx.translate(-this.camera_x, 0)
+        this.ctx.translate(-this.camera_x, 0);
+        this.addToMap(this.statusBar);
+        this.ctx.translate(this.camera_x, 0)
+
+
+        this.addObjectsToMap(this.enemies);
+        this.ctx.translate(-this.camera_x, 0);
         
 
         // Draw wird immer wieder aufgrufen / this funktioniert nicht mehr, daher wird es in eine variable gespeichert
