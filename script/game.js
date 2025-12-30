@@ -25,10 +25,11 @@ window.addEventListener('keydown', (e) => {
     keyboard.UP = true  
 
     }
-    if (e.keyCode == 32 ) {
-    keyboard.SPACE = true  
-
-    }   
+        
+    if (e.keyCode === 32 && !keyboard.SPACE_USED) {
+        keyboard.SPACE = true;
+        keyboard.SPACE_USED = true; // blockiert Halten
+    } 
 })
 
 window.addEventListener('keyup', (e) => {
@@ -45,8 +46,9 @@ window.addEventListener('keyup', (e) => {
     keyboard.UP = false  
 
     }
-    if (e.keyCode == 32 ) {
-    keyboard.SPACE = false  
+     if (e.keyCode === 32) {
+        keyboard.SPACE = false;
+        keyboard.SPACE_USED = false; 
 
     }    
 })

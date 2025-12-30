@@ -37,7 +37,7 @@ class World {
             this.checkCollisions();
             this.checkAttack();
             
-        }, 50
+        }, 60
         )
     }
 
@@ -50,12 +50,13 @@ class World {
 
 
     checkAttack() {
-        if (this.keyboard.SPACE) {
-            let newattack = new Attack(this.character.x, this.character.y);
-            this.attack.push(newattack)
-            
-        }
+    if (this.keyboard.SPACE) {
+        let newattack = new Attack(this.character.x, this.character.y);
+        this.attack.push(newattack);
+
+        this.keyboard.SPACE = false;
     }
+}
 
     draw(){
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height) //cleart die funktion
@@ -72,9 +73,9 @@ class World {
 
         
         this.ctx.translate(-this.camera_x, 0);
-        // this.addToMap(this.statusBar);
-        // this.addToMap(this.manaBar);
-        // this.addToMap(this.collecableBar);
+        this.addToMap(this.statusBar);
+        this.addToMap(this.manaBar);
+        this.addToMap(this.collecableBar);
         this.ctx.translate(this.camera_x, 0)
 
 

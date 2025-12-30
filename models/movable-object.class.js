@@ -13,12 +13,9 @@ class MovableObject extends DrawableObject {
 
     }
 
-    isAboveGround(){
-        if (this instanceof Attack) {
-            return true   
-        } else{
+    isAboveGround(){    
         return this.y < 250
-        }
+        
     }
 
     isColliding(item){
@@ -26,11 +23,8 @@ class MovableObject extends DrawableObject {
         this.y + this.hitboxOffsetY + (this.hitboxHeight || this.height) > item.y + item.hitboxOffsetY &&
         this.x + this.hitboxOffsetX < item.x + item.hitboxOffsetX + (item.hitboxWidth || item.width) &&
         this.y + this.hitboxOffsetY < item.y + item.hitboxOffsetY + (item.hitboxHeight || item.height)
-}
-
-    flipImage(ctx){
-
     }
+
 
     moveRight() {     
         this.x += this.speed;
@@ -52,10 +46,10 @@ class MovableObject extends DrawableObject {
     let path = images[index];
     this.img = this.imageCache[path];
 
-    if (this.currentImage < images.length) {
-        this.currentImage++;
+        if (this.currentImage < images.length) {
+            this.currentImage++;
+        }
     }
-}
 
     jump(){
         this.speedY = 15
