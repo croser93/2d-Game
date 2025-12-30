@@ -1,10 +1,11 @@
 const level_1 = new Level(
    [
         new Archer(),
-        // new Archer(),
+        new Archer(),
         new Endboss(),
-        ],
-[       new Background('./gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Background/Background_01.png', -720),
+    ],
+
+    [   new Background('./gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Background/Background_01.png', -720),
         new Background('./gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Background/Background_02.png', -720),
         new Background('./gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Background/Background_01.png', 0),
         new Background('./gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Background/Background_02.png', 0),
@@ -36,6 +37,18 @@ const level_1 = new Level(
         new Backgroundassetsunder('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_06.png', 480),
         new Backgroundassetsunder('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_06.png', 560),
         new Backgroundassetsunder('../gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_13.png', 640),
+    ],
+
+    [
+        new CollectableItem(),
+        new CollectableItem(),
+        new CollectableItem(),
+    ],
+
+    [
+        new CollectableStrong(),
+        new CollectableStrong(),
+        new CollectableStrong(),
     ]
 
 

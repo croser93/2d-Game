@@ -28,7 +28,7 @@ window.addEventListener('keydown', (e) => {
         
     if (e.keyCode === 32 && !keyboard.SPACE_USED) {
         keyboard.SPACE = true;
-        keyboard.SPACE_USED = true; // blockiert Halten
+        keyboard.SPACE_USED = true;
     } 
 })
 

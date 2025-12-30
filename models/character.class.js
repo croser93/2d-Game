@@ -96,6 +96,8 @@ class Character extends MovableObject{
     world;
     endOfMap = 620
     live = 100;
+    mana = 20;
+    coin = 0;
     lastHit;
     dying;
 
@@ -170,6 +172,15 @@ class Character extends MovableObject{
         }else{
             this.lastHit = new Date().getTime();
         }
+    }
+
+    collect(){
+        this.coin += 5 ;
+        if (this.coin > 100) {
+            this.coin = 100
+            
+        }
+
     }
 
     isHurt(){

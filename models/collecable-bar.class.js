@@ -1,5 +1,5 @@
 class CollectableBar extends StatusBar {
-    percentage = 40;
+    percentage = 0;
     x = 20;
     y = 80;
     width = 200;
@@ -13,6 +13,11 @@ class CollectableBar extends StatusBar {
 
     constructor() {
         super();
+        this.percentage = 0;
+    }
+
+    setPercentage(percentage) {
+        this.percentage = Math.max(0, Math.min(100, percentage));
     }
 
 }

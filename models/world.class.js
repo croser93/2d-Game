@@ -9,8 +9,8 @@ class World {
     statusBar = new StatusBar();
     manaBar = new ManaBar();
     collecableBar = new CollectableBar();
-    coins = new CollectableItem();
-    strong = new CollectableStrong();
+    coins = level_1.coins;
+    strong = level_1.strong;
     attack = [];
    
     
@@ -36,10 +36,12 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkAttack();
+            this.checkCollect();
             
         }, 60
         )
     }
+    
 
     checkCollisions(){
     this.level_1.enemies.forEach((enemy) => {
@@ -47,6 +49,16 @@ class World {
                     this.character.hit()
                     this.statusBar.setPercentage(this.character.live)                       
                 }})} 
+
+    checkCollect(){
+        this.level_1.coins.forEach((coin, index) => {
+                if(this.character.isColliding(coin)){
+                    this.character.collect()
+                    this.collecableBar.setPercentage(this.character.coin)
+                    this.level_1.coins.splice(index, 1);     
+                    console.log(this.character.coin)                    
+                }})} 
+    
 
 
     checkAttack() {
@@ -68,8 +80,8 @@ class World {
         this.addObjectsToMap(this.backgroundassetsunderworld);
         this.addObjectsToMap(this.attack);
         this.addToMap(this.character);
-        this.addToMap(this.coins)
-        this.addToMap(this.strong)
+        this.addObjectsToMap(this.coins)
+        this.addObjectsToMap(this.strong)
 
         
         this.ctx.translate(-this.camera_x, 0);

@@ -34,7 +34,7 @@ class Endboss extends MovableObject {
     constructor() {
         super().loadImage('gameassets/Archer/PNG/PNG Sequences/Idle/0_Archer_Idle_000.png')
         this.loadImages(this.IMAGES_IDLE);
-        this.x = 400;
+        this.x = 700;
         this.otherDirection = true;
         this.animateBoss();
 
