@@ -1,10 +1,4 @@
 class MovableObject extends DrawableObject {
-    // x = 0;
-    // y = 180;
-    // img;
-    // height = 100;
-    // width = 100;
-    // imageCache = {};
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
@@ -20,15 +14,19 @@ class MovableObject extends DrawableObject {
     }
 
     isAboveGround(){
+        if (this instanceof Attack) {
+            return true   
+        } else{
         return this.y < 250
+        }
     }
 
     isColliding(item){
-        return this.x + this.width > item.x &&
-            this.y + this.height > item.y &&
-            this.x < item.x &&
-            this.y < item.y + item.height
-    }
+    return this.x + this.hitboxOffsetX + (this.hitboxWidth || this.width) > item.x + item.hitboxOffsetX &&
+        this.y + this.hitboxOffsetY + (this.hitboxHeight || this.height) > item.y + item.hitboxOffsetY &&
+        this.x + this.hitboxOffsetX < item.x + item.hitboxOffsetX + (item.hitboxWidth || item.width) &&
+        this.y + this.hitboxOffsetY < item.y + item.hitboxOffsetY + (item.hitboxHeight || item.height)
+}
 
     flipImage(ctx){
 

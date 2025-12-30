@@ -26,6 +26,11 @@ class Endboss extends MovableObject {
     currentImage = 0;
     world;
 
+    hitboxOffsetX = 80;
+    hitboxOffsetY = 60;
+    hitboxWidth = 140;
+    hitboxHeight = 200;
+
     constructor() {
         super().loadImage('gameassets/Archer/PNG/PNG Sequences/Idle/0_Archer_Idle_000.png')
         this.loadImages(this.IMAGES_IDLE);

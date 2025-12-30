@@ -11,6 +11,7 @@ class World {
     collecableBar = new CollectableBar();
     coins = new CollectableItem();
     strong = new CollectableStrong();
+    attack = [];
    
     
 
@@ -23,24 +24,37 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard
         this.draw();
-        this.checkCollisions(); 
+        this.run(); 
     }
     
     
     setWorld() {
         this.character.world = this; 
     }
-    checkCollisions(){
+    
+    run(){
         setInterval(() => {
-            this.level_1.enemies.forEach((enemy) => {
+            this.checkCollisions();
+            this.checkAttack();
+            
+        }, 50
+        )
+    }
+
+    checkCollisions(){
+    this.level_1.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)){
                     this.character.hit()
                     this.statusBar.setPercentage(this.character.live)                       
-                }
-            })
+                }})} 
 
-        }, 200
-        )
+
+    checkAttack() {
+        if (this.keyboard.SPACE) {
+            let newattack = new Attack(this.character.x, this.character.y);
+            this.attack.push(newattack)
+            
+        }
     }
 
     draw(){
@@ -51,14 +65,16 @@ class World {
         this.addObjectsToMap(this.background);
         this.addObjectsToMap(this.backgroundassets);
         this.addObjectsToMap(this.backgroundassetsunderworld);
+        this.addObjectsToMap(this.attack);
         this.addToMap(this.character);
         this.addToMap(this.coins)
         this.addToMap(this.strong)
 
+        
         this.ctx.translate(-this.camera_x, 0);
-        this.addToMap(this.statusBar);
-        this.addToMap(this.manaBar);
-        this.addToMap(this.collecableBar);
+        // this.addToMap(this.statusBar);
+        // this.addToMap(this.manaBar);
+        // this.addToMap(this.collecableBar);
         this.ctx.translate(this.camera_x, 0)
 
 

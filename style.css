@@ -4,6 +4,7 @@ body{
     justify-content: center;
     align-items: center;
     margin: 0px;
+    background-image: url('./gameassets/img/game-background-image.png');
 
 }
 
@@ -16,8 +17,7 @@ h1 {
     font-size: 4rem;
     flex-wrap: nowrap;
     font-family: 'FreckleFace-Regular';
-
-
+    text-shadow: 2px 2px 2px rgb(236, 229, 230);
 }
 
 @font-face {

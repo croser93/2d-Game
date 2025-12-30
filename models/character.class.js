@@ -99,6 +99,11 @@ class Character extends MovableObject{
     lastHit;
     dying;
 
+    hitboxOffsetX = 20;
+    hitboxOffsetY = 10;
+    hitboxWidth = 60;
+    hitboxHeight = 80;
+
 
     constructor() {
         super().loadImage('gameassets/Elves/PNG/PNG Sequences/Kicking/0_Dark_Elves_Kicking_000.png')
@@ -109,7 +114,6 @@ class Character extends MovableObject{
         this.loadImages(this.IMAGES_DYING);
         this.animate();
         this.applyGravity();
-
     }
 
 

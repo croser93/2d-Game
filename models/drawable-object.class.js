@@ -6,6 +6,10 @@ class DrawableObject {
     img;
     height = 100;
     width = 100;
+    hitboxOffsetX = 0;
+    hitboxOffsetY = 0;
+    hitboxWidth = 0;
+    hitboxHeight = 0;
 
 
 
@@ -27,11 +31,15 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = ('2');
             ctx.strokeStyle = ('red');
-            ctx.rect(this.x, this.y, this.height , this.width);
+            ctx.rect(
+                this.x + this.hitboxOffsetX, 
+                this.y + this.hitboxOffsetY, 
+                this.hitboxWidth || this.width, 
+                this.hitboxHeight || this.height
+            );
             ctx.stroke();
-            }
+        }
     }
-    
     drawItem(ctx){
         try{
             ctx.drawImage(this.img, this.x, this.y, this.height, this.width);

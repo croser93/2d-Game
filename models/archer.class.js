@@ -38,19 +38,22 @@ class Archer extends MovableObject{
 
     world;
     currentImage = 0;
+    
+    hitboxOffsetX = 20;
+    hitboxOffsetY = 10;
+    hitboxWidth = 60;
+    hitboxHeight = 80;
 
     constructor(){
         super().loadImage('../gameassets/Archer_2/PNG/PNG Sequences/Idle/0_Archer_Idle_000.png')
-        this.x = 500 + Math.random() * 150
+        // this.x = 500 + Math.random() * 150
+                this.x = 200;
 
         this.loadImages(this.IMAGES_WALK);
         this.speed = 0.15 + Math.random() * 0.2; 
         this.otherDirection = true;
         // this.animateEnemiesRunLeft()
         this.applyGravity();
-        
-
-        
     }
 
         animateEnemiesRunLeft() {
