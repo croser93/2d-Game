@@ -101,6 +101,8 @@ class Character extends MovableObject{
     lastHit;
     dying;
 
+    
+
     hitboxOffsetX = 20;
     hitboxOffsetY = 10;
     hitboxWidth = 60;

@@ -6,9 +6,6 @@ function init() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard)
     ctx = canvas.getContext('2d')
-    
-
-
 }
 
 window.addEventListener('keydown', (e) => {
@@ -52,3 +49,13 @@ window.addEventListener('keyup', (e) => {
 
     }    
 })
+
+function toggleSoundmode () {
+    const soundMode = world.soundmodeON
+    world.soundmodeON = !world.soundmodeON;
+    console.log(soundMode);  
+}
+
+function fullscreen(){
+    document.getElementById('canvas').requestFullscreen();           
+}

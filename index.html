@@ -33,7 +33,13 @@
 </head>
 <body onload="init()">
 
-    <h1>Elves in the WOrld of Demons</h1>
+    <header>
+            <h1>Elves in the WOrld of Demons</h1>
+            <div class="headerLine">
+                <button id="soundmode"><img src="./gameassets/img/icons/sound-mute-svgrepo-com.svg" alt="" onclick="toggleSoundmode ()"></button>
+                <button id="fullscreen"><img src="./gameassets/img/icons/fullscreen-alt-svgrepo-com.svg" alt="" onclick="fullscreen()"></button>
+             </div>
+    </header>
 
     <canvas id="canvas" width="720" height="480"></canvas>
     

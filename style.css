@@ -27,3 +27,40 @@ font-weight: 400;
 font-style: normal;
 font-display: swap;
 }
+
+.headerLine{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    max-width: 750px;
+}
+
+
+
+#soundmode img,
+#soundmode{
+    height: 48px;
+    width: 48px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+#fullscreen,
+#fullscreen img {
+    height: 36px;
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+
+}
+
+.class{
+    background-color: #ffb54d, #d33d17;
+}

@@ -13,6 +13,8 @@ class World {
     strong = level_1.strong;
     live = level_1.live;
     attack = [];
+    soundmodeON = true;
+    backgroundMusic = new Audio('gameassets/sounds/minimal-techno-random-basic-1-18079.mp3')
    
     
 
@@ -26,7 +28,10 @@ class World {
         this.keyboard = keyboard
         this.draw();
         this.runSlow();
-        this.runFast()
+        this.runFast();
+
+        
+
     }
     
     setWorld() {
@@ -39,6 +44,7 @@ class World {
             this.collecableBar.setPercentage(this.character.coin);
             this.manaBar.setPercentage(this.character.mana);
             this.statusBar.setPercentage(this.character.live);
+            this.sound();
         }, 1000 / 5
         )
     }  
@@ -82,10 +88,10 @@ class World {
 
 
     checkAttack() {
-    if (this.keyboard.SPACE) {
+    if (this.keyboard.SPACE && this.character.mana > 0) {
         let newattack = new Attack(this.character.x, this.character.y);
         this.attack.push(newattack);
-
+        this.character.mana -= 5
         this.keyboard.SPACE = false;
     }
 }
@@ -146,7 +152,14 @@ class World {
             item.x = item.x * -1 ;
             this.ctx.restore();   
         }
-
     }
 
+    sound(){
+        if (this.soundmodeON) {
+            this.backgroundMusic.play()
+        }
+        else {
+        this.backgroundMusic.pause();
+    }
+    }
 }
