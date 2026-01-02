@@ -13,7 +13,6 @@ class CollectableBar extends StatusBar {
 
     constructor() {
         super();
-        this.percentage = 0;
     }
 
     setPercentage(percentage) {

@@ -1,5 +1,5 @@
 class ManaBar extends StatusBar {
-    percentage = 0;
+    percentage = 0
     x = 20;
     y = 50;
     width = 200;
@@ -13,6 +13,10 @@ class ManaBar extends StatusBar {
 
     constructor() {
         super();
+    }
+
+    setPercentage(percentage) {
+        this.percentage = Math.max(0, Math.min(100, percentage));
     }
 
 }

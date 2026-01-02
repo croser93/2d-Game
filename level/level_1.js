@@ -49,7 +49,12 @@ const level_1 = new Level(
         new CollectableStrong(),
         new CollectableStrong(),
         new CollectableStrong(),
+        
+    ],
+    [
+        new CollectableLive(),
+        new CollectableLive(),
+        new CollectableLive(),   
     ]
-
 
 );

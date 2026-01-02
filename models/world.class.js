@@ -11,6 +11,7 @@ class World {
     collecableBar = new CollectableBar();
     coins = level_1.coins;
     strong = level_1.strong;
+    live = level_1.live;
     attack = [];
    
     
@@ -24,23 +25,32 @@ class World {
         this.canvas = canvas;
         this.keyboard = keyboard
         this.draw();
-        this.run(); 
+        this.runSlow();
+        this.runFast()
     }
-    
     
     setWorld() {
         this.character.world = this; 
     }
     
-    run(){
+    runSlow(){
         setInterval(() => {
             this.checkCollisions();
+            this.collecableBar.setPercentage(this.character.coin);
+            this.manaBar.setPercentage(this.character.mana);
+            this.statusBar.setPercentage(this.character.live);
+        }, 1000 / 5
+        )
+    }  
+
+    runFast(){
+        setInterval(() => {
             this.checkAttack();
-            this.checkCollect();
-            
-        }, 60
+            this.checkCollect(); 
+        },1000 / 60
         )
     }
+    
     
 
     checkCollisions(){
@@ -51,13 +61,23 @@ class World {
                 }})} 
 
     checkCollect(){
-        this.level_1.coins.forEach((coin, index) => {
-                if(this.character.isColliding(coin)){
-                    this.character.collect()
-                    this.collecableBar.setPercentage(this.character.coin)
-                    this.level_1.coins.splice(index, 1);     
-                    console.log(this.character.coin)                    
-                }})} 
+        const collectables = [
+            { items: this.level_1.coins, type: 'coin', statBar: this.collecableBar, amount: 10, collectItem: this.character.coin, test: 'coin'},
+            { items: this.level_1.strong, type: 'strong', statBar: this.manaBar, amount: 20, collectItem: this.character.mana, test: 'mana'},
+            { items: this.level_1.live, type: 'live', statBar: this.statusBar, amount: 20, collectItem: this.character.live, test: 'live'}
+        ];
+
+        collectables.forEach(({items, type, statBar, amount, collectItem, test }) => {
+            items.forEach((item, index) => {
+                if(this.character.isColliding(item)){
+                    console.log('Collected:', type, item);
+                    this.character.collect(test, amount);
+                    statBar.setPercentage(collectItem);
+                    items.splice(index, 1);
+                }
+            });
+        });
+    }
     
 
 
@@ -82,6 +102,7 @@ class World {
         this.addToMap(this.character);
         this.addObjectsToMap(this.coins)
         this.addObjectsToMap(this.strong)
+        this.addObjectsToMap(this.live)
 
         
         this.ctx.translate(-this.camera_x, 0);

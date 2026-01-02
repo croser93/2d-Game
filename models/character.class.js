@@ -96,8 +96,8 @@ class Character extends MovableObject{
     world;
     endOfMap = 620
     live = 100;
-    mana = 20;
-    coin = 0;
+    mana = 50;
+    coin = 20;
     lastHit;
     dying;
 
@@ -174,13 +174,13 @@ class Character extends MovableObject{
         }
     }
 
-    collect(){
-        this.coin += 5 ;
-        if (this.coin > 100) {
-            this.coin = 100
+    collect(type, amount){
+        console.log(this.mana, this.coin)
+        this[type] += amount;
+        if (this[type] > 100) {
+            this[type] = 100
             
-        }
-
+        }    
     }
 
     isHurt(){
