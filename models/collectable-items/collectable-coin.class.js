@@ -8,7 +8,6 @@ class CollectableItem extends MovableObject {
         "gameassets/Collectable Object/Coin_05.png",
         "gameassets/Collectable Object/Coin_06.png",
     ];
-
     currentImage = 0;
 
     constructor(){

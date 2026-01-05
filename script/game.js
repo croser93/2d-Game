@@ -6,6 +6,7 @@ function init() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard)
     ctx = canvas.getContext('2d')
+    toggleSoundmode()
 }
 
 window.addEventListener('keydown', (e) => {
@@ -43,17 +44,24 @@ window.addEventListener('keyup', (e) => {
     keyboard.UP = false  
 
     }
-     if (e.keyCode === 32) {
+    if (e.keyCode === 32) {
         keyboard.SPACE = false;
         keyboard.SPACE_USED = false; 
-
     }    
 })
 
-function toggleSoundmode () {
-    const soundMode = world.soundmodeON
+function toggleSoundmode() {
     world.soundmodeON = !world.soundmodeON;
-    console.log(soundMode);  
+    world.sound.soundmodeON = world.soundmodeON;
+    const soundIcon = document.getElementById('soundIcon');
+    
+    if (world.soundmodeON) {
+        soundIcon.src = 'gameassets/img/icons/sound-svgrepo-com.svg';
+        world.sound.backgroundSound(true)
+    } else {
+        soundIcon.src = 'gameassets/img/icons/sound-mute-svgrepo-com.svg';
+        world.sound.backgroundSound(false)
+    }
 }
 
 function fullscreen(){

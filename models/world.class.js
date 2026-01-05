@@ -14,7 +14,8 @@ class World {
     live = level_1.live;
     attack = [];
     soundmodeON = true;
-    backgroundMusic = new Audio('gameassets/sounds/minimal-techno-random-basic-1-18079.mp3')
+    sound = new Sound;
+
    
     
 
@@ -44,7 +45,6 @@ class World {
             this.collecableBar.setPercentage(this.character.coin);
             this.manaBar.setPercentage(this.character.mana);
             this.statusBar.setPercentage(this.character.live);
-            this.sound();
         }, 1000 / 5
         )
     }  
@@ -56,45 +56,45 @@ class World {
         },1000 / 60
         )
     }
-    
-    
-
+       
     checkCollisions(){
+
     this.level_1.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy)){
                     this.character.hit()
-                    this.statusBar.setPercentage(this.character.live)                       
+                    this.statusBar.setPercentage(this.character.live) 
+                    this.sound.playSound(this.sound.damageSound);                  
                 }})} 
 
     checkCollect(){
         const collectables = [
-            { items: this.level_1.coins, type: 'coin', statBar: this.collecableBar, amount: 10, collectItem: this.character.coin, test: 'coin'},
-            { items: this.level_1.strong, type: 'strong', statBar: this.manaBar, amount: 20, collectItem: this.character.mana, test: 'mana'},
-            { items: this.level_1.live, type: 'live', statBar: this.statusBar, amount: 20, collectItem: this.character.live, test: 'live'}
+            { items: this.level_1.coins, type: 'coin', statBar: this.collecableBar, amount: 10, collectItem: this.character.coin, charItem: 'coin', sound : this.sound.coinSound},
+            { items: this.level_1.strong, type: 'strong', statBar: this.manaBar, amount: 20, collectItem: this.character.mana, charItem: 'mana', sound : this.sound.manaSound},
+            { items: this.level_1.live, type: 'live', statBar: this.statusBar, amount: 20, collectItem: this.character.live, charItem: 'live', sound : this.sound.lifeSound}
         ];
 
-        collectables.forEach(({items, type, statBar, amount, collectItem, test }) => {
+        collectables.forEach(({items, type, statBar, amount, collectItem, charItem, sound}) => {
             items.forEach((item, index) => {
                 if(this.character.isColliding(item)){
                     console.log('Collected:', type, item);
-                    this.character.collect(test, amount);
+                    this.character.collect(charItem, amount);
                     statBar.setPercentage(collectItem);
                     items.splice(index, 1);
+                    this.sound.collectSound(sound)
                 }
             });
         });
     }
     
-
-
     checkAttack() {
-    if (this.keyboard.SPACE && this.character.mana > 0) {
+        if (this.keyboard.SPACE && this.character.mana > 0) {
         let newattack = new Attack(this.character.x, this.character.y);
         this.attack.push(newattack);
         this.character.mana -= 5
+        this.sound.playSound(this.sound.attackSound);
         this.keyboard.SPACE = false;
+        }
     }
-}
 
     draw(){
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height) //cleart die funktion
@@ -154,12 +154,4 @@ class World {
         }
     }
 
-    sound(){
-        if (this.soundmodeON) {
-            this.backgroundMusic.play()
-        }
-        else {
-        this.backgroundMusic.pause();
-    }
-    }
 }

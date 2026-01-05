@@ -5,7 +5,8 @@ body{
     align-items: center;
     margin: 0px;
     background-image: url('./gameassets/img/game-background-image.png');
-
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 canvas{
@@ -47,6 +48,7 @@ font-display: swap;
     cursor: pointer;
     background-color: transparent;
     border: none;
+    background-image: url('./gameassets/img/icons/sound-svgrepo-com.svg');
 }
 
 #fullscreen,

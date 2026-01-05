@@ -118,6 +118,7 @@ class Character extends MovableObject{
         this.loadImages(this.IMAGES_DYING);
         this.animate();
         this.applyGravity();
+        this.sound = new Sound();
     }
 
 
@@ -150,8 +151,8 @@ class Character extends MovableObject{
         else if (this.isHurt()){
             this.playAnimationLoop(this.IMAGES_HURT); 
         }
-        else if(this.world.keyboard.RIGHT || this.world.keyboard.LEFT){
-            this.playAnimationLoop(this.IMAGES_WALK); 
+        else if((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && this.isAboveGround){
+            this.playAnimationLoop(this.IMAGES_WALK);    
         }
         else if(this.live <= 0){
             this.playAnimationOnce(this.IMAGES_DYING);       

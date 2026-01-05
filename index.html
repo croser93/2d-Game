@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./gameassets/fonts/fonts.css">
+    <link rel="icon" type="image/x-icon" href="./gameassets/Collectable Object/Diamond.png">
 
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
@@ -15,6 +16,7 @@
     <script src="./models/world.class.js"></script>
     <script src="./models/keyboard.class.js"></script>
     <script src="./models/character.class.js"></script>
+    <script src="./models/sound.class.js"></script>
     <script src="./models/archer.class.js"></script>
     <script src="./models/endboss.class.js"></script>
     <script src="./models/collectable-items/collectable-coin.class.js"></script>
@@ -36,7 +38,7 @@
     <header>
             <h1>Elves in the WOrld of Demons</h1>
             <div class="headerLine">
-                <button id="soundmode"><img src="./gameassets/img/icons/sound-mute-svgrepo-com.svg" alt="" onclick="toggleSoundmode ()"></button>
+                <button id="soundmode"><img id="soundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/sound-svgrepo-com.svg" alt=""></button>
                 <button id="fullscreen"><img src="./gameassets/img/icons/fullscreen-alt-svgrepo-com.svg" alt="" onclick="fullscreen()"></button>
              </div>
     </header>
