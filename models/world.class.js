@@ -97,22 +97,28 @@ class World {
         }
     }
 
-checkAttackHit() {
+    checkAttackHit() { // Noch Umschreiben. zuviele funktionen gleichzeitig
     this.attack.forEach((attackObj, attackIndex) => {
-        this.level_1.enemies.forEach((enemy) => {
-            if (attackObj.isColliding(enemy) && !attackObj.hasHit) {
-                enemy.live -= attackObj.damage;
-                attackObj.hasHit = true;
+        this.level_1.enemies.forEach((enemy, enemyIndex) => {
+            if (attackObj.isColliding(enemy)) {
+                if (!attackObj.hitEnemies) {
+                    attackObj.hitEnemies = [];
+                }
                 
-                if (enemy.live <= 0 && !enemy.isDying) {
-                    enemy.isDying = true;
-                    enemy.stopInterval();
-                    setTimeout(() => {
-                        const index = this.level_1.enemies.indexOf(enemy);
-                        if (index > -1) {
-                            this.level_1.enemies.splice(index, 1);
-                        }
-                    }, 3000);
+                if (!attackObj.hitEnemies.includes(enemy)) {
+                    enemy.live -= attackObj.damage * (enemy.damageMultiplier || 1);
+                    attackObj.hitEnemies.push(enemy);
+                    
+                    if (enemy.live <= 0 && !enemy.dead) {
+                        enemy.dead = true;
+                        enemy.stopInterval();
+                        setTimeout(() => {
+                            const index = this.level_1.enemies.indexOf(enemy);
+                            if (index > -1) {
+                                this.level_1.enemies.splice(index, 1);
+                            }
+                        }, 3000);
+                    }
                 }
             }
         });

@@ -37,13 +37,20 @@
 
     <header>
             <h1>Elves in the WOrld of Demons</h1>
-            <div class="headerLine">
-                <button id="soundmode"><img id="soundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/sound-svgrepo-com.svg" alt=""></button>
-                <button id="fullscreen"><img src="./gameassets/img/icons/fullscreen-alt-svgrepo-com.svg" alt="" onclick="fullscreen()"></button>
-             </div>
     </header>
 
-    <canvas id="canvas" width="720" height="480"></canvas>
+    <main>    
+            <canvas class="dnone" id="canvas" width="720" height="480"></canvas>
+            <button id="startGame" class="startGame" onclick="startGame()">Start Game</button>
+    </main>
+
+    <footer>
+        <div class="footerLine">
+                <button id="soundmode"><img id="soundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/sound-svgrepo-com.svg" alt=""></button>
+                <button id="fullscreen"><img src="./gameassets/img/icons/fullscreen-alt-svgrepo-com.svg" alt="" onclick="fullscreen()"></button>
+        </div>
+
+    </footer>
     
 </body>
 </html>

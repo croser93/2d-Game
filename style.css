@@ -2,7 +2,6 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     margin: 0px;
     background-image: url('./gameassets/img/game-background-image.png');
     background-repeat: no-repeat;
@@ -12,6 +11,31 @@ body{
 canvas{
 
     background-color: black;
+}
+
+.startGame{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 300px);
+}
+
+footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 48px 100px;
+
 }
 
 h1 {
@@ -29,7 +53,7 @@ font-style: normal;
 font-display: swap;
 }
 
-.headerLine{
+.footerLine{
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -37,6 +61,9 @@ font-display: swap;
     max-width: 750px;
 }
 
+.dnone {
+    display: none;
+}
 
 
 #soundmode img,

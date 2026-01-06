@@ -61,6 +61,7 @@ class Archer extends MovableObject{
     hitboxOffsetY = 10;
     hitboxWidth = 60;
     hitboxHeight = 80;
+    damageMultiplier = 1.8;
     live = 100;
     dead = false;
     intervals = [];
@@ -75,7 +76,7 @@ class Archer extends MovableObject{
         this.loadImages(this.IMAGES_DYING);
         this.speed = 0.15 + Math.random() * 0.2; 
         this.otherDirection = true;
-        this.animateEnemiesRunLeft()
+        // this.animateEnemiesRunLeft()
         this.applyGravity();
     }
 

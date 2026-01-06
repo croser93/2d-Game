@@ -9,6 +9,12 @@ function init() {
     toggleSoundmode()
 }
 
+    function startGame(){
+        document.getElementById('startGame').classList.add('dnone')
+        document.getElementById('canvas').classList.remove('dnone')
+
+    }
+
 window.addEventListener('keydown', (e) => {
 
     if (e.keyCode == 39) {
