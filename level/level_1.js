@@ -2,6 +2,12 @@ const level_1 = new Level(
    [
         new Archer(),
         new Archer(),
+        // new Archer(),
+        // new Archer(),
+        // new Archer(),
+        // new Archer(),
+        // new Archer(),
+        // new Archer(),
         new Endboss(),
     ],
 

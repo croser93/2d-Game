@@ -21,6 +21,7 @@ class Attack extends MovableObject {
     hitboxOffsetY = 0;
     hitboxWidth = 0;
     hitboxHeight = 0;
+    damage = 20;
 
     
 

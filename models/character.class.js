@@ -35,7 +35,7 @@ class Character extends MovableObject{
         'gameassets/Elves/PNG/PNG Sequences/Running/0_Dark_Elves_Running_009.png',
         'gameassets/Elves/PNG/PNG Sequences/Running/0_Dark_Elves_Running_010.png',
         'gameassets/Elves/PNG/PNG Sequences/Running/0_Dark_Elves_Running_011.png',
-];
+    ];
 
     IMAGES_JUMPING = [
         'gameassets/Elves/PNG/PNG Sequences/Jump Start/0_Dark_Elves_Jump Start_000.png',
@@ -127,13 +127,11 @@ class Character extends MovableObject{
 
             if (this.world.keyboard.RIGHT && this.x < this.endOfMap) {
                 this.moveRight()
-                // this.playAnimationLoop(this.IMAGES_WALK)  
                 this.otherDirection = false;
             }  
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft()
-                // this.playAnimationLoop(this.IMAGES_WALK)  
                 this.otherDirection = true;
             }
 
@@ -152,10 +150,12 @@ class Character extends MovableObject{
             this.playAnimationLoop(this.IMAGES_HURT); 
         }
         else if((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && this.isAboveGround){
-            this.playAnimationLoop(this.IMAGES_WALK);    
+            this.playAnimationLoop(this.IMAGES_WALK);
+            this.world.sound.playSound(this.world.sound.walkSound)   
         }
         else if(this.live <= 0){
-            this.playAnimationOnce(this.IMAGES_DYING);       
+            this.playAnimationOnce(this.IMAGES_DYING);   
+            this.world.sound.playSound(this.world.sound.deadSound)    
         }    
         else{
             this.playAnimationLoop(this.IMAGES_IDLE);
@@ -191,8 +191,5 @@ class Character extends MovableObject{
         timepassed = timepassed / 1000
         return timepassed < 0.4
     }
-
-
-
 }
 

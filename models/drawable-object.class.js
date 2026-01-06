@@ -27,7 +27,7 @@ class DrawableObject {
     }
 
     drawFrame(ctx){
-        if (this instanceof Character || this instanceof Archer || this instanceof Endboss || this instanceof CollectableItem) {
+        if (this instanceof Character || this instanceof Archer || this instanceof Endboss || this instanceof CollectableItem || this instanceof Attack) {
             ctx.beginPath();
             ctx.lineWidth = ('2');
             ctx.strokeStyle = ('red');

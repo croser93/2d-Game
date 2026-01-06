@@ -52,7 +52,8 @@ class World {
     runFast(){
         setInterval(() => {
             this.checkAttack();
-            this.checkCollect(); 
+            this.checkCollect();
+            this.checkAttackHit();
         },1000 / 60
         )
     }
@@ -63,7 +64,7 @@ class World {
                 if(this.character.isColliding(enemy)){
                     this.character.hit()
                     this.statusBar.setPercentage(this.character.live) 
-                    this.sound.playSound(this.sound.damageSound);                  
+                    this.sound.playSoundloop(this.sound.damageSound);                  
                 }})} 
 
     checkCollect(){
@@ -80,7 +81,7 @@ class World {
                     this.character.collect(charItem, amount);
                     statBar.setPercentage(collectItem);
                     items.splice(index, 1);
-                    this.sound.collectSound(sound)
+                    this.sound.playSoundloop(sound)
                 }
             });
         });
@@ -91,10 +92,32 @@ class World {
         let newattack = new Attack(this.character.x, this.character.y);
         this.attack.push(newattack);
         this.character.mana -= 5
-        this.sound.playSound(this.sound.attackSound);
+        this.sound.playSoundloop(this.sound.attackSound);
         this.keyboard.SPACE = false;
         }
     }
+
+checkAttackHit() {
+    this.attack.forEach((attackObj, attackIndex) => {
+        this.level_1.enemies.forEach((enemy) => {
+            if (attackObj.isColliding(enemy) && !attackObj.hasHit) {
+                enemy.live -= attackObj.damage;
+                attackObj.hasHit = true;
+                
+                if (enemy.live <= 0 && !enemy.isDying) {
+                    enemy.isDying = true;
+                    enemy.stopInterval();
+                    setTimeout(() => {
+                        const index = this.level_1.enemies.indexOf(enemy);
+                        if (index > -1) {
+                            this.level_1.enemies.splice(index, 1);
+                        }
+                    }, 3000);
+                }
+            }
+        });
+    });
+}
 
     draw(){
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height) //cleart die funktion

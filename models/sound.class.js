@@ -10,6 +10,7 @@ class Sound {
 
     damageSound = new Audio('gameassets/sounds/damage.mp3')
     attackSound = new Audio('gameassets/sounds/designed-fire-impacts-complex-04-118165.mp3')
+    deadSound = new Audio('gameassets/sounds/dead.mp3')
 
     soundmodeON;
 
@@ -17,15 +18,16 @@ class Sound {
         this.backgroundSound()
     }
 
-    collectSound(sound){
+    playSound(sound){
         if (this.soundmodeON) {
         sound.play();
                }
     }
     
-    playSound(soundSnipped){
+    playSoundloop(soundSnipped){
      if (this.soundmodeON) {
-          soundSnipped.play();
+        const sound = soundSnipped.cloneNode(true);
+          sound.play();
         }  
     }
 

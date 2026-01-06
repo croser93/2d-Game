@@ -34,7 +34,25 @@ class Archer extends MovableObject{
             'gameassets/Archer_2/PNG/PNG Sequences/Running/0_Archer_Running_009.png',
             'gameassets/Archer_2/PNG/PNG Sequences/Running/0_Archer_Running_010.png',
             'gameassets/Archer_2/PNG/PNG Sequences/Running/0_Archer_Running_011.png',
-    ];
+        ];
+
+        IMAGES_DYING = [
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_000.png',
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_001.png',  
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_002.png', 
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_003.png',
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_004.png',
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_005.png',
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_006.png', 
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_007.png',
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_008.png',
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_009.png', 
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_010.png', 
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_011.png',
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_012.png',
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_013.png',
+            'gameassets/Archer_2/PNG/PNG Sequences/Dying/0_Archer_Dying_014.png', 
+        ];
 
     world;
     currentImage = 0;
@@ -43,6 +61,10 @@ class Archer extends MovableObject{
     hitboxOffsetY = 10;
     hitboxWidth = 60;
     hitboxHeight = 80;
+    live = 100;
+    dead = false;
+    intervals = [];
+
 
     constructor(){
         super().loadImage('../gameassets/Archer_2/PNG/PNG Sequences/Idle/0_Archer_Idle_000.png')
@@ -50,21 +72,28 @@ class Archer extends MovableObject{
                 this.x = 600;
 
         this.loadImages(this.IMAGES_WALK);
+        this.loadImages(this.IMAGES_DYING);
         this.speed = 0.15 + Math.random() * 0.2; 
         this.otherDirection = true;
-        // this.animateEnemiesRunLeft()
+        this.animateEnemiesRunLeft()
         this.applyGravity();
     }
 
         animateEnemiesRunLeft() {
-            setInterval(() => {
-                this.playAnimationLoop(this.IMAGES_WALK)
-            }, 1000 / 10);
+            let enemiesAnimationInterval = setInterval(() => {
+                this.playAnimationLoop(this.IMAGES_WALK)    
+       
+            }, 1000 / 10 );
+            let enemiesLeftInterval = setInterval(() =>{ 
+            this.moveLeft();   
 
-            setInterval(() =>{
-            this.moveLeft();
             }, 1000 / 60);
-            
+            this.intervals.push(enemiesAnimationInterval);
+            this.intervals.push(enemiesLeftInterval);            
         }
-    
+
+        stopInterval(){
+            this.intervals.forEach(clearInterval)
+            this.playAnimationOnce(this.IMAGES_DYING);  
+        }
 }

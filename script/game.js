@@ -57,7 +57,7 @@ function toggleSoundmode() {
     
     if (world.soundmodeON) {
         soundIcon.src = 'gameassets/img/icons/sound-svgrepo-com.svg';
-        world.sound.backgroundSound(true)
+        // world.sound.backgroundSound(true)
     } else {
         soundIcon.src = 'gameassets/img/icons/sound-mute-svgrepo-com.svg';
         world.sound.backgroundSound(false)
