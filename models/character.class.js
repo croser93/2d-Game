@@ -94,7 +94,7 @@ class Character extends MovableObject{
 
     currentImage = 0;
     world;
-    endOfMap = 620
+    endOfMap = 3600;
     live = 100;
     mana = 50;
     coin = 20;
@@ -167,7 +167,7 @@ class Character extends MovableObject{
 
     hit() {
         this.live -= 5 ;
-        console.log(this.live);
+        // console.log(this.live);
         
         if (this.live <= 0) {
             this.live = 0
@@ -178,7 +178,7 @@ class Character extends MovableObject{
     }
 
     collect(type, amount){
-        console.log(this.mana, this.coin)
+        // console.log(this.mana, this.coin)
         this[type] += amount;
         if (this[type] > 100) {
             this[type] = 100

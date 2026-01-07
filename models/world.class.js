@@ -45,6 +45,7 @@ class World {
             this.collecableBar.setPercentage(this.character.coin);
             this.manaBar.setPercentage(this.character.mana);
             this.statusBar.setPercentage(this.character.live);
+            this.checkFallDamage
         }, 1000 / 5
         )
     }  
@@ -77,7 +78,7 @@ class World {
         collectables.forEach(({items, type, statBar, amount, collectItem, charItem, sound}) => {
             items.forEach((item, index) => {
                 if(this.character.isColliding(item)){
-                    console.log('Collected:', type, item);
+                    // console.log('Collected:', type, item);
                     this.character.collect(charItem, amount);
                     statBar.setPercentage(collectItem);
                     items.splice(index, 1);
@@ -180,6 +181,14 @@ class World {
         if (item.otherDirection) {
             item.x = item.x * -1 ;
             this.ctx.restore();   
+        }
+    }
+
+    checkFallDamage() {
+        if (this.character.y > 450) {
+            this.character.hit();
+            this.character.y = 250;
+            this.character.x = Math.max(0, this.character.x - 200);
         }
     }
 
