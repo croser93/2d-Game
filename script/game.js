@@ -12,6 +12,9 @@ function init() {
     function startGame(){
         document.getElementById('startGame').classList.add('dnone')
         document.getElementById('canvas').classList.remove('dnone')
+        document.body.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
+
+
 
     }
 
@@ -72,4 +75,14 @@ function toggleSoundmode() {
 
 function fullscreen(){
     document.getElementById('canvas').requestFullscreen();           
+}
+
+function openInfoDialog() {
+    const dialog = document.querySelector('dialog');
+    dialog.showModal();
+}
+
+function closeInfoDialog() {
+    const dialog = document.querySelector('dialog');
+    dialog.close();
 }

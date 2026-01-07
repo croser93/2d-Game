@@ -26,12 +26,13 @@ class Attack extends MovableObject {
     
 
 
-    constructor(x, y){
+    constructor(x, y, otherDirection){
         super().loadImage('gameassets/Elves/PNG/PNG Sequences/attack/Explosion_3.png')
         this.loadImages(this.IMAGE_ATTACK);
         this.trow ()
         this.x = x ;
         this.y = y ;
+         this.otherDirection = otherDirection;
         
     }
 
@@ -39,7 +40,11 @@ trow (){
     this.speedY = 20;
     this.applyGravity();
     this.throwInterval = setInterval(() => {
-        this.x += 10;
+        if (this.otherDirection) {
+            this.x -= 15;
+        } else {
+            this.x += 15;
+        }
         if(this.y >= 274) {
             clearInterval(this.throwInterval);
             this.playExplosion();

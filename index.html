@@ -41,13 +41,30 @@
 
     <main>    
             <canvas class="dnone" id="canvas" width="720" height="480"></canvas>
-            <button id="startGame" class="startGame" onclick="startGame()">Start Game</button>
+             <!-- <button id="startGame" type="button " class="btn startGame" onclick="startGame()">
+                <strong>Start Game</strong>
+                <div id="container-stars">
+                    <div id="stars"></div>
+                </div>
+
+                <div id="glow">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                </div>
+            </button> -->
     </main>
+
+    <dialog>
+        <h2>Info</h2>
+        <p>Dein Info-Text hier...</p>
+        <button onclick="closeInfoDialog()">Schließen</button>
+    </dialog>
 
     <footer>
         <div class="footerLine">
                 <button id="soundmode"><img id="soundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/sound-svgrepo-com.svg" alt=""></button>
                 <button id="fullscreen"><img src="./gameassets/img/icons/fullscreen-alt-svgrepo-com.svg" alt="" onclick="fullscreen()"></button>
+                <button id="info"><img src="./gameassets/img/icons/info-svgrepo-com.svg" alt="" onclick="openInfoDialog()"></button>
         </div>
 
     </footer>

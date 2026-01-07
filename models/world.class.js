@@ -89,7 +89,7 @@ class World {
     
     checkAttack() {
         if (this.keyboard.SPACE && this.character.mana > 0) {
-        let newattack = new Attack(this.character.x, this.character.y);
+        let newattack = new Attack(this.character.x, this.character.y, this.character.otherDirection);
         this.attack.push(newattack);
         this.character.mana -= 5
         this.sound.playSoundloop(this.sound.attackSound);
