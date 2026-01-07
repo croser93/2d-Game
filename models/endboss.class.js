@@ -45,6 +45,8 @@ class Endboss extends MovableObject {
     currentImage = 0;
     world;
     live = 100;
+    dead = false;
+    intervals = []
 
     hitboxOffsetX = 80;
     hitboxOffsetY = 60;
@@ -58,14 +60,18 @@ class Endboss extends MovableObject {
         this.x = 700;
         this.otherDirection = true;
         this.animateBoss();
-
     }
 
      animateBoss() {
-        setInterval(() => {
+        const animateBoss = setInterval(() => {
             this.playAnimationLoop(this.IMAGES_IDLE)
          }, 
             1000 / 10);
+            this.intervals.push(animateBoss);
         }
-
+    
+    stopInterval(){
+            this.intervals.forEach(clearInterval)
+            this.playAnimationOnce(this.IMAGES_DYING);
+        }
 }

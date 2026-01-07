@@ -111,20 +111,25 @@ class World {
                     attackObj.hitEnemies.push(enemy);
                     
                     if (enemy.live <= 0 && !enemy.dead) {
-                        enemy.dead = true;
-                        enemy.stopInterval();
-                        setTimeout(() => {
-                            const index = this.level_1.enemies.indexOf(enemy);
-                            if (index > -1) {
-                                this.level_1.enemies.splice(index, 1);
-                            }
-                        }, 3000);
+                        this.enemyDead(enemy)
                     }
                 }
             }
         });
     });
 }
+
+    enemyDead(enemy){
+        enemy.dead = true;
+        console.log(enemy.dead)
+        enemy.stopInterval();
+        setTimeout(() => {
+            const index = this.level_1.enemies.indexOf(enemy);
+            if (index > -1) {
+                this.level_1.enemies.splice(index, 1);
+            }
+        }, 3000);
+    }
 
     draw(){
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height) //cleart die funktion

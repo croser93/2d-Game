@@ -76,16 +76,16 @@ class Archer extends MovableObject{
         this.loadImages(this.IMAGES_DYING);
         this.speed = 0.15 + Math.random() * 0.2; 
         this.otherDirection = true;
-        // this.animateEnemiesRunLeft()
+        this.animateEnemiesRunLeft()
         this.applyGravity();
     }
 
         animateEnemiesRunLeft() {
-            let enemiesAnimationInterval = setInterval(() => {
+            const enemiesAnimationInterval = setInterval(() => {
                 this.playAnimationLoop(this.IMAGES_WALK)    
        
             }, 1000 / 10 );
-            let enemiesLeftInterval = setInterval(() =>{ 
+            const enemiesLeftInterval = setInterval(() =>{ 
             this.moveLeft();   
 
             }, 1000 / 60);
@@ -95,6 +95,6 @@ class Archer extends MovableObject{
 
         stopInterval(){
             this.intervals.forEach(clearInterval)
-            this.playAnimationOnce(this.IMAGES_DYING);  
+            this.playAnimationOnce(this.IMAGES_DYING);
         }
 }
