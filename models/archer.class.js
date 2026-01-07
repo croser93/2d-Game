@@ -69,9 +69,6 @@ class Archer extends MovableObject{
 
     constructor(){
         super().loadImage('../gameassets/Archer_2/PNG/PNG Sequences/Idle/0_Archer_Idle_000.png')
-        // this.x = 500 + Math.random() * 150
-                this.x = 600;
-
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_DYING);
         this.speed = 0.15 + Math.random() * 0.2; 

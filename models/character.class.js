@@ -167,7 +167,6 @@ class Character extends MovableObject{
 
     hit() {
         this.live -= 5 ;
-        // console.log(this.live);
         
         if (this.live <= 0) {
             this.live = 0

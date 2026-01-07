@@ -62,7 +62,7 @@ class World {
     checkCollisions(){
 
     this.level_1.enemies.forEach((enemy) => {
-                if(this.character.isColliding(enemy)){
+                if(this.character.isColliding(enemy) && !enemy.dead){
                     this.character.hit()
                     this.statusBar.setPercentage(this.character.live) 
                     this.sound.playSoundloop(this.sound.damageSound);                  
@@ -186,14 +186,6 @@ class World {
         if (item.otherDirection) {
             item.x = item.x * -1 ;
             this.ctx.restore();   
-        }
-    }
-
-    checkFallDamage() {
-        if (this.character.y > 450) {
-            this.character.hit();
-            this.character.y = 250;
-            this.character.x = Math.max(0, this.character.x - 200);
         }
     }
 

@@ -186,7 +186,7 @@ class LevelGenerator {
 
     generateEnemies(gaps) {
         const enemies = [];
-        const enemyCount = Math.floor(Math.random() * 5 + 3);
+        const enemyCount = Math.floor(Math.random() * 10 + 5);
         
         for (let i = 0; i < enemyCount; i++) {
             const x = 200 + Math.random() * 2800;

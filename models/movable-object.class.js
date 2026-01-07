@@ -28,7 +28,6 @@ class MovableObject extends DrawableObject {
         this.y + this.hitboxOffsetY < item.y + item.hitboxOffsetY + (item.hitboxHeight || item.height)
     }
 
-
     moveRight() {     
         this.x += this.speed;
     }
