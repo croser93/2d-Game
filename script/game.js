@@ -2,7 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard;
 
-function init() {
+function initWorld() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard)
     ctx = canvas.getContext('2d')
@@ -13,8 +13,8 @@ function init() {
         document.getElementById('startGame').classList.add('dnone')
         document.getElementById('canvas').classList.remove('dnone')
         document.body.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
-
-
+        initLevel ()
+        initWorld()
 
     }
 

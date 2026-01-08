@@ -1,3 +1,12 @@
+let levelGenerator ;
+let level_1 ;
+
+
+function initLevel () {
+    levelGenerator = new LevelGenerator();
+    level_1 = levelGenerator.generateLevel();
+    }
+
 class LevelGenerator {
     constructor() {
         this.mapLength = 3600;
@@ -184,12 +193,12 @@ class LevelGenerator {
         }
     }
 
-    generateEnemies(gaps) {
+    generateEnemies() {
         const enemies = [];
         const enemyCount = Math.floor(Math.random() * 10 + 5);
         
         for (let i = 0; i < enemyCount; i++) {
-            const x = 200 + Math.random() * 2800;
+            const x = 380 + Math.random() * 2800;
             const archer = new Archer();
             archer.x = x;
             enemies.push(archer);
@@ -202,7 +211,7 @@ class LevelGenerator {
         return enemies;
     }
 
-    generateCollectables(gaps) {
+    generateCollectables() {
         const coins = this.generateCoins();
         const strong = this.generateStrong();
         const live = this.generateLive();
@@ -253,10 +262,6 @@ class LevelGenerator {
         if (this.mapLength - lastEnd > 200) {
             zones.push({ start: lastEnd + 100, end: this.mapLength - 100 });
         }
-        
         return zones;
     }
 }
-
-const levelGenerator = new LevelGenerator();
-const level_1 = levelGenerator.generateLevel();

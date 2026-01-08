@@ -28,7 +28,7 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 300px);
+    height: calc(100vh - 309px);
 }
 
 footer {
@@ -39,7 +39,7 @@ footer {
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: clamp(1rem, 7vw, 4rem);
     flex-wrap: nowrap;
     font-family: 'FreckleFace-Regular';
     text-shadow: 2px 2px 2px rgb(236, 229, 230);
@@ -68,8 +68,8 @@ font-display: swap;
 #info,
 #soundmode img,
 #soundmode{
-    height: 48px;
-    width: 48px;
+    height: 64px;
+    width: 64px;
     display: flex;
     justify-content: center;
     cursor: pointer;
@@ -81,8 +81,8 @@ font-display: swap;
 #info,
 #fullscreen,
 #fullscreen img {
-    height: 36px;
-    width: 36px;
+    height: 64px;
+    width: 64px;
     display: flex;
     justify-content: center;
     cursor: pointer;

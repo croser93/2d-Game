@@ -118,7 +118,7 @@ class Endboss extends MovableObject {
     let state = 0;
     
     const animateBoss = setInterval(() => {
-        if (world.character.x > 3200) {
+        if (world.character.x > 3180) {
             if (!this.firstContact) {
                 this.firstContact = true;
                 state = 0;
