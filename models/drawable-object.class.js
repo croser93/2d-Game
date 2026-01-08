@@ -27,19 +27,25 @@ class DrawableObject {
     }
 
     drawFrame(ctx){
-        if (this instanceof Character || this instanceof Archer || this instanceof Endboss || this instanceof CollectableItem || this instanceof Attack) {
-            ctx.beginPath();
-            ctx.lineWidth = ('2');
-            ctx.strokeStyle = ('red');
-            ctx.rect(
-                this.x + this.hitboxOffsetX, 
-                this.y + this.hitboxOffsetY, 
-                this.hitboxWidth || this.width, 
-                this.hitboxHeight || this.height
-            );
-            ctx.stroke();
+    if (this instanceof Character || this instanceof Archer || this instanceof Endboss || this instanceof CollectableItem || this instanceof Attack) {
+        ctx.beginPath();
+        ctx.lineWidth = ('2');
+        ctx.strokeStyle = ('red');
+        
+        let hitboxX = this.x + this.hitboxOffsetX;
+        if (this.otherDirection) {
+            hitboxX = this.x + this.width - this.hitboxOffsetX - (this.hitboxWidth || this.width);
         }
+        
+        ctx.rect(
+            hitboxX, 
+            this.y + this.hitboxOffsetY, 
+            this.hitboxWidth || this.width, 
+            this.hitboxHeight || this.height
+        );
+        ctx.stroke();
     }
+}
     drawItem(ctx){
         try{
             ctx.drawImage(this.img, this.x, this.y, this.height, this.width);

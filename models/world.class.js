@@ -63,7 +63,7 @@ class World {
 
     this.level_1.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy) && !enemy.dead){
-                    this.character.hit()
+                    this.character.hit(enemy.damage)
                     this.statusBar.setPercentage(this.character.live) 
                     this.sound.playSoundloop(this.sound.damageSound);                  
                 }})} 
@@ -78,7 +78,6 @@ class World {
         collectables.forEach(({items, type, statBar, amount, collectItem, charItem, sound}) => {
             items.forEach((item, index) => {
                 if(this.character.isColliding(item)){
-                    // console.log('Collected:', type, item);
                     this.character.collect(charItem, amount);
                     statBar.setPercentage(collectItem);
                     items.splice(index, 1);

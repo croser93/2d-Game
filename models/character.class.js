@@ -22,6 +22,27 @@ class Character extends MovableObject{
         'gameassets/Elves/PNG/PNG Sequences/Idle/0_Dark_Elves_Idle_017.png',
     ];
 
+    IMAGES_LONG_IDLE = [
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_000.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_001.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_002.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_003.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_004.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_005.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_006.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_007.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_008.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_009.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_010.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_011.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_012.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_013.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_014.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_015.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_016.png',
+        'gameassets/Elves/PNG/PNG Sequences/Idle Blinking/0_Dark_Elves_Idle Blinking_017.png',
+    ];
+
     IMAGES_WALK = [
         'gameassets/Elves/PNG/PNG Sequences/Running/0_Dark_Elves_Running_000.png',
         'gameassets/Elves/PNG/PNG Sequences/Running/0_Dark_Elves_Running_001.png',
@@ -116,9 +137,11 @@ class Character extends MovableObject{
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DYING);
+        this.loadImages(this.IMAGES_LONG_IDLE);
         this.animate();
         this.applyGravity();
         this.sound = new Sound();
+        this.startIdleTimer()
     }
 
 
@@ -131,7 +154,7 @@ class Character extends MovableObject{
             }  
 
             if (this.world.keyboard.LEFT && this.x > 0) {
-                this.moveLeft()
+                this.moveLeft(2)
                 this.otherDirection = true;
             }
 
@@ -156,7 +179,9 @@ class Character extends MovableObject{
         else if(this.live <= 0){
             this.playAnimationOnce(this.IMAGES_DYING);   
             this.world.sound.playSound(this.world.sound.deadSound)    
-        }    
+        } 
+        else if (this.isLongIdle) {
+        this.playAnimationOnce(this.IMAGES_LONG_IDLE);}   
         else{
             this.playAnimationLoop(this.IMAGES_IDLE);
             }
@@ -165,8 +190,8 @@ class Character extends MovableObject{
         
     }
 
-    hit() {
-        this.live -= 5 ;
+    hit(damage) {
+        this.live -= damage;
         
         if (this.live <= 0) {
             this.live = 0
@@ -180,8 +205,7 @@ class Character extends MovableObject{
         // console.log(this.mana, this.coin)
         this[type] += amount;
         if (this[type] > 100) {
-            this[type] = 100
-            
+            this[type] = 100    
         }    
     }
 
@@ -190,5 +214,28 @@ class Character extends MovableObject{
         timepassed = timepassed / 1000
         return timepassed < 0.4
     }
+
+    startIdleTimer() {
+        this.idleTime = 0;
+        this.isLongIdle = false;
+    
+        setInterval(() => {
+            if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && 
+                !this.world.keyboard.SPACE && !this.world.keyboard.UP) {
+                this.idleTime += 100;
+                if (this.idleTime >= 10000 && !this.isLongIdle) {
+                    this.isLongIdle = true;
+                }
+            } else {
+                this.resetIdle();
+            }
+        }, 100);
+    
+    }
+    resetIdle() {
+    this.idleTime = 0;
+    this.isLongIdle = false;
+}
+
 }
 
