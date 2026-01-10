@@ -223,7 +223,7 @@ class Character extends MovableObject{
             if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && 
                 !this.world.keyboard.SPACE && !this.world.keyboard.UP) {
                 this.idleTime += 100;
-                if (this.idleTime >= 10000 && !this.isLongIdle) {
+                if (this.idleTime >= 15000 && !this.isLongIdle) {
                     this.isLongIdle = true;
                 }
             } else {

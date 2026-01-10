@@ -36,7 +36,7 @@
 <body>
 
     <header>
-            <h1>Elves in the WOrld of Demons</h1>
+            <h1>Elves in the World of Demons</h1>
     </header>
 
     <main>    
@@ -54,6 +54,20 @@
             </button>
     </main>
 
+    <div class="hud">
+        <div class="mobileBtnLine">
+            <div>
+                <button id="btnLeft" class="mobileBtn"><</button>
+                <button id="btnRight" class="mobileBtn">></button>
+            </div>
+            <div>
+                <button id="btnUp" class="mobileBtn">I</button>
+                <button id="btnAttack" class="mobileBtn">#</button>
+            </div>
+        </div>
+
+    </div>
+
     <dialog>
         <img class="dialogImg" src="./gameassets/img/dialog.png" alt="">
         <button class="dialoCloseBtn" onclick="closeInfoDialog()">Schließen</button>
@@ -61,7 +75,7 @@
 
     <footer>
         <div class="footerLine">
-                <button id="soundmode"><img id="soundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/sound-svgrepo-com.svg" alt=""></button>
+                <button id="soundmode"><img id="soundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/soundOn.png" alt=""></button>
                 <button id="fullscreen"><img src="./gameassets/img/icons/fullscreen.png" alt="" onclick="fullscreen()"></button>
                 <button id="info"><img src="./gameassets/img/icons/Info.png" alt="" onclick="openInfoDialog()"></button>
         </div>

@@ -2,15 +2,16 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 0px;
-    background-image: url('./gameassets/img/Heroimage.png');
+     margin: 0px;
+    /* background-image: url('./gameassets/img/Heroimage.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover;  */
 }
 
 canvas{
 
     background-color: black;
+    display: block;
 }
 
 .startGame{
@@ -111,6 +112,33 @@ dialog{
   top: 420px;
   left: 320px;
 
+}
+.hud{
+    position: absolute;
+    bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    
+}
+
+.mobileBtnLine{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    width: calc(100vw - 10%);
+
+
+}
+.mobileBtn{
+    height: 48px;
+    width: 48px;
+    font-size: 24px;
+    margin: 5px;
+    border-radius: 50%;
+    background-color: rgba(26, 21, 21, 0.2);
+    color: rgb(253, 0, 0);
 }
 
 ::backdrop{
@@ -290,4 +318,27 @@ strong {
     transform: scale(0.75);
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   }
+}
+
+@media only screen and (max-width: 760px) {
+    canvas{
+        width: 100%;
+    }
+    header {
+      display: none;
+    }
+    footer{
+      display: none;
+    }
+    main {
+    height: 100%;
+  }
+}
+
+
+@media only screen and (max-height: 480px) {
+    canvas{
+        height: 100vh;
+    }
+  
 }

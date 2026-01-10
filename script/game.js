@@ -15,6 +15,7 @@ function initWorld() {
         document.body.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
         initLevel ()
         initWorld()
+        mobileControls()
 
     }
 
@@ -58,6 +59,51 @@ window.addEventListener('keyup', (e) => {
         keyboard.SPACE_USED = false; 
     }    
 })
+function mobileControls() {
+    document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    });
+
+    document.getElementById('btnLeft').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = false;
+    });
+
+        document.getElementById('btnRight').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    });
+
+    document.getElementById('btnRight').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = false;
+    });
+        document.getElementById('btnUp').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.UP = true;
+    });
+
+    document.getElementById('btnUp').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.UP = false;
+    });
+        document.getElementById('btnAttack').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = true;
+    });
+
+    document.getElementById('btnAttack').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.SPACE = false;
+    });
+}
+
+
+
+
+
+
 
 function toggleSoundmode() {
     world.soundmodeON = !world.soundmodeON;
@@ -65,10 +111,10 @@ function toggleSoundmode() {
     const soundIcon = document.getElementById('soundIcon');
     
     if (world.soundmodeON) {
-        soundIcon.src = 'gameassets/img/icons/sound-svgrepo-com.svg';
+        soundIcon.src = 'gameassets/img/icons/soundOn.png';
         // world.sound.backgroundSound(true)
     } else {
-        soundIcon.src = 'gameassets/img/icons/sound-mute-svgrepo-com.svg';
+        soundIcon.src = 'gameassets/img/icons/soundOff.png';
         world.sound.backgroundSound(false)
     }
 }
