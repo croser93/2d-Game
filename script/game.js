@@ -10,8 +10,9 @@ function initWorld() {
 }
 
     function startGame(){
-        document.getElementById('startGame').classList.add('dnone')
+        document.getElementById('test').classList.remove('test')
         document.getElementById('canvas').classList.remove('dnone')
+        document.getElementById('mainButton').classList.add('dnone')
         document.body.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
         initLevel()
         initWorld()
@@ -32,35 +33,49 @@ function initWorld() {
         const endboss = world.enemies.find(enemy => enemy instanceof Endboss);
               if (world.character.live <= 0 && world.character.dead) {
                 winOrLosescreen('lose')
+                clearAllIntervals()
                 
             }else if (world.character.live > 0 && endboss.dead) {
                 winOrLosescreen('win')
-
+                clearAllIntervals()
             }
             else {
                 return
             }
     }
 
+    function clearAllIntervals() {
+        world.character.intervals.forEach(interval => clearInterval(interval));
+        world.enemies.forEach(enemy => {
+            enemy.intervals.forEach(interval => clearInterval(interval));
+        });
+        world.intervals.forEach(interval => clearInterval(interval));
+    }
+
     function winOrLosescreen(result) {
+        if(document.fullscreenElement){
+            exitFullscreen()
+        }
+    setTimeout(() => {
+        
+    
     document.getElementById('winOrLose').classList.remove('dnone')
     document.getElementById('winOrLose').innerHTML =
             `<div class="winScreen"> 
                 <img  class="resultImage" src="./gameassets/img/${result}.png" alt="${result} screen">
-                <button class="restart" onclick="restartGame()">Restart Game</button>
-            </div>`
 
-    
+                <button class="dialoCloseBtn" onclick="restartGame()"><img src="./gameassets/img/icons/button.png" alt=""></button>
+            </div>`
+    }, 1000);
+
+                    // <button class="restart" onclick="restartGame()">Restart Game</button>
     }
 
-    function restartGame() {
-        console.log("klich");
-        
-       levelGenerator = "" ;
-        level_1 = "" ;
+    function restartGame() {        
+       levelGenerator ;
+        level_1 ;
         document.getElementById('winOrLose').classList.add('dnone')
         document.getElementById('winOrLose').innerHTML = "";
-     
         startGame()     
     }
 
@@ -162,6 +177,10 @@ function toggleSoundmode() {
 
 function fullscreen(){
     document.getElementById('canvas').requestFullscreen();           
+}
+
+function exitFullscreen(){
+    document.exitFullscreen();           
 }
 
 function openInfoDialog() {

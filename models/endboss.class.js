@@ -127,9 +127,9 @@ class Endboss extends MovableObject {
             this.updateBossState(state);
             stateTimer += 100;
             
-            if (stateTimer >= 3000) {
+            if (stateTimer >= 5000) {
                 state++;
-                if (state > 3) state = 0;
+                if (state > 2) state = 0;
                 stateTimer = 0;
             }
         } else {
@@ -140,11 +140,11 @@ class Endboss extends MovableObject {
 }
 
     updateBossState(state) {
-        if (state === 0 || state === 1) {
+        if (state === 0) {
+            this.walkState();
+        } else if (state === 1) {
             this.idleState();
         } else if (state === 2) {
-            this.walkState();
-        } else if (state === 3) {
             this.attackState();
         }
     }
@@ -157,14 +157,14 @@ class Endboss extends MovableObject {
     }
 
     walkState() {
+        this.hitboxOffsetX = 80;
+        this.hitboxWidth = 140;
         this.isAttacking = false;
         this.moveLeft(1);
         this.playAnimationLoop(this.IMAGES_WALK);
     }
 
     idleState() {
-        this.hitboxOffsetX = 80;
-        this.hitboxWidth = 140;
         this.isAttacking = false;
         this.playAnimationLoop(this.IMAGES_IDLE);
     }

@@ -15,6 +15,7 @@ class World {
     attack = [];
     soundmodeON = true;
     sound = new Sound;
+    intervals = [];
 
    
     
@@ -40,24 +41,24 @@ class World {
     }
     
     runSlow(){
-        setInterval(() => {
+       let slowinterval = setInterval(() => {
             this.checkCollisions();
             this.collecableBar.setPercentage(this.character.coin);
             this.manaBar.setPercentage(this.character.mana);
             this.statusBar.setPercentage(this.character.live);
             this.checkFallDamage
             winOrLoseOverlay();
-        }, 1000 / 5
-        )
+        }, 1000 / 5);
+        this.intervals.push(slowinterval);
     }  
 
     runFast(){
-        setInterval(() => {
+        let fastinterval = setInterval(() => {
             this.checkAttack();
             this.checkCollect();
             this.checkAttackHit();
-        },1000 / 60
-        )
+        },1000 / 60)
+        this.intervals.push(fastinterval);
     }
        
     checkCollisions(){

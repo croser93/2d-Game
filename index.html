@@ -34,28 +34,30 @@
 
 </head>
 <body>
+    <section id="test" class="test">
 
-    <header>
-        <h1>Elves in the World of Demons</h1>
-    </header>
-    
-    <main> 
-        <section id="gameWindow"> 
-            <canvas class="dnone" id="canvas" width="720" height="480"></canvas>
-            <div id="winOrLose" class="winOrLose dnone"></div>
-        </section> 
-    </main>
-    <div class="mainButton">
-         <button id="startGame" type="button " class="btn startGame" onclick="startGame()">
-            <strong>Start Game</strong>
-            <div id="container-stars">
-                <div id="stars"></div>
-            </div>
-            <div id="glow">
-                <div class="circle"></div>
-                <div class="circle"></div>
-            </div>
-        </button>
+        <header>
+            <h1>Elves in the World of Demons</h1>
+        </header>
+        
+        <main> 
+            <section id="gameWindow"> 
+                <canvas class="dnone" id="canvas" width="720" height="480"></canvas>
+                <div id="winOrLose" class="winOrLose dnone"></div>
+            </section> 
+        </main>
+        <div class="mainButton" id="mainButton">
+            <button id="startGame" type="button " class="btn startGame" onclick="startGame()">
+                <strong>Start Game</strong>
+                <div id="container-stars">
+                    <div id="stars"></div>
+                </div>
+                <div id="glow">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                </div>
+            </button>
+        </section>
     </div>
 
 
@@ -75,17 +77,18 @@
 
     <dialog>
         <img class="dialogImg" src="./gameassets/img/dialog.png" alt="">
-        <button class="dialoCloseBtn" onclick="closeInfoDialog()">Schließen</button>
+        <button class="dialoCloseBtn" onclick="closeInfoDialog()"><img src="./gameassets/img/icons/button.png" alt=""></button>
+
     </dialog>
 
-    <footer>
-        <div class="footerLine">
-                <button id="soundmode"><img id="soundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/soundOn.png" alt=""></button>
-                <button id="fullscreen"><img src="./gameassets/img/icons/fullscreen.png" alt="" onclick="fullscreen()"></button>
-                <button id="info"><img src="./gameassets/img/icons/info.png" alt="" onclick="openInfoDialog()"></button>
-        </div>
-
-    </footer>
     
 </body>
+<footer>
+    <div class="footerLine">
+            <button id="soundmode"><img id="soundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/soundOn.png" alt=""></button>
+            <button id="fullscreen"><img src="./gameassets/img/icons/fullscreen.png" alt="" onclick="fullscreen()"></button>
+            <button id="info"><img src="./gameassets/img/icons/info.png" alt="" onclick="openInfoDialog()"></button>
+    </div>
+
+</footer>
 </html>

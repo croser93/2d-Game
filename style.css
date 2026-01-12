@@ -8,12 +8,19 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-image: url('./gameassets/img/Heroimage.png');
+    
     background-repeat: no-repeat;
     background-size: cover;
 
 }
 
+ .test{
+  background-image: url('./gameassets/img/Heroimage.png');
+  background-repeat: no-repeat;
+   background-size: cover;
+  height: 100vh;
+
+ }
 canvas{
 
     background-color: black;
@@ -48,9 +55,10 @@ main{
 }
 
 footer {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0 16px;
+position: absolute;
+  bottom: 10%;
+  left: 90%;
+  transform: translate(-50%, 50%);
 }
 
 .dpf {
@@ -115,20 +123,33 @@ font-display: swap;
 }
 
 dialog{
-    background-color: transparent;
-    border: none;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .dialogImg{
   height: 500px;
   width: 700px;
-
 }
 
 .dialoCloseBtn{
   position: absolute;
-  top: 420px;
-  left: 320px;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+}
+.dialoCloseBtn img{
+  height:48px;
+  width: 200px;
+  background-size: cover;
 
 }
 .hud{
@@ -195,20 +216,37 @@ dialog{
     justify-content: center;
     align-items: center;
     z-index: 2;
+    max-width: 720px;
+    max-height: 480px;
 
 }
 .resultImage{
     width: 720px;
     height: 480px;
-  opacity: 1;
-  
+    opacity: 0.2;               
+    animation: fadeIn 1s ease forwards;
+    background-size: cover;
+
+
 }
+@keyframes fadeIn {
+  from {
+    opacity: 0.2;
+    transform: scale(0.98);  
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 
 .restart{
   position: absolute;
     top: 90%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 3;
 }
 
 ::backdrop{
@@ -391,6 +429,8 @@ strong {
 }
 
 @media only screen and (max-width: 760px) {
+  .resultImage,
+  .winOrLose,
     canvas{
         width: 100%;
     }
@@ -403,10 +443,13 @@ strong {
     main {
     height: 100%;
   }
+  
 }
 
 
 @media only screen and (max-height: 480px) {
+  .resultImage,
+  .winOrLose,
     canvas{
         height: 100vh;
     }

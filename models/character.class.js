@@ -121,6 +121,7 @@ class Character extends MovableObject{
     coin = 20;
     lastHit;
     dead = false
+    intervals = [];
 
     
 
@@ -131,7 +132,7 @@ class Character extends MovableObject{
 
 
     constructor() {
-        super().loadImage('gameassets/Elves/PNG/PNG Sequences/Kicking/0_Dark_Elves_Kicking_000.png')
+        super().loadImage('gameassets/Elves/PNG/PNG Sequences/Idle/0_Dark_Elves_Idle_000.png')
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_JUMPING);
@@ -146,64 +147,88 @@ class Character extends MovableObject{
 
 
     animate() {
-        setInterval(() => {
+        if (!this.dead) {
+        this.keyboardInterval();
+        this.playAnimationKeyboard ();
+        }   
+    }  
 
+   keyboardInterval() {
+        let animateInterval = setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.endOfMap) {
                 this.moveRight()
                 this.otherDirection = false;
             }  
-
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft(2)
                 this.otherDirection = true;
             }
-
             if(this.world.keyboard.UP && !this.isAboveGround()){
-                this.jump();
+                this.setSpeedY(15)
             }
             this.world.camera_x = -this.x + 100;
         },1000 / 60);
+        this.intervals.push(animateInterval);
+    }
+    
 
-        
-        setInterval(() => {
-        if (this.isAboveGround()) {
-           this.playAnimationLoop(this.IMAGES_JUMPING);  
-        }
-        else if (this.isHurt()){
-            this.playAnimationLoop(this.IMAGES_HURT); 
-        }
-        else if((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && this.isAboveGround){
-            this.playAnimationLoop(this.IMAGES_WALK);
-            this.world.sound.playSound(this.world.sound.walkSound)   
-        }
-        else if(this.live <= 0){
-            this.playAnimationOnce(this.IMAGES_DYING);   
-            this.world.sound.playSound(this.world.sound.deadSound)
-            this.dead = true;    
-        } 
-        else if (this.isLongIdle) {
-        this.playAnimationOnce(this.IMAGES_LONG_IDLE);}   
-        else{
-            this.playAnimationLoop(this.IMAGES_IDLE);
-            }
-        }, 
-        1000 / 10);
-        
+        playAnimationKeyboard () {
+        let animationInterval = setInterval(() => {
+        if (this.isAboveGround()) 
+           this.jump(); 
+        else if (this.isHurt())
+            this.isHurt()
+        else if((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && this.isAboveGround)
+            this.walk ();
+        else if(this.live <= 0)
+            this.dead()  
+        else if (this.isLongIdle) 
+        this.longIdle()  
+        else
+        this.idle()   
+        },     
+      1000 / 10);
+      this.intervals.push(animationInterval);      
     }
 
+    walk (){
+        this.playAnimationLoop(this.IMAGES_WALK);
+        this.world.sound.playSound(this.world.sound.walkSound)   
+    }
+
+    dead(){
+        this.playAnimationOnce(this.IMAGES_DYING);   
+        this.world.sound.playSound(this.world.sound.deadSound)     
+    }
+
+    jump(){
+      this.playAnimationLoop(this.IMAGES_JUMPING);    
+    }
+
+    isHurt(){
+        this.playAnimationLoop(this.IMAGES_HURT); 
+    }
+
+    longIdle(){
+        this.playAnimationOnce(this.IMAGES_LONG_IDLE); 
+    }
+
+    idle(){
+        this.playAnimationLoop(this.IMAGES_IDLE); 
+    }
+    
+
+
     hit(damage) {
-        this.live -= damage;
-        
+        this.live -= damage;  
         if (this.live <= 0) {
             this.live = 0
-            
-        }else{
-            this.lastHit = new Date().getTime();
-        }
+            this.dead = true;       
+        }else
+            this.lastHit = new Date().getTime();     
     }
 
     collect(type, amount){
-        // console.log(this.mana, this.coin)
         this[type] += amount;
         if (this[type] > 100) {
             this[type] = 100    
@@ -233,13 +258,13 @@ class Character extends MovableObject{
                 this.world.sound.playSoundloopUnlimited(this.world.sound.snoring, this.isLongIdle);
             }
         }, 100);
-    
     }
+
     resetIdle() {
     this.idleTime = 0;
     this.isLongIdle = false;
 
-}
+    }
 
 }
 
