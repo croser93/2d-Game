@@ -13,11 +13,58 @@ function initWorld() {
         document.getElementById('startGame').classList.add('dnone')
         document.getElementById('canvas').classList.remove('dnone')
         document.body.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
-        initLevel ()
+        initLevel()
         initWorld()
         mobileControls()
+        mobilescreen ()
 
     }
+
+    function mobilescreen () {
+        if (window.innerWidth < 1025) {
+            document.querySelector('.hud').classList.remove('dnone')
+            document.querySelector('.hud').classList.add('dpf')
+        }
+    }
+
+    function winOrLoseOverlay() {
+    
+        const endboss = world.enemies.find(enemy => enemy instanceof Endboss);
+              if (world.character.live <= 0 && world.character.dead) {
+                winOrLosescreen('lose')
+                
+            }else if (world.character.live > 0 && endboss.dead) {
+                winOrLosescreen('win')
+
+            }
+            else {
+                return
+            }
+    }
+
+    function winOrLosescreen(result) {
+    document.getElementById('winOrLose').classList.remove('dnone')
+    document.getElementById('winOrLose').innerHTML =
+            `<div class="winScreen"> 
+                <img  class="resultImage" src="./gameassets/img/${result}.png" alt="${result} screen">
+                <button class="restart" onclick="restartGame()">Restart Game</button>
+            </div>`
+
+    
+    }
+
+    function restartGame() {
+        console.log("klich");
+        
+       levelGenerator = "" ;
+        level_1 = "" ;
+        document.getElementById('winOrLose').classList.add('dnone')
+        document.getElementById('winOrLose').innerHTML = "";
+     
+        startGame()     
+    }
+
+
 
 window.addEventListener('keydown', (e) => {
 
@@ -99,12 +146,6 @@ function mobileControls() {
     });
 }
 
-
-
-
-
-
-
 function toggleSoundmode() {
     world.soundmodeON = !world.soundmodeON;
     world.sound.soundmodeON = world.soundmodeON;
@@ -114,7 +155,7 @@ function toggleSoundmode() {
         soundIcon.src = 'gameassets/img/icons/soundOn.png';
         // world.sound.backgroundSound(true)
     } else {
-        soundIcon.src = 'gameassets/img/icons/soundOff.png';
+        soundIcon.src = 'gameassets/img/icons/soundmute.png';
         world.sound.backgroundSound(false)
     }
 }

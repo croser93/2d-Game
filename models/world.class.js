@@ -46,6 +46,7 @@ class World {
             this.manaBar.setPercentage(this.character.mana);
             this.statusBar.setPercentage(this.character.live);
             this.checkFallDamage
+            winOrLoseOverlay();
         }, 1000 / 5
         )
     }  

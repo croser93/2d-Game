@@ -11,7 +11,7 @@ class Sound {
     damageSound = new Audio('gameassets/sounds/damage.mp3')
     attackSound = new Audio('gameassets/sounds/designed-fire-impacts-complex-04-118165.mp3')
     deadSound = new Audio('gameassets/sounds/dead.mp3')
-
+    snoring = new Audio('gameassets/sounds/snore-250959.mp3')
     soundmodeON;
 
     constructor() {
@@ -29,6 +29,19 @@ class Sound {
         const sound = soundSnipped.cloneNode(true);
           sound.play();
         }  
+    }
+
+    playSoundloopUnlimited(soundSnipped, longidle){   
+        
+        if (this.soundmodeON && longidle) { 
+            soundSnipped.loop = true;
+            soundSnipped.currentTime = 0;
+            soundSnipped.play();
+        }else{
+            soundSnipped.pause();
+            soundSnipped.currentTime = 0;
+            soundSnipped.loop = false;
+        }
     }
 
 

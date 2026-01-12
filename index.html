@@ -36,33 +36,38 @@
 <body>
 
     <header>
-            <h1>Elves in the World of Demons</h1>
+        <h1>Elves in the World of Demons</h1>
     </header>
-
-    <main>    
+    
+    <main> 
+        <section id="gameWindow"> 
             <canvas class="dnone" id="canvas" width="720" height="480"></canvas>
-             <button id="startGame" type="button " class="btn startGame" onclick="startGame()">
-                <strong>Start Game</strong>
-                <div id="container-stars">
-                    <div id="stars"></div>
-                </div>
-
-                <div id="glow">
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                </div>
-            </button>
+            <div id="winOrLose" class="winOrLose dnone"></div>
+        </section> 
     </main>
-
-    <div class="hud">
-        <div class="mobileBtnLine">
-            <div>
-                <button id="btnLeft" class="mobileBtn"><</button>
-                <button id="btnRight" class="mobileBtn">></button>
+    <div class="mainButton">
+         <button id="startGame" type="button " class="btn startGame" onclick="startGame()">
+            <strong>Start Game</strong>
+            <div id="container-stars">
+                <div id="stars"></div>
             </div>
-            <div>
-                <button id="btnUp" class="mobileBtn">I</button>
-                <button id="btnAttack" class="mobileBtn">#</button>
+            <div id="glow">
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+        </button>
+    </div>
+
+
+    <div class="hud dnone">
+        <div class="mobileBtnLine">
+            <div class="mobilBtnfield">
+                <button id="btnLeft" class="mobileBtn"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt=""></button>
+                <button id="btnRight" class="mobileBtn rotate180deg"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt=""></button>
+            </div>
+            <div class="mobilBtnfield">
+                <button id="btnUp" class="mobileBtn rotate90deg"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt=""></button>
+                <button id="btnAttack" class="mobileBtn attackBtn"><img src="./gameassets/img/icons/attack.svg" alt=""></button>
             </div>
         </div>
 
@@ -77,7 +82,7 @@
         <div class="footerLine">
                 <button id="soundmode"><img id="soundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/soundOn.png" alt=""></button>
                 <button id="fullscreen"><img src="./gameassets/img/icons/fullscreen.png" alt="" onclick="fullscreen()"></button>
-                <button id="info"><img src="./gameassets/img/icons/Info.png" alt="" onclick="openInfoDialog()"></button>
+                <button id="info"><img src="./gameassets/img/icons/info.png" alt="" onclick="openInfoDialog()"></button>
         </div>
 
     </footer>

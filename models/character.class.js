@@ -120,7 +120,7 @@ class Character extends MovableObject{
     mana = 50;
     coin = 20;
     lastHit;
-    dying;
+    dead = false
 
     
 
@@ -178,7 +178,8 @@ class Character extends MovableObject{
         }
         else if(this.live <= 0){
             this.playAnimationOnce(this.IMAGES_DYING);   
-            this.world.sound.playSound(this.world.sound.deadSound)    
+            this.world.sound.playSound(this.world.sound.deadSound)
+            this.dead = true;    
         } 
         else if (this.isLongIdle) {
         this.playAnimationOnce(this.IMAGES_LONG_IDLE);}   
@@ -225,9 +226,11 @@ class Character extends MovableObject{
                 this.idleTime += 100;
                 if (this.idleTime >= 15000 && !this.isLongIdle) {
                     this.isLongIdle = true;
+                    this.world.sound.playSoundloopUnlimited(this.world.sound.snoring, this.isLongIdle);
                 }
             } else {
                 this.resetIdle();
+                this.world.sound.playSoundloopUnlimited(this.world.sound.snoring, this.isLongIdle);
             }
         }, 100);
     
@@ -235,6 +238,7 @@ class Character extends MovableObject{
     resetIdle() {
     this.idleTime = 0;
     this.isLongIdle = false;
+
 }
 
 }

@@ -1,17 +1,30 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
 body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-     margin: 0px;
-    /* background-image: url('./gameassets/img/Heroimage.png');
+    background-image: url('./gameassets/img/Heroimage.png');
     background-repeat: no-repeat;
-    background-size: cover;  */
+    background-size: cover;
+
 }
 
 canvas{
 
     background-color: black;
     display: block;
+}
+
+.mainButton{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
 }
 
 .startGame{
@@ -23,20 +36,25 @@ canvas{
 header{
     display: flex;
     justify-content: center;
+    padding: 24px 0;
 }
 
 main{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 309px);
+    padding: 24px 0px ;
+        position: relative;
 }
 
 footer {
     display: flex;
     justify-content: flex-end;
-    padding: 48px 100px;
+    padding: 0 16px;
+}
 
+.dpf {
+  display: flex;
 }
 
 h1 {
@@ -115,8 +133,8 @@ dialog{
 }
 .hud{
     position: absolute;
-    bottom: 16px;
-    display: flex;
+    bottom: 0px;
+
     flex-direction: column;
     gap: 8px;
     
@@ -131,14 +149,66 @@ dialog{
 
 
 }
-.mobileBtn{
-    height: 48px;
-    width: 48px;
-    font-size: 24px;
-    margin: 5px;
-    border-radius: 50%;
-    background-color: rgba(26, 21, 21, 0.2);
-    color: rgb(253, 0, 0);
+.mobileBtn img,
+.mobileBtn{ 
+    height: 64px;
+    width: 64px;
+    background-color: rgb(163 161 161 / 20%);
+    border: none;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+}
+/* 
+.mobileBtn img:active, */
+.mobileBtn:active{ 
+    background-color: rgba(61, 61, 61, 0.2);
+}
+
+.mobilBtnfield{
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+}
+
+.gameWindow{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.rotate90deg{
+    transform: rotate(90deg);
+  }
+.rotate180deg{
+    transform: rotate(180deg);
+  }
+
+.winOrLose{
+   position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 720px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+
+}
+.resultImage{
+    width: 720px;
+    height: 480px;
+  opacity: 1;
+  
+}
+
+.restart{
+  position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 ::backdrop{
@@ -147,7 +217,7 @@ dialog{
 
 /* From Uiverse.io by StealthWorm */ 
 .btn {
-  width: 13rem;
+  width: clamp(8rem, 21vw, 13rem);
   overflow: hidden;
   height: 3rem;
   background-size: 300% 300%;
@@ -183,7 +253,7 @@ dialog{
 strong {
   z-index: 2;
   font-family: "Avalors Personal Use";
-  font-size: 12px;
+  font-size: clamp(0.6rem, 1vw, 0.75rem);
   letter-spacing: 5px;
   color: #ffffff;
   text-shadow: 0 0 4px white;
