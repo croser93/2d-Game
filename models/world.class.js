@@ -16,9 +16,7 @@ class World {
     soundmodeON = true;
     sound = new Sound;
     intervals = [];
-
-   
-    
+ 
 
     keyboard;
     ctx;

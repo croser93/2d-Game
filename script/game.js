@@ -7,7 +7,6 @@ function initWorld() {
     world = new World(canvas, keyboard)
     ctx = canvas.getContext('2d')
     toggleSoundmode()
-    loadImages()
 }
 
     function startGame(){
@@ -15,14 +14,10 @@ function initWorld() {
         document.getElementById('canvas').classList.remove('dnone')
         document.getElementById('mainButton').classList.add('dnone')
         document.body.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
-        initLevel()
-        initWorld()
-        mobileControls()
-        mobilescreen ()
-
-    }
-    function loadImages(){
-        world.character.loadImageChar()
+        initLevel();
+        initWorld();
+        mobileControls();
+        mobilescreen();
     }
 
     function mobilescreen () {
