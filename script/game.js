@@ -7,6 +7,7 @@ function initWorld() {
     world = new World(canvas, keyboard)
     ctx = canvas.getContext('2d')
     toggleSoundmode()
+    loadImages()
 }
 
     function startGame(){
@@ -19,6 +20,9 @@ function initWorld() {
         mobileControls()
         mobilescreen ()
 
+    }
+    function loadImages(){
+        world.character.loadImageChar()
     }
 
     function mobilescreen () {

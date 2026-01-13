@@ -133,16 +133,26 @@ class Character extends MovableObject{
 
     constructor() {
         super().loadImage('gameassets/Elves/PNG/PNG Sequences/Idle/0_Dark_Elves_Idle_000.png')
+        // this.loadImages(this.IMAGES_IDLE);
+        // this.loadImages(this.IMAGES_WALK);
+        // this.loadImages(this.IMAGES_JUMPING);
+        // this.loadImages(this.IMAGES_HURT);
+        // this.loadImages(this.IMAGES_DYING);
+        // this.loadImages(this.IMAGES_LONG_IDLE);
+        this.animate();
+        this.applyGravity();
+        this.sound = new Sound();
+        this.startIdleTimer()
+    }
+
+    loadImageChar(){
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_WALK);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DYING);
         this.loadImages(this.IMAGES_LONG_IDLE);
-        this.animate();
-        this.applyGravity();
-        this.sound = new Sound();
-        this.startIdleTimer()
+
     }
 
 
@@ -202,7 +212,7 @@ class Character extends MovableObject{
     }
 
     jump(){
-      this.playAnimationLoop(this.IMAGES_JUMPING);    
+      this.playAnimationLoop(this.IMAGES_JUMPING);
     }
 
     isHurt(){

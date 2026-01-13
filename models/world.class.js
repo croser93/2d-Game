@@ -47,6 +47,7 @@ class World {
             this.manaBar.setPercentage(this.character.mana);
             this.statusBar.setPercentage(this.character.live);
             this.checkFallDamage
+            this.canJumpAttack()
             winOrLoseOverlay();
         }, 1000 / 5);
         this.intervals.push(slowinterval);
@@ -57,14 +58,14 @@ class World {
             this.checkAttack();
             this.checkCollect();
             this.checkAttackHit();
+            this.checkJumpAttack();
         },1000 / 60)
         this.intervals.push(fastinterval);
     }
        
     checkCollisions(){
-
     this.level_1.enemies.forEach((enemy) => {
-                if(this.character.isColliding(enemy) && !enemy.dead){
+                if(this.character.isColliding(enemy) &&!enemy.dead){
                     this.character.hit(enemy.damage)
                     this.statusBar.setPercentage(this.character.live) 
                     this.sound.playSoundloop(this.sound.damageSound);                  
@@ -88,7 +89,26 @@ class World {
             });
         });
     }
-    
+
+    checkJumpAttack(){
+        this.level_1.enemies.forEach((enemy, index) => {
+            if(this.character.isColliding(enemy) && this.canJumpAttack() &&this.character.y <= 200 && !enemy.dead && Math.abs(this.character.x - enemy.x) <= 25){
+                enemy.live -= 25;
+                if (enemy.live <= 0 && !enemy.dead) {
+                    this.enemyDead(enemy)
+                }
+                this.character.setSpeedY(10)
+            }
+        });
+    }
+
+    canJumpAttack() {
+    if (!this.character.lastHit) return true;
+        const now = Date.now();
+        return now - this.character.lastHit > 500; 
+    }
+
+
     checkAttack() {
         if (this.keyboard.SPACE && this.character.mana > 0) {
         let newattack = new Attack(this.character.x, this.character.y, this.character.otherDirection);

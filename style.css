@@ -32,6 +32,7 @@ canvas{
   top: 50%;
   left: 50%;
   transform: translate(-50%, 50%);
+  z-index: 100;
 }
 
 .startGame{
@@ -221,8 +222,8 @@ dialog{
 
 }
 .resultImage{
-    width: 720px;
-    height: 480px;
+    max-width: 720px;
+    max-height: 480px;
     opacity: 0.2;               
     animation: fadeIn 1s ease forwards;
     background-size: cover;
@@ -427,6 +428,14 @@ strong {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
   }
 }
+@media only screen and (max-width: 1025px) {
+    header {
+      display: none;
+    }
+    footer{
+      display: none;
+    }
+}
 
 @media only screen and (max-width: 760px) {
   .resultImage,
@@ -434,12 +443,12 @@ strong {
     canvas{
         width: 100%;
     }
-    header {
+    /* header {
       display: none;
     }
     footer{
       display: none;
-    }
+    } */
     main {
     height: 100%;
   }
@@ -452,6 +461,9 @@ strong {
   .winOrLose,
     canvas{
         height: 100vh;
+    }
+    main {
+      padding: 0px;
     }
   
 }
