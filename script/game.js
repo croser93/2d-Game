@@ -2,21 +2,106 @@ let canvas;
 let world;
 let keyboard = new Keyboard;
 
+let loadingProgress = 0;
+let totalAssets = 0;
+let loadedAssets = 0;
+const IMAGE_CACHE = {};
 
+function init(){
+    preloadAllImages()
 
-function initWorld() {
-    canvas = document.getElementById("canvas");
-    world = new World(canvas, keyboard)
-    ctx = canvas.getContext('2d')
 }
+
+function preloadAllImages() {
+    const allImages = [];
+    Object.values(MOVABELS).forEach(category => {
+        Object.values(category).forEach(value => {
+            if (Array.isArray(value))
+                allImages.push(...value);
+        });
+    });
+    allImages.forEach(path => {
+        const img = new Image();
+        img.src = path;
+        IMAGE_CACHE[path] = img;
+    }); 
+    return allImages.length;
+}
+
+function showLoadingScreen() {
+    document.getElementById('loadingScreen').classList.remove('dnone');
+}
+
+function updateLoadingProgress() {
+    loadedAssets++;
+    loadingProgress = Math.round((loadedAssets / totalAssets) * 100);
+    document.getElementById('loadingPercentage').textContent = loadingProgress + '%';
+    document.getElementById('loadingBar').style.width = loadingProgress + '%';
+
+    if (loadedAssets === totalAssets) {
+        hideLoadingScreen();
+        initLevel();
+        initWorld();
+    }
+}
+
+function hideLoadingScreen() {
+    document.getElementById('loadingScreen').classList.add('dnone');
+}
+
+function preloadAssets() {
+    showLoadingScreen();
+
+    const imageSources = [
+        'gameassets/img/game-background-image.png',
+        'gameassets/img/icons/soundmute.png',
+        'gameassets/img/icons/soundOn.png',
+    ];
+
+    const audioSources = [
+        'gameassets/sounds/backgroundambiente.mp3',
+        'gameassets/sounds/coin.mp3',
+        'gameassets/sounds/life.mp3',
+        'gameassets/sounds/mana.mp3',
+        'gameassets/sounds/step.mp3',
+        'gameassets/sounds/damage.mp3',
+        'gameassets/sounds/damage.mp3',
+        'gameassets/sounds/dead.mp3',
+        'gameassets/sounds/snoring.mp3'
+    ];
+
+    totalAssets = imageSources.length + audioSources.length;
+    loadedAssets = 0;
+
+    imageSources.forEach(src => {
+        const img = new Image();
+        img.onload = updateLoadingProgress;
+        img.onerror = updateLoadingProgress;
+        img.src = src;
+    });
+
+    audioSources.forEach(src => {
+        const audio = new Audio();
+        audio.oncanplaythrough = updateLoadingProgress;
+        audio.onerror = updateLoadingProgress;
+        audio.src = src;
+    });
+}
+
+    function initWorld() {
+        canvas = document.getElementById("canvas");
+        world = new World(canvas, keyboard)
+        ctx = canvas.getContext('2d')
+    }
 
     function startGame(){
         document.getElementById('test').classList.remove('test')
         document.getElementById('canvas').classList.remove('dnone')
         document.getElementById('mainButton').classList.add('dnone')
         document.body.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
-        initLevel();
-        initWorld();
+        preloadAssets()
+
+
         mobileControls();
         mobilescreen();
 

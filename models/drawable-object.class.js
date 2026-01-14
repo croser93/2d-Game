@@ -11,18 +11,26 @@ class DrawableObject {
     hitboxWidth = 0;
     hitboxHeight = 0;
 
-    loadImages(arr){
-        arr.forEach((path) => {   
+loadImages(arr){
+    arr.forEach((path) => {   
+        if (IMAGE_CACHE[path]) {
+            this.imageCache[path] = IMAGE_CACHE[path];
+        } else {
             let img = new Image();
             img.src = path;
             this.imageCache[path] = img;
-        });
-    }
+        }
+    });
+}
 
-    loadImage(path){
+loadImage(path){
+    if (IMAGE_CACHE[path]) {
+        this.img = IMAGE_CACHE[path];
+    } else {
         this.img = new Image();
         this.img.src = path;
     }
+}
 
     drawFrame(ctx){
     if (this instanceof Character || this instanceof Archer || this instanceof Endboss || this instanceof CollectableItem || this instanceof Attack) {

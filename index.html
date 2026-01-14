@@ -28,11 +28,12 @@
     <script src="./models/level.class.js"></script>
     <script src="./level/level_1.js"></script>
     <script src="./script/sound.js"></script>
+    <script src="./script/movabels.js"></script>
     <script src="./script/game.js"></script>
-    
 
 </head>
-<body>
+<body onload="init()">
+
     <section id="test" class="test">
 
         <header>
@@ -44,6 +45,16 @@
                 <!-- <button class ="burgerMenu">x</button> -->
                 <canvas class="dnone" id="canvas" width="720" height="480"></canvas>
                 <div id="winOrLose" class="winOrLose dnone"></div>
+
+                    <div id="loadingScreen" class="loading-screen dnone">
+                            <div class="loading-content">
+                                <h2>Loading...</h2>
+                                <div class="loading-bar">
+                            <div id="loadingBar" class="loading-bar-fill"></div>
+                        </div>
+                        <p id="loadingPercentage">0%</p>
+                    </div>
+    </div>
             </section> 
         </main>
         <div class="mainButton" id="mainButton">
