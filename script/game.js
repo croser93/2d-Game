@@ -42,6 +42,7 @@ function updateLoadingProgress() {
         hideLoadingScreen();
         initLevel();
         initWorld();
+        mobilescreen(); 
     }
 }
 
@@ -100,8 +101,6 @@ function preloadAssets() {
         document.getElementById('mainButton').classList.add('dnone')
         document.body.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
         preloadAssets()
-
-
         mobileControls();
         mobilescreen();
 
@@ -111,6 +110,9 @@ function preloadAssets() {
         if (window.innerWidth < 1025) {
             document.querySelector('.hud').classList.remove('dnone')
             document.querySelector('.hud').classList.add('dpf')
+            document.getElementById('burgerBtn').classList.remove('dnone')
+        } else{
+            document.getElementById('footerLine').classList.remove('dnone')
         }
     }
 
@@ -226,15 +228,18 @@ function mobileControls() {
 
 function toggleSoundmode() {
     let soundIcon = document.getElementById('soundIcon');
+    let soundIconBurger = document.getElementById('burgerSoundIcon')
 
     if (soundmodeON) {
         soundmodeON = false
         soundIcon.src = 'gameassets/img/icons/soundmute.png';
+        soundIconBurger.src = 'gameassets/img/icons/soundmute.png';
         worldsound(SOUNDS.Worldsounds.BACKGROUNDSOUND)
 
     } else if (soundmodeON == false) {
         soundmodeON = true
         soundIcon.src = 'gameassets/img/icons/soundOn.png';
+         soundIconBurger.src = 'gameassets/img/icons/soundOn.png';
         worldsound(SOUNDS.Worldsounds.BACKGROUNDSOUND)
     }
 }
@@ -255,4 +260,9 @@ function openInfoDialog() {
 function closeInfoDialog() {
     const dialog = document.querySelector('dialog');
     dialog.close();
+}
+
+function toggleBurgerMenu() {
+    document.getElementById('burgerDialog').classList.toggle('dnone')
+    document.getElementById('burgerDialog').classList.toggle('dpf')
 }

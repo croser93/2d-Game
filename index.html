@@ -39,24 +39,26 @@
         <header>
             <h1>Elves in the World of Demons</h1>
         </header>
+
+        <button id="burgerBtn" class="burgerMenu dnone" onclick="toggleBurgerMenu()"><img src="gameassets/img/icons/burger menu.png" alt=""></button>
         
         <main> 
             <section id="gameWindow"> 
-                <!-- <button class ="burgerMenu">x</button> -->
                 <canvas class="dnone" id="canvas" width="720" height="480"></canvas>
                 <div id="winOrLose" class="winOrLose dnone"></div>
 
                     <div id="loadingScreen" class="loading-screen dnone">
-                            <div class="loading-content">
-                                <h2>Loading...</h2>
-                                <div class="loading-bar">
-                            <div id="loadingBar" class="loading-bar-fill"></div>
+                        <div class="loading-content">
+                            <h2>Loading...</h2>
+                            <div class="loading-bar">
+                                <div id="loadingBar" class="loading-bar-fill"></div>
+                            </div>
+                            <p id="loadingPercentage">0%</p>
                         </div>
-                        <p id="loadingPercentage">0%</p>
                     </div>
-    </div>
             </section> 
         </main>
+        
         <div class="mainButton" id="mainButton">
             <button id="startGame" type="button " class="btn startGame" onclick="startGame()">
                 <strong>Start Game</strong>
@@ -68,13 +70,11 @@
                     <div class="circle"></div>
                 </div>
             </button>
-        </section>
-    </div>
+        </div>
+    </section>
 
 
     <div class="hud dnone">
-        
-
         <div class="mobileBtnLine">
             <div class="mobilBtnfield">
                 <button id="btnLeft" class="mobileBtn"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt=""></button>
@@ -85,27 +85,27 @@
                 <button id="btnAttack" class="mobileBtn attackBtn"><img src="./gameassets/img/icons/attack.svg" alt=""></button>
             </div>
         </div>
-
     </div>
 
-    <!-- <dialog>
-        <img class="dialogImg " src="./gameassets/img/dialog.png" alt="">
+    <dialog>
+        <img class="dialogImg" src="./gameassets/img/dialog.png" alt="">
         <button class="dialoCloseBtn" onclick="closeInfoDialog()"><img src="./gameassets/img/icons/button.png" alt=""></button>
     </dialog>
 
-    <div class="burgerDialog">
+    <div id="burgerDialog" class="burgerDialog dnone">
             <button id="burgerSoundmode"><img class="burgerIcon" id="burgerSoundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/soundmute.png" alt=""></button>
             <button id="burgerFullscreen"><img class="burgerIcon" src="./gameassets/img/icons/fullscreen.png" alt="" onclick="fullscreen()"></button>
             <button id="burgerInfo"><img  class="burgerIcon"  src="./gameassets/img/icons/info.png" alt="" onclick="openInfoDialog()"></button>
-    </div> -->
-    
-</body>
-<footer>
-    <div class="footerLine">
-            <button id="soundmode"><img id="soundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/soundmute.png" alt=""></button>
-            <button id="fullscreen"><img src="./gameassets/img/icons/fullscreen.png" alt="" onclick="fullscreen()"></button>
-            <button id="info"><img src="./gameassets/img/icons/info.png" alt="" onclick="openInfoDialog()"></button>
     </div>
+    
+    <footer>
+        <div id="footerLine" class="footerLine dnone">
+                <button id="soundmode"><img id="soundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/soundmute.png" alt=""></button>
+                <button id="fullscreen"><img src="./gameassets/img/icons/fullscreen.png" alt="" onclick="fullscreen()"></button>
+                <button id="info"><img src="./gameassets/img/icons/info.png" alt="" onclick="openInfoDialog()"></button>
+        </div>
+    
+    </footer>
+</body>
 
-</footer>
 </html>

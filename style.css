@@ -95,6 +95,7 @@ font-display: swap;
 
 #info,
 #soundmode img,
+
 #soundmode{
     height: 64px;
     width: 64px;
@@ -105,6 +106,7 @@ font-display: swap;
     border: none;
 }
 
+.burgerMenu img,
 #info,
 #fullscreen,
 #fullscreen img {
@@ -115,7 +117,6 @@ font-display: swap;
     cursor: pointer;
     background-color: transparent;
     border: none;
-
 }
 
 .class{
@@ -166,12 +167,13 @@ dialog{
     left: 16px;
     height: 48px;
     width: 48px;
-    background-color: rgb(163 161 161 / 20%);
+    background-color: transparent;
     border: none;
-    border-radius: 12px;
-    backdrop-filter: blur(4px);
     cursor: pointer;
     z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .burgerDialog{
@@ -182,7 +184,6 @@ dialog{
     border-radius: 0 0 12px 12px;
     background-color: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(4px);
-    display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 100px;
@@ -548,19 +549,21 @@ strong {
     canvas{
         width: 100%;
     }
-    /* header {
-      display: none;
-    }
-    footer{
-      display: none;
-    } */
     main {
-    height: 100%;
+    height: 100%; 
   }
-  
+  .dialogImg{
+    width: 500px;
+
+  }
+  .dialoCloseBtn img {
+    height: 24px;
+    width: 200px
+}
 }
 
 @media only screen and (max-height: 480px) {
+  .dialogImg,
   .resultImage,
   .winOrLose,
     canvas{
@@ -569,5 +572,15 @@ strong {
     main {
       padding: 0px;
     }
+    .dialogImg{
+    height: 250px;
+  }
+  .dialoCloseBtn img {
+    height: 28px;
+    width: 150px;
+}
+.dialoCloseBtn {
+    top: 76%;
   
+}
 }
