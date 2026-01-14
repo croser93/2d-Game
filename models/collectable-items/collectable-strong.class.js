@@ -29,7 +29,7 @@ class CollectableStrong extends CollectableItem {
         this.height = 90
         this.width = 90
         this.y = 280
-        this.x = 100 + Math.random()* 1000 
+        this.x = 400 + Math.random() * 3000;
         this.animateCollectable();
     }
 

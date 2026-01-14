@@ -16,7 +16,7 @@ class CollectableItem extends MovableObject {
         this.height = 32
         this.width = 32
         this.y = 310
-        this.x = 100 + Math.random()* 1000 // hinteren wert verstellen, für verschiedene anordnung der x achse
+        this.x = 400 + Math.random() * 3000; // hinteren wert verstellen, für verschiedene anordnung der x achse
         this.animateCollectable();
     }
 

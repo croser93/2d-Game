@@ -103,7 +103,6 @@ font-display: swap;
     cursor: pointer;
     background-color: transparent;
     border: none;
-    background-image: url('./gameassets/img/icons/sound-svgrepo-com.svg');
 }
 
 #info,
@@ -156,11 +155,56 @@ dialog{
 .hud{
     position: absolute;
     bottom: 0px;
-
     flex-direction: column;
     gap: 8px;
-    
+  
 }
+
+.burgerMenu{
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    height: 48px;
+    width: 48px;
+    background-color: rgb(163 161 161 / 20%);
+    border: none;
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    z-index: 4;
+}
+
+.burgerDialog{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    border-radius: 0 0 12px 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px;
+    gap: 24px;
+    z-index: 3;
+}
+
+#burgerSoundmode,
+#burgerFullscreen,
+#burgerInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+.burgerIcon{
+    height: 48px;
+    width: 48px;
+} 
 
 .mobileBtnLine{
     display: flex;
@@ -168,8 +212,7 @@ dialog{
     align-items: center;
     gap: 16px;
     width: calc(100vw - 10%);
-
-
+    z-index: 3;
 }
 .mobileBtn img,
 .mobileBtn{ 
@@ -225,12 +268,26 @@ dialog{
     max-width: 720px;
     max-height: 480px;
     opacity: 0.2;               
-    animation: fadeIn 1s ease forwards;
+    animation: fadeInWithScale 1s ease forwards;
     background-size: cover;
-
-
 }
+
+.fadeIn{
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+  animation-delay: 1s;
+}
+
 @keyframes fadeIn {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInWithScale {
   from {
     opacity: 0.2;
     transform: scale(0.98);  

@@ -123,6 +123,12 @@ class Character extends MovableObject{
     dead = false
     intervals = [];
 
+    walkSound = SOUNDS.character.WALKING
+    hurtSound = SOUNDS.character.HURT
+    deadSound = SOUNDS.character.DEAD
+    idleSound = SOUNDS.character.LONG_IDLE
+    jumpSound = SOUNDS.character.JUMPING
+
     
 
     hitboxOffsetX = 20;
@@ -136,7 +142,6 @@ class Character extends MovableObject{
         this.loadImageChar()
         this.animate();
         this.applyGravity();
-        this.sound = new Sound();
         this.startIdleTimer();
     }
 
@@ -181,8 +186,8 @@ class Character extends MovableObject{
         let animationInterval = setInterval(() => {
         if (this.isAboveGround()) 
            this.jump(); 
-        else if (this.isHurt())
-            this.isHurt()
+        else if (this.isHurt()){
+            this.isHurtDamage()}
         else if((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && this.isAboveGround)
             this.walk ();
         else if(this.live <= 0)
@@ -198,24 +203,28 @@ class Character extends MovableObject{
 
     walk (){
         this.playAnimationLoop(this.IMAGES_WALK);
-        this.world.sound.playSound(this.world.sound.walkSound)   
+        playSound(this.walkSound);
+
     }
 
     dead(){
         this.playAnimationOnce(this.IMAGES_DYING);   
-        this.world.sound.playSound(this.world.sound.deadSound)     
+        playSound(this.deadSound)     
     }
 
     jump(){
       this.playAnimationLoop(this.IMAGES_JUMPING);
+        playSound(this.jumpSound);  
     }
 
-    isHurt(){
-        this.playAnimationLoop(this.IMAGES_HURT); 
+    isHurtDamage(){
+        this.playAnimationLoop(this.IMAGES_HURT);
+        playSound(this.hurtSound);  
     }
 
     longIdle(){
-        this.playAnimationOnce(this.IMAGES_LONG_IDLE); 
+        this.playAnimationOnce(this.IMAGES_LONG_IDLE);
+        
     }
 
     idle(){
@@ -243,26 +252,27 @@ class Character extends MovableObject{
     isHurt(){
         let timepassed = new Date().getTime() - this.lastHit
         timepassed = timepassed / 1000
-        return timepassed < 0.4
+        return timepassed < 0.2
     }
 
     startIdleTimer() {
         this.idleTime = 0;
         this.isLongIdle = false;
     
-        setInterval(() => {
+    let longIdleInterval = setInterval(() => {
             if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && 
                 !this.world.keyboard.SPACE && !this.world.keyboard.UP) {
                 this.idleTime += 100;
                 if (this.idleTime >= 15000 && !this.isLongIdle) {
                     this.isLongIdle = true;
-                    this.world.sound.playSoundloopUnlimited(this.world.sound.snoring, this.isLongIdle);
+                    // playSound(this.idleSound);
                 }
             } else {
                 this.resetIdle();
-                this.world.sound.playSoundloopUnlimited(this.world.sound.snoring, this.isLongIdle);
+                // playSound(this.idleSound);
             }
         }, 100);
+        this.intervals.push(longIdleInterval);
     }
 
     resetIdle() {

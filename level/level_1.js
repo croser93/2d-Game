@@ -1,11 +1,10 @@
-let levelGenerator ;
-let level_1 ;
+let levelGenerator;
+let level_1;
 
-
-function initLevel () {
+function initLevel() {
     levelGenerator = new LevelGenerator();
     level_1 = levelGenerator.generateLevel();
-    }
+}
 
 class LevelGenerator {
     constructor() {
@@ -23,6 +22,11 @@ class LevelGenerator {
         this.bossPlatformStart = 3184;
         this.bossPlatformLength = 416;
         
+        this.enemyCount = 1;
+        this.coinCount = 1;
+        this.strongCount = 1;
+        this.liveCount = 1;
+        
         this.tiles = {
             ground: {
                 start: './gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Ground_04.png',
@@ -38,7 +42,7 @@ class LevelGenerator {
                 './gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Bridge_01.png',
                 './gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Bridge_02.png',
             ],
-            spikes: 'gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Spikes.png',
+            spikes: './gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Platformer/Spikes.png',
             backgrounds: [
                 './gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Background/Background_01.png',
                 './gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Background/Background_02.png',
@@ -49,8 +53,8 @@ class LevelGenerator {
     generateLevel() {
         const backgrounds = this.generateBackgrounds();
         const { ground, underground, bridges, spikes } = this.generatePlatforms();
-        const enemies = this.generateEnemies([]);
-        const collectables = this.generateCollectables([]);
+        const enemies = this.generateEnemies();
+        const collectables = this.generateCollectables();
         
         return new Level(
             enemies,
@@ -195,73 +199,33 @@ class LevelGenerator {
 
     generateEnemies() {
         const enemies = [];
-        const enemyCount = Math.floor(Math.random() * 20 + 8);
         
-        for (let i = 0; i < enemyCount; i++) {
-            const x = 380 + Math.random() * 2800;
-            const archer = new Archer();
-            archer.x = x;
-            enemies.push(archer);
+        for (let i = 0; i < this.enemyCount; i++) {
+            enemies.push(new Archer());
         }
         
-        const boss = new Endboss();
-        boss.x = 3470;
-        enemies.push(boss);
+        enemies.push(new Endboss());
         
         return enemies;
     }
 
     generateCollectables() {
-        const coins = this.generateCoins();
-        const strong = this.generateStrong();
-        const live = this.generateLive();
-        return { coins, strong, live };
-    }
-
-    generateCoins() {
         const coins = [];
-        for (let i = 0; i < 5; i++) {
-            const coin = new CollectableItem();
-            coin.x = 200 + Math.random() * (this.mapLength - 400);
-            coins.push(coin);
-        }
-        return coins;
-    }
-
-    generateStrong() {
         const strong = [];
-        for (let i = 0; i < 3; i++) {
-            const mana = new CollectableStrong();
-            mana.x = 200 + Math.random() * (this.mapLength - 400);
-            strong.push(mana);
-        }
-        return strong;
-    }
-
-    generateLive() {
         const live = [];
-        for (let i = 0; i < 3; i++) {
-            const health = new CollectableLive();
-            health.x = 200 + Math.random() * (this.mapLength - 400);
-            live.push(health);
-        }
-        return live;
-    }
-
-    getSafeZones(gaps) {
-        const zones = [];
-        let lastEnd = 0;
         
-        gaps.forEach(gap => {
-            if (gap.start - lastEnd > 200) {
-                zones.push({ start: lastEnd + 100, end: gap.start - 100 });
-            }
-            lastEnd = gap.end;
-        });
-        
-        if (this.mapLength - lastEnd > 200) {
-            zones.push({ start: lastEnd + 100, end: this.mapLength - 100 });
+        for (let i = 0; i < this.coinCount; i++) {
+            coins.push(new CollectableItem());
         }
-        return zones;
+        
+        for (let i = 0; i < this.strongCount; i++) {
+            strong.push(new CollectableStrong());
+        }
+        
+        for (let i = 0; i < this.liveCount; i++) {
+            live.push(new CollectableLive());
+        }
+        
+        return { coins, strong, live };
     }
 }

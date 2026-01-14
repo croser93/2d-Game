@@ -11,8 +11,6 @@ class DrawableObject {
     hitboxWidth = 0;
     hitboxHeight = 0;
 
-
-
     loadImages(arr){
         arr.forEach((path) => {   
             let img = new Image();

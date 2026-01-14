@@ -10,7 +10,6 @@ class CollectableBar extends StatusBar {
     gradientColorStart = '#f7cc6fff';
     gradientColorEnd = '#f8b600ff';
 
-
     constructor() {
         super();
     }

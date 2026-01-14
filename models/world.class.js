@@ -1,5 +1,4 @@
 class World {
-    
     level_1 = level_1
     character = new Character();
     enemies = level_1.enemies;
@@ -13,15 +12,18 @@ class World {
     strong = level_1.strong;
     live = level_1.live;
     attack = [];
-    soundmodeON = true;
-    sound = new Sound;
     intervals = [];
- 
+
+    manaSound = SOUNDS.collectables.MANA;
+    coinSound = SOUNDS.collectables.COIN;
+    liveSound = SOUNDS.collectables.LIVE;
+    damageSound = SOUNDS.character.DAMAGE;
 
     keyboard;
     ctx;
     camera_x = 0;
     constructor(canvas, keyboard){
+
         this.setWorld();
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -29,9 +31,6 @@ class World {
         this.draw();
         this.runSlow();
         this.runFast();
-
-        
-
     }
     
     setWorld() {
@@ -65,24 +64,24 @@ class World {
     this.level_1.enemies.forEach((enemy) => {
                 if(this.character.isColliding(enemy) &&!enemy.dead){
                     this.character.hit(enemy.damage)
-                    this.statusBar.setPercentage(this.character.live) 
-                    this.sound.playSoundloop(this.sound.damageSound);                  
+                    this.statusBar.setPercentage(this.character.live)        
                 }})} 
 
     checkCollect(){
         const collectables = [
-            { items: this.level_1.coins, type: 'coin', statBar: this.collecableBar, amount: 10, collectItem: this.character.coin, charItem: 'coin', sound : this.sound.coinSound},
-            { items: this.level_1.strong, type: 'strong', statBar: this.manaBar, amount: 20, collectItem: this.character.mana, charItem: 'mana', sound : this.sound.manaSound},
-            { items: this.level_1.live, type: 'live', statBar: this.statusBar, amount: 20, collectItem: this.character.live, charItem: 'live', sound : this.sound.lifeSound}
+            { items: this.level_1.coins, type: 'coin', statBar: this.collecableBar, amount: 10, collectItem: this.character.coin, charItem: 'coin', sound: this.coinSound },
+            { items: this.level_1.strong, type: 'strong', statBar: this.manaBar, amount: 20, collectItem: this.character.mana, charItem: 'mana', sound: this.manaSound},
+            { items: this.level_1.live, type: 'live', statBar: this.statusBar, amount: 20, collectItem: this.character.live, charItem: 'live', sound: this.liveSound}
         ];
 
         collectables.forEach(({items, type, statBar, amount, collectItem, charItem, sound}) => {
             items.forEach((item, index) => {
                 if(this.character.isColliding(item)){
+                    console.log(sound)
                     this.character.collect(charItem, amount);
                     statBar.setPercentage(collectItem);
                     items.splice(index, 1);
-                    this.sound.playSoundloop(sound)
+                   playSound(sound)
                 }
             });
         });
@@ -112,12 +111,12 @@ class World {
         let newattack = new Attack(this.character.x, this.character.y, this.character.otherDirection);
         this.attack.push(newattack);
         this.character.mana -= 5
-        this.sound.playSoundloop(this.sound.attackSound);
         this.keyboard.SPACE = false;
+        playSoundloop(this.damageSound)
         }
     }
 
-    checkAttackHit() { // Noch Umschreiben. zuviele funktionen gleichzeitig
+    checkAttackHit() { 
     this.attack.forEach((attackObj, attackIndex) => {
         this.level_1.enemies.forEach((enemy, enemyIndex) => {
             if (attackObj.isColliding(enemy)) {
@@ -200,7 +199,9 @@ class World {
         }
         
         item.drawItem(this.ctx);
-        item.drawFrame(this.ctx)
+        if (this.debugMode) {
+            item.drawFrame(this.ctx);
+        }
 
         if (item.otherDirection) {
             item.x = item.x * -1 ;

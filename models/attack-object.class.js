@@ -1,6 +1,4 @@
 class Attack extends MovableObject {
-
-
     IMAGE_ATTACK = ['gameassets/Elves/PNG/PNG Sequences/attack/Explosion_1.png',
                     'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_2.png',
                     'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_3.png',
@@ -23,17 +21,13 @@ class Attack extends MovableObject {
     hitboxHeight = 0;
     damage = 20;
 
-    
-
-
     constructor(x, y, otherDirection){
         super().loadImage('gameassets/Elves/PNG/PNG Sequences/attack/Explosion_3.png')
         this.loadImages(this.IMAGE_ATTACK);
         this.trow ()
         this.x = x ;
         this.y = y ;
-         this.otherDirection = otherDirection;
-        
+         this.otherDirection = otherDirection;      
     }
 
 trow (){   

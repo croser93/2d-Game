@@ -2,11 +2,12 @@ let canvas;
 let world;
 let keyboard = new Keyboard;
 
+
+
 function initWorld() {
     canvas = document.getElementById("canvas");
     world = new World(canvas, keyboard)
     ctx = canvas.getContext('2d')
-    toggleSoundmode()
 }
 
     function startGame(){
@@ -18,6 +19,7 @@ function initWorld() {
         initWorld();
         mobileControls();
         mobilescreen();
+
     }
 
     function mobilescreen () {
@@ -32,15 +34,12 @@ function initWorld() {
         const endboss = world.enemies.find(enemy => enemy instanceof Endboss);
               if (world.character.live <= 0 && world.character.dead) {
                 winOrLosescreen('lose')
-                clearAllIntervals()
-                
+                clearAllIntervals()       
             }else if (world.character.live > 0 && endboss.dead) {
                 winOrLosescreen('win')
                 clearAllIntervals()
             }
-            else {
-                return
-            }
+            else  return;
     }
 
     function clearAllIntervals() {
@@ -55,9 +54,7 @@ function initWorld() {
         if(document.fullscreenElement){
             exitFullscreen()
         }
-    setTimeout(() => {
-        
-    
+    setTimeout(() => {  
     document.getElementById('winOrLose').classList.remove('dnone')
     document.getElementById('winOrLose').innerHTML =
             `<div class="winScreen"> 
@@ -66,8 +63,6 @@ function initWorld() {
                 <button class="dialoCloseBtn" onclick="restartGame()"><img src="./gameassets/img/icons/button.png" alt=""></button>
             </div>`
     }, 1000);
-
-                    // <button class="restart" onclick="restartGame()">Restart Game</button>
     }
 
     function restartGame() {        
@@ -81,20 +76,12 @@ function initWorld() {
 
 
 window.addEventListener('keydown', (e) => {
-
-    if (e.keyCode == 39) {
+    if (e.keyCode == 39) 
     keyboard.RIGHT = true  
-
-    }
-    if (e.keyCode == 37) {
-    keyboard.LEFT = true  
-
-    }
-    if (e.keyCode == 38) {
-    keyboard.UP = true  
-
-    }
-        
+    if (e.keyCode == 37) 
+    keyboard.LEFT = true 
+    if (e.keyCode == 38) 
+    keyboard.UP = true      
     if (e.keyCode === 32 && !keyboard.SPACE_USED) {
         keyboard.SPACE = true;
         keyboard.SPACE_USED = true;
@@ -102,35 +89,27 @@ window.addEventListener('keydown', (e) => {
 })
 
 window.addEventListener('keyup', (e) => {
-
-    if (e.keyCode == 39) {
-    keyboard.RIGHT = false 
-
-    }
-    if (e.keyCode == 37) {
+    if (e.keyCode == 39) 
+    keyboard.RIGHT = false  
+    if (e.keyCode == 37) 
     keyboard.LEFT = false  
-
-    }
-    if (e.keyCode == 38) {
+    if (e.keyCode == 38) 
     keyboard.UP = false  
-
-    }
     if (e.keyCode === 32) {
         keyboard.SPACE = false;
         keyboard.SPACE_USED = false; 
     }    
 })
+
 function mobileControls() {
     document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.LEFT = true;
     });
-
     document.getElementById('btnLeft').addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.LEFT = false;
     });
-
         document.getElementById('btnRight').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.RIGHT = true;
@@ -161,16 +140,17 @@ function mobileControls() {
 }
 
 function toggleSoundmode() {
-    world.soundmodeON = !world.soundmodeON;
-    world.sound.soundmodeON = world.soundmodeON;
-    const soundIcon = document.getElementById('soundIcon');
-    
-    if (world.soundmodeON) {
-        soundIcon.src = 'gameassets/img/icons/soundOn.png';
-        // world.sound.backgroundSound(true)
-    } else {
+    let soundIcon = document.getElementById('soundIcon');
+
+    if (soundmodeON) {
+        soundmodeON = false
         soundIcon.src = 'gameassets/img/icons/soundmute.png';
-        world.sound.backgroundSound(false)
+        worldsound(SOUNDS.Worldsounds.BACKGROUNDSOUND)
+
+    } else if (soundmodeON == false) {
+        soundmodeON = true
+        soundIcon.src = 'gameassets/img/icons/soundOn.png';
+        worldsound(SOUNDS.Worldsounds.BACKGROUNDSOUND)
     }
 }
 
