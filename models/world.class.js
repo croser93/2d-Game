@@ -77,7 +77,6 @@ class World {
         collectables.forEach(({items, type, statBar, amount, collectItem, charItem, sound}) => {
             items.forEach((item, index) => {
                 if(this.character.isColliding(item)){
-                    console.log(sound)
                     this.character.collect(charItem, amount);
                     statBar.setPercentage(collectItem);
                     items.splice(index, 1);

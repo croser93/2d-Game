@@ -1,93 +1,89 @@
 let canvas;
 let world;
 let keyboard = new Keyboard;
-
 let loadingProgress = 0;
 let totalAssets = 0;
 let loadedAssets = 0;
 const IMAGE_CACHE = {};
+const imageSources = [
+    'gameassets/img/game-background-image.png',
+    'gameassets/img/icons/soundmute.png',
+    'gameassets/img/icons/soundOn.png',
+];
+const audioSources = [
+    'gameassets/sounds/backgroundambiente.mp3',
+    'gameassets/sounds/coin.mp3',
+    'gameassets/sounds/life.mp3',
+    'gameassets/sounds/mana.mp3',
+    'gameassets/sounds/step.mp3',
+    'gameassets/sounds/damage.mp3',
+    'gameassets/sounds/damage.mp3',
+    'gameassets/sounds/dead.mp3',
+    'gameassets/sounds/snoring.mp3'
+];
 
-function init(){
-    preloadAllImages()
+    function init() {
+        preloadAllImages()
 
-}
-
-function preloadAllImages() {
-    const allImages = [];
-    Object.values(MOVABELS).forEach(category => {
-        Object.values(category).forEach(value => {
-            if (Array.isArray(value))
-                allImages.push(...value);
-        });
-    });
-    allImages.forEach(path => {
-        const img = new Image();
-        img.src = path;
-        IMAGE_CACHE[path] = img;
-    }); 
-    return allImages.length;
-}
-
-function showLoadingScreen() {
-    document.getElementById('loadingScreen').classList.remove('dnone');
-}
-
-function updateLoadingProgress() {
-    loadedAssets++;
-    loadingProgress = Math.round((loadedAssets / totalAssets) * 100);
-    document.getElementById('loadingPercentage').textContent = loadingProgress + '%';
-    document.getElementById('loadingBar').style.width = loadingProgress + '%';
-
-    if (loadedAssets === totalAssets) {
-        hideLoadingScreen();
-        initLevel();
-        initWorld();
-        mobilescreen(); 
     }
-}
 
-function hideLoadingScreen() {
-    document.getElementById('loadingScreen').classList.add('dnone');
-}
+    function preloadAllImages() {
+        const allImages = [];
+        Object.values(MOVABELS).forEach(category => {
+            Object.values(category).forEach(value => {
+                if (Array.isArray(value))
+                    allImages.push(...value);
+            });
+        });
+        allImages.forEach(path => {
+            const img = new Image();
+            img.src = path;
+            IMAGE_CACHE[path] = img;
+        }); 
+        return allImages.length;
+    }
 
-function preloadAssets() {
-    showLoadingScreen();
+    function updateLoadingProgress() {
+        loadedAssets++;
+        loadingProgress = Math.round((loadedAssets / totalAssets) * 100);
+        document.getElementById('loadingPercentage').textContent = loadingProgress + '%';
+        document.getElementById('loadingBar').style.width = loadingProgress + '%';
 
-    const imageSources = [
-        'gameassets/img/game-background-image.png',
-        'gameassets/img/icons/soundmute.png',
-        'gameassets/img/icons/soundOn.png',
-    ];
+        if (loadedAssets === totalAssets) {
+            loadingScreen();
+            initLevel();
+            initWorld();
+            mobilescreen(); 
+        }
+    }
 
-    const audioSources = [
-        'gameassets/sounds/backgroundambiente.mp3',
-        'gameassets/sounds/coin.mp3',
-        'gameassets/sounds/life.mp3',
-        'gameassets/sounds/mana.mp3',
-        'gameassets/sounds/step.mp3',
-        'gameassets/sounds/damage.mp3',
-        'gameassets/sounds/damage.mp3',
-        'gameassets/sounds/dead.mp3',
-        'gameassets/sounds/snoring.mp3'
-    ];
+    function preloadAssets() {
+        loadingScreen();
+        totalAssets = imageSources.length + audioSources.length;
+        loadedAssets = 0;
 
-    totalAssets = imageSources.length + audioSources.length;
-    loadedAssets = 0;
+        preloadImg();
+        preloadSound();
+    }
 
-    imageSources.forEach(src => {
+    function preloadImg() {
+        imageSources.forEach(src => {
         const img = new Image();
         img.onload = updateLoadingProgress;
         img.onerror = updateLoadingProgress;
         img.src = src;
-    });
+        }); 
+    }
 
-    audioSources.forEach(src => {
+    function preloadSound(){
+        audioSources.forEach(src => {
         const audio = new Audio();
         audio.oncanplaythrough = updateLoadingProgress;
         audio.onerror = updateLoadingProgress;
         audio.src = src;
     });
-}
+
+    }
 
     function initWorld() {
         canvas = document.getElementById("canvas");
@@ -265,4 +261,8 @@ function closeInfoDialog() {
 function toggleBurgerMenu() {
     document.getElementById('burgerDialog').classList.toggle('dnone')
     document.getElementById('burgerDialog').classList.toggle('dpf')
+}
+
+function loadingScreen() {
+    document.getElementById('loadingScreen').classList.toggle('dnone');
 }

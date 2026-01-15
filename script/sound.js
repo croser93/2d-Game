@@ -50,17 +50,21 @@ const SOUNDS = {
 let soundmodeON = false;
 
 function playSound(sound){
-    soundSnipped = sound.SOUND
-    volume = sound.VOLUME
-    soundSnipped.volume = volume;
-    soundSnipped.play();
+    if (soundmodeON) { 
+        soundSnipped = sound.SOUND
+        volume = sound.VOLUME
+        soundSnipped.volume = volume;
+        soundSnipped.play();
+    }
      }
 
 function playSoundloop(sound){
-    soundSnipped = sound.SOUND.cloneNode(true);
-    volume = sound.VOLUME
-    soundSnipped.volume = volume; 
-    soundSnipped.play();     
+    if (soundmodeON) { 
+        soundSnipped = sound.SOUND.cloneNode(true);
+        volume = sound.VOLUME
+        soundSnipped.volume = volume; 
+        soundSnipped.play();    
+    } 
 }
 
     function worldsound(sound)  {
@@ -74,7 +78,7 @@ function playSoundloop(sound){
             soundSnipped.pause();
             soundSnipped.loop = false;
         }
-
+        
     }    
     
     function playSoundloopUnlimited(soundSnipped, longidle){   
