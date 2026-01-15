@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" translate="no">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="icon" type="image/x-icon" href="./gameassets/Collectable Object/Diamond.png">
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./gameassets/Collectable Object/Diamond.png"
+    />
 
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
@@ -21,8 +25,7 @@
     <script src="./models/collectable-items/collectable-strong.class.js"></script>
     <script src="./models/collectable-items/collectable-live.class.js"></script>
     <script src="./models/attack-object.class.js"></script>
-    
-    
+
     <script src="./models/background.class.js"></script>
     <script src="./models/backgroundassets.class.js"></script>
     <script src="./models/level.class.js"></script>
@@ -30,82 +33,151 @@
     <script src="./script/sound.js"></script>
     <script src="./script/movabels.js"></script>
     <script src="./script/game.js"></script>
-
-</head>
-<body onload="init()">
-
+  </head>
+  <body onload="init()">
     <section id="test" class="test">
+      <header>
+        <h1>Elves in the World of Demons</h1>
+      </header>
 
-        <header>
-            <h1>Elves in the World of Demons</h1>
-        </header>
+      <button
+        id="burgerBtn"
+        class="burgerMenu dnone"
+        onclick="toggleBurgerMenu()"
+      >
+        <img src="gameassets/img/icons/burger menu.png" alt="" />
+      </button>
 
-        <button id="burgerBtn" class="burgerMenu dnone" onclick="toggleBurgerMenu()"><img src="gameassets/img/icons/burger menu.png" alt=""></button>
-        
-        <main> 
-            <section id="gameWindow"> 
-                <canvas class="dnone" id="canvas" width="720" height="480"></canvas>
-                <div id="winOrLose" class="winOrLose dnone"></div>
+      <main>
+        <section id="gameWindow">
+          <canvas class="dnone" id="canvas" width="720" height="480"></canvas>
+          <div id="winOrLose" class="winOrLose dnone"></div>
 
-                    <div id="loadingScreen" class="loading-screen dnone">
-                        <div class="loading-content">
-                            <h2>Loading...</h2>
-                            <div class="loading-bar">
-                                <div id="loadingBar" class="loading-bar-fill"></div>
-                            </div>
-                            <p id="loadingPercentage">0%</p>
-                        </div>
-                    </div>
-            </section> 
-        </main>
-        
-        <div class="mainButton" id="mainButton">
-            <button id="startGame" type="button " class="btn startGame" onclick="startGame()">
-                <strong>Start Game</strong>
-                <div id="container-stars">
-                    <div id="stars"></div>
-                </div>
-                <div id="glow">
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                </div>
-            </button>
-        </div>
+          <div id="loadingScreen" class="loading-screen dnone">
+            <div class="loading-content">
+              <h2>Loading...</h2>
+              <div class="loading-bar">
+                <div id="loadingBar" class="loading-bar-fill"></div>
+              </div>
+              <p id="loadingPercentage">0%</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <div class="mainButton" id="mainButton">
+        <button
+          id="startGame"
+          type="button "
+          class="btn startGame"
+          onclick="startGame()"
+        >
+          <strong>Start Game</strong>
+          <div id="container-stars">
+            <div id="stars"></div>
+          </div>
+          <div id="glow">
+            <div class="circle"></div>
+            <div class="circle"></div>
+          </div>
+        </button>
+      </div>
     </section>
 
-
-    <div class="hud dnone">
-        <div class="mobileBtnLine">
-            <div class="mobilBtnfield">
-                <button id="btnLeft" class="mobileBtn"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt=""></button>
-                <button id="btnRight" class="mobileBtn rotate180deg"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt=""></button>
-            </div>
-            <div class="mobilBtnfield">
-                <button id="btnUp" class="mobileBtn rotate90deg"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt=""></button>
-                <button id="btnAttack" class="mobileBtn attackBtn"><img src="./gameassets/img/icons/attack.svg" alt=""></button>
-            </div>
+    <div id="hud" class="hud dnone">
+      <div class="mobileBtnLine">
+        <div class="mobilBtnfield">
+          <button id="btnLeft" class="mobileBtn">
+            <img
+              src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg"
+              alt=""
+            />
+          </button>
+          <button id="btnRight" class="mobileBtn rotate180deg">
+            <img
+              src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg"
+              alt=""
+            />
+          </button>
         </div>
+        <div class="mobilBtnfield">
+          <button id="btnUp" class="mobileBtn rotate90deg">
+            <img
+              src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg"
+              alt=""
+            />
+          </button>
+          <button id="btnAttack" class="mobileBtn attackBtn">
+            <img src="./gameassets/img/icons/attack.svg" alt="" />
+          </button>
+        </div>
+      </div>
     </div>
 
     <dialog>
-        <img class="dialogImg" src="./gameassets/img/dialog.png" alt="">
-        <button class="dialoCloseBtn" onclick="closeInfoDialog()"><img src="./gameassets/img/icons/button.png" alt=""></button>
+      <img class="dialogImg" src="./gameassets/img/dialog.png" alt="" />
+      <button class="dialoCloseBtn" onclick="closeInfoDialog()">
+        <img src="./gameassets/img/icons/button.png" alt="" />
+      </button>
     </dialog>
 
     <div id="burgerDialog" class="burgerDialog dnone">
-            <button id="burgerSoundmode"><img class="burgerIcon" id="burgerSoundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/soundmute.png" alt=""></button>
-            <button id="burgerFullscreen"><img class="burgerIcon" src="./gameassets/img/icons/fullscreen.png" alt="" onclick="fullscreen()"></button>
-            <button id="burgerInfo"><img  class="burgerIcon"  src="./gameassets/img/icons/info.png" alt="" onclick="openInfoDialog()"></button>
+      <button id="burgerSoundmode">
+        <img
+          class="burgerIcon"
+          id="burgerSoundIcon"
+          onclick="toggleSoundmode()"
+          src="gameassets/img/icons/soundmute.png"
+          alt=""
+        />
+      </button>
+      <button id="burgerFullscreen">
+        <img
+          class="burgerIcon"
+          src="./gameassets/img/icons/fullscreen.png"
+          alt=""
+          onclick="fullscreen()"
+        />
+      </button>
+      <button id="burgerInfo">
+        <img
+          class="burgerIcon"
+          src="./gameassets/img/icons/info.png"
+          alt=""
+          onclick="openInfoDialog()"
+        />
+      </button>
     </div>
-    
-    <footer>
-        <div id="footerLine" class="footerLine dnone">
-                <button id="soundmode"><img id="soundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/soundmute.png" alt=""></button>
-                <button id="fullscreen"><img src="./gameassets/img/icons/fullscreen.png" alt="" onclick="fullscreen()"></button>
-                <button id="info"><img src="./gameassets/img/icons/info.png" alt="" onclick="openInfoDialog()"></button>
-        </div>
-    
-    </footer>
-</body>
 
+    <footer>
+      <div id="footerLine" class="footerLine dnone">
+        <button id="soundmode">
+          <img
+            id="soundIcon"
+            onclick="toggleSoundmode()"
+            src="gameassets/img/icons/soundmute.png"
+            alt=""
+          />
+        </button>
+        <button id="fullscreen">
+          <img
+            src="./gameassets/img/icons/fullscreen.png"
+            alt=""
+            onclick="fullscreen()"
+          />
+        </button>
+        <button id="info">
+          <img
+            src="./gameassets/img/icons/info.png"
+            alt=""
+            onclick="openInfoDialog()"
+          />
+        </button>
+      </div>
+    </footer>
+
+    <div id="switchMobileDevice" class="switchMobileDevice dnone">
+      <h3>Switch Mobile Screen</h3>
+    </div>
+  </body>
 </html>

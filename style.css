@@ -1,31 +1,38 @@
+@font-face {
+  font-family: "FreckleFace-Regular";
+  src: url("./gameassets/fonts/Freckle_Face/FreckleFace-Regular.ttf")
+    format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-body{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
- .test{
-  background-image: url('./gameassets/img/Heroimage.png');
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-repeat: no-repeat;
-   background-size: cover;
-  height: 100vh;
-
- }
-canvas{
-
-    background-color: black;
-    display: block;
+  background-size: cover;
 }
 
-.mainButton{
+.test {
+  background-image: url("./gameassets/img/Heroimage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+canvas {
+  background-color: black;
+  display: block;
+}
+
+.mainButton {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -33,28 +40,28 @@ canvas{
   z-index: 100;
 }
 
-.startGame{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.startGame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-header{
-    display: flex;
-    justify-content: center;
-    padding: 24px 0;
+header {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
 }
 
-main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 24px 0px ;
-        position: relative;
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0px;
+  position: relative;
 }
 
 footer {
-position: absolute;
+  position: absolute;
   bottom: 10%;
   left: 90%;
   transform: translate(-50%, 50%);
@@ -64,63 +71,55 @@ position: absolute;
   display: flex;
 }
 
-h1 {
-    font-size: clamp(1rem, 7vw, 4rem);
-    flex-wrap: nowrap;
-    font-family: 'FreckleFace-Regular';
-    text-shadow: 2px 2px 2px rgb(236, 229, 230);
-}
-
-@font-face {
-font-family: 'FreckleFace-Regular';
-src: url('./gameassets/fonts/Freckle_Face/FreckleFace-Regular.ttf') format("truetype");
-font-weight: 400;
-font-style: normal;
-font-display: swap;
-}
-
-.footerLine{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 16px;
-    max-width: 750px;
-}
-
 .dnone {
-    display: none;
+  display: none;
+}
+
+h1 {
+  font-size: clamp(1rem, 7vw, 4rem);
+  flex-wrap: nowrap;
+  font-family: "FreckleFace-Regular";
+  text-shadow: 2px 2px 2px rgb(236, 229, 230);
+}
+
+.footerLine {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+  max-width: 750px;
 }
 
 #info,
 #soundmode img,
-#soundmode{
-    height: 64px;
-    width: 64px;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
+#soundmode {
+  height: 64px;
+  width: 64px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
-.burgerMenu img,
 #info,
 #fullscreen,
 #fullscreen img {
-    height: 64px;
-    width: 64px;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    background-color: transparent;
-    border: none;
+  height: 64px;
+  width: 64px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
 }
 
-.class{
-    background-color: #ffb54d, #d33d17;
+.burgerMenu img {
+  width: 32px;
+  height: 32px;
 }
 
-dialog{
+dialog {
   background-color: transparent;
   border: none;
   position: absolute;
@@ -129,12 +128,12 @@ dialog{
   transform: translate(-50%, -50%);
 }
 
-.dialogImg{
-  height: 500px;
-  width: 700px;
+.dialogImg {
+  height: clamp(15.625rem, 30vw, 25rem);
+  width: clamp(27.625rem, 40vw, 43.75rem);
 }
 
-.dialoCloseBtn{
+.dialoCloseBtn {
   position: absolute;
   top: 80%;
   left: 50%;
@@ -142,222 +141,211 @@ dialog{
   background-color: transparent;
   border: none;
   cursor: pointer;
-
 }
-.dialoCloseBtn img{
-  height:48px;
+.dialoCloseBtn img {
+  height: 48px;
   width: 200px;
   background-size: cover;
-
 }
-.hud{
-    position: absolute;
-    bottom: 0px;
-    flex-direction: column;
-    gap: 8px;
-  
+.hud {
+  position: absolute;
+  bottom: 0px;
+  flex-direction: column;
+  gap: 8px;
 }
 
-.burgerMenu{
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    height: 48px;
-    width: 48px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    z-index: 4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.burgerMenu {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  height: 48px;
+  width: 48px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 4;
+  justify-content: center;
+  align-items: center;
 }
 
-.burgerDialog{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100px;
-    border-radius: 0 0 12px 12px;
-    background-color: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(4px);
-    flex-direction: column;
-    align-items: center;
-    padding-top: 100px;
-    gap: 24px;
-    z-index: 3;
+.burgerDialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  border-radius: 0 0 12px 12px;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  gap: 24px;
+  z-index: 3;
 }
 
 #burgerSoundmode,
 #burgerFullscreen,
-#burgerInfo{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    cursor: pointer;
-    border: none;
-    background-color: transparent;
+#burgerInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
 }
 
-.burgerIcon{
-    height: 48px;
-    width: 48px;
-} 
+.burgerIcon {
+  height: 48px;
+  width: 48px;
+}
 
-.mobileBtnLine{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    width: calc(100vw - 10%);
-    z-index: 3;
+.mobileBtnLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  width: calc(100vw - 10%);
+  z-index: 3;
 }
 .mobileBtn img,
-.mobileBtn{ 
-    height: 64px;
-    width: 64px;
-    background-color: rgb(163 161 161 / 20%);
-    border: none;
-    border-radius: 12px;
-    backdrop-filter: blur(4px);
-    cursor: pointer;
-}
-/* 
-.mobileBtn img:active, */
-.mobileBtn:active{ 
-    background-color: rgba(61, 61, 61, 0.2);
+.mobileBtn {
+  height: 64px;
+  width: 64px;
+  background-color: rgb(163 161 161 / 20%);
+  border: none;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  cursor: pointer;
 }
 
-.mobilBtnfield{
-    display: flex;
-    gap: 16px;
-    padding: 16px;
+.mobileBtn:active {
+  background-color: rgba(61, 61, 61, 0.2);
 }
 
-.gameWindow{
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.rotate90deg{
-    transform: rotate(90deg);
-  }
-.rotate180deg{
-    transform: rotate(180deg);
-  }
-
-.winOrLose{
-   position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 720px;
-    height: 480px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 2;
-    max-width: 720px;
-    max-height: 480px;
-
-}
-.resultImage{
-    max-width: 720px;
-    max-height: 480px;
-    opacity: 0.2;               
-    animation: fadeInWithScale 1s ease forwards;
-    background-size: cover;
+.mobilBtnfield {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
 }
 
-.fadeIn{
+.gameWindow {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.rotate90deg {
+  transform: rotate(90deg);
+}
+.rotate180deg {
+  transform: rotate(180deg);
+}
+
+.winOrLose {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 720px;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  max-width: 720px;
+  max-height: 480px;
+}
+.resultImage {
+  max-width: 720px;
+  max-height: 480px;
+  opacity: 0.2;
+  animation: fadeInWithScale 1s ease forwards;
+  background-size: cover;
+}
+
+.fadeIn {
   opacity: 0;
   animation: fadeIn 2s ease forwards;
   animation-delay: 1s;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0.2;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
-@keyframes fadeInWithScale {
-  from {
-    opacity: 0.2;
-    transform: scale(0.98);  
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-
-.restart{
+.restart {
   position: absolute;
-    top: 90%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 3;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
 }
 
-::backdrop{
-    background-color: rgba(0, 0, 0, 0.6);
+::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
 }
-.loadingScreen{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-h2{
-    font-size: 4rem;
-    font-family: 'FreckleFace-Regular';
-    text-shadow: 2px 2px 2px rgb(223, 146, 30);
+.loadingScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-p{
-  font-family: 'FreckleFace-Regular';
+h2 {
+  font-size: 4rem;
+  font-family: "FreckleFace-Regular";
+  text-shadow: 2px 2px 2px rgb(223, 146, 30);
+}
+
+p {
+  font-family: "FreckleFace-Regular";
   text-shadow: 2px 2px 2px rgb(223, 146, 30);
 }
 
 .loading-content {
-    text-align: center;
-    color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
+  text-align: center;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
 }
 
 .loading-bar {
-    width: 300px;
-    height: 30px;
-    background: #333;
-    border-radius: 15px;
-    overflow: hidden;
-    margin: 20px auto;
+  width: 300px;
+  height: 30px;
+  background: #333;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 20px auto;
 }
 
 .loading-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #ca8831, #c39d4a);
-    width: 0%;
-    transition: width 0.3s;
+  height: 100%;
+  background: linear-gradient(90deg, #ca8831, #c39d4a);
+  width: 0%;
+  transition: width 0.3s;
 }
 
-/* From Uiverse.io by StealthWorm */ 
+.switchMobileDevice {
+  position: absolute;
+  background-color: #212121;
+  height: 100vh;
+  width: 100vw;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: clamp(1rem, 8vw, 4rem);
+  font-family: "FreckleFace-Regular";
+}
+
+/* From Uiverse.io by StealthWorm */
 .btn {
   width: clamp(8rem, 21vw, 13rem);
   overflow: hidden;
@@ -370,14 +358,14 @@ p{
   animation: gradient_301 5s ease infinite;
   border: double 4px transparent;
   background-image: linear-gradient(#212121, #212121),
-    linear-gradient(
-      137.48deg,
-      #ffdb3b 10%,
+  linear-gradient(
+    137.48deg,
+    #ffdb3b 10%,
       #fe53bb 45%,
       #8f51ea 67%,
       #0044ff 87%
     );
-  background-origin: border-box;
+    background-origin: border-box;
   background-clip: content-box, border-box;
 }
 
@@ -481,6 +469,26 @@ strong {
   opacity: 0.5;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInWithScale {
+  from {
+    opacity: 0.2;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @keyframes animStar {
   from {
     transform: translateY(0);
@@ -495,7 +503,7 @@ strong {
   from {
     transform: rotate(360deg);
   }
-
+  
   to {
     transform: rotate(0);
   }
@@ -509,7 +517,7 @@ strong {
   50% {
     background-position: 100% 50%;
   }
-
+  
   100% {
     background-position: 0% 50%;
   }
@@ -520,7 +528,7 @@ strong {
     transform: scale(0.75);
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
   }
-
+  
   70% {
     transform: scale(1);
     box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
@@ -532,52 +540,44 @@ strong {
   }
 }
 @media only screen and (max-width: 1025px) {
-    header {
-      display: none;
-    }
-    footer{
-      display: none;
-    }
+  header {
+    display: none;
+  }
+  footer {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 760px) {
   .resultImage,
   .winOrLose,
-    canvas{
-        width: 100%;
-    }
-    main {
-    height: 100%; 
+  canvas {
+    width: 100%;
   }
-  .dialogImg{
-    width: 500px;
-
+  main {
+    height: 100%;
   }
   .dialoCloseBtn img {
     height: 24px;
-    width: 200px
-}
+    width: 200px;
+  }
 }
 
 @media only screen and (max-height: 480px) {
-  .dialogImg,
   .resultImage,
   .winOrLose,
-    canvas{
-        height: 100vh;
-    }
-    main {
-      padding: 0px;
-    }
-    .dialogImg{
-    height: 250px;
+  canvas {
+    height: 100vh;
+  }
+  main {
+    padding: 0px;
   }
   .dialoCloseBtn img {
     height: 28px;
     width: 150px;
-}
-.dialoCloseBtn {
+  }
+  .dialoCloseBtn {
     top: 76%;
-  
+  }
 }
-}
+

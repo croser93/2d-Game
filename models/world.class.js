@@ -173,8 +173,6 @@ class World {
         this.addObjectsToMap(this.enemies);
         this.ctx.translate(-this.camera_x, 0);
         
-
-        // Draw wird immer wieder aufgrufen / this funktioniert nicht mehr, daher wird es in eine variable gespeichert
         let self = this;
         requestAnimationFrame(function() {
             self.draw()

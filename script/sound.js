@@ -17,12 +17,12 @@ const SOUNDS = {
             VOLUME: 0.5
         },
         DEAD: {
-            SOUND: new Audio('/gameassets/sounds/dead.mp3'),
+            SOUND: new Audio('gameassets/sounds/dead.mp3'),
             VOLUME: 1
         },
         DAMAGE: {
             SOUND: new Audio('gameassets/sounds/damage.mp3'),
-            VOLUME: 1
+            VOLUME: 0.2
         }
     },
     collectables: {
@@ -42,7 +42,7 @@ const SOUNDS = {
     Worldsounds: {
         BACKGROUNDSOUND: {
             SOUND: new Audio('gameassets/sounds/backgroundambiente.mp3'),
-            VOLUME: 0.1
+            VOLUME: 0.2
         },
 
     }
