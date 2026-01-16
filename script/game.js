@@ -27,90 +27,90 @@ const audioSources = [
         preloadAllImages();
     }
 
-    function preloadAllImages() {
-        const allImages = [];
-        Object.values(MOVABELS).forEach(category => {
-            Object.values(category).forEach(value => {
-                if (Array.isArray(value))
-                    allImages.push(...value);
-            });
+function preloadAllImages() {
+    const allImages = [];
+    Object.values(MOVABELS).forEach(category => {
+        Object.values(category).forEach(value => {
+            if (Array.isArray(value))
+                allImages.push(...value);
         });
-        allImages.forEach(path => {
-            const img = new Image();
-            img.src = path;
-            IMAGE_CACHE[path] = img;
-        }); 
-        return allImages.length;
-    }
+    });
+    allImages.forEach(path => {
+        const img = new Image();
+        img.src = path;
+        IMAGE_CACHE[path] = img;
+    }); 
+    return allImages.length;
+}
 
-    function updateLoadingProgress() {
-        loadedAssets++;
-        loadingProgress = Math.round((loadedAssets / totalAssets) * 100);
-        document.getElementById('loadingPercentage').textContent = loadingProgress + '%';
-        document.getElementById('loadingBar').style.width = loadingProgress + '%';
+function updateLoadingProgress() {
+    loadedAssets++;
+    loadingProgress = Math.round((loadedAssets / totalAssets) * 100);
+    document.getElementById('loadingPercentage').textContent = loadingProgress + '%';
+    document.getElementById('loadingBar').style.width = loadingProgress + '%';
 
-        if (loadedAssets === totalAssets) {
-            loadingScreen();
-            initLevel();
-            initWorld();
-            setFooter()
-        }
-    }
-
-    function preloadAssets() {
+    if (loadedAssets === totalAssets) {
         loadingScreen();
-        totalAssets = imageSources.length + audioSources.length;
-        loadedAssets = 0;
-        
-        preloadSound();
-        preloadImg();
+        initLevel();
+        initWorld();
+        setFooter()
     }
+}
 
-    function preloadImg() {
-        imageSources.forEach(src => {
-            const img = new Image();
-            img.onload = updateLoadingProgress;
-            img.onerror = updateLoadingProgress;
-            img.src = src;
-        }); 
-    }
+function preloadAssets() {
+    loadingScreen();
+    totalAssets = imageSources.length + audioSources.length;
+    loadedAssets = 0;
+    
+    preloadSound();
+    preloadImg();
+}
 
-    function preloadSound(){
-        audioSources.forEach(src => {
-            const audio = new Audio();
-            audio.oncanplaythrough = updateLoadingProgress;
-            audio.onerror = updateLoadingProgress;
-            audio.src = src;
-        });
+function preloadImg() {
+    imageSources.forEach(src => {
+        const img = new Image();
+        img.onload = updateLoadingProgress;
+        img.onerror = updateLoadingProgress;
+        img.src = src;
+    }); 
+}
 
-    }
+function preloadSound(){
+    audioSources.forEach(src => {
+        const audio = new Audio();
+        audio.oncanplaythrough = updateLoadingProgress;
+        audio.onerror = updateLoadingProgress;
+        audio.src = src;
+    });
 
-    function initWorld() {
-        canvas = document.getElementById("canvas");
-        world = new World(canvas, keyboard)
-        ctx = canvas.getContext('2d')
-    }
+}
 
-    function startGame(){
-        document.getElementById('test').classList.remove('test')
-        document.getElementById('canvas').classList.remove('dnone')
-        document.getElementById('mainButton').classList.add('dnone')
-        document.body.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
-        preloadAssets()
-        mobileControls();
+function initWorld() {
+    canvas = document.getElementById("canvas");
+    world = new World(canvas, keyboard)
+    ctx = canvas.getContext('2d')
+}
 
-    }
+function startGame(){
+    document.getElementById('test').classList.remove('test')
+    document.getElementById('canvas').classList.remove('dnone')
+    document.getElementById('mainButton').classList.add('dnone')
+    document.body.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
+    preloadAssets()
+    mobileControls();
 
-    function setFooter() {
-        if (window.innerWidth > 1025)
-        document.getElementById('footerLine').classList.remove('dnone')
-        
-    }
+}
 
-    window.addEventListener('resize', checkScreenOrientation);
-    window.addEventListener('orientationchange', checkScreenOrientation);
+function setFooter() {
+    if (window.innerWidth > 1025)
+    document.getElementById('footerLine').classList.remove('dnone')
+    
+}
 
-    function checkScreenOrientation() {
+window.addEventListener('resize', checkScreenOrientation);
+window.addEventListener('orientationchange', checkScreenOrientation);
+
+function checkScreenOrientation() {
     const switchScreen = document.getElementById('switchMobileDevice');
     const hud = document.getElementById('hud')
     const burger = document.getElementById('burgerBtn')
@@ -126,7 +126,7 @@ const audioSources = [
         burger.classList.add('dpf');
         burger.classList.remove('dnone');
     } 
-    
+
     else {
         switchScreen.classList.remove('dpf');
         switchScreen.classList.add('dnone');
@@ -134,18 +134,18 @@ const audioSources = [
 }
 
 
-    function winOrLoseOverlay() {
-    
-        const endboss = world.enemies.find(enemy => enemy instanceof Endboss);
-              if (world.character.live <= 0 && world.character.dead) {
-                winOrLosescreen('lose')
-                clearAllIntervals()       
-            }else if (world.character.live > 0 && endboss.dead) {
-                winOrLosescreen('win')
-                clearAllIntervals()
-            }
-            else  return;
+function winOrLoseOverlay() {
+
+const endboss = world.enemies.find(enemy => enemy instanceof Endboss);
+        if (world.character.live <= 0 && world.character.dead) {
+        winOrLosescreen('lose')
+        clearAllIntervals()       
+    }else if (world.character.live > 0 && endboss.dead) {
+        winOrLosescreen('win')
+        clearAllIntervals()
     }
+    else  return;
+}
 
     function clearAllIntervals() {
         world.character.intervals.forEach(interval => clearInterval(interval));

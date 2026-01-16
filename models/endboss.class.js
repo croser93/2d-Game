@@ -1,7 +1,7 @@
 class Endboss extends MovableObject {
     height = 300;
     width = 300;
-    y= 100;
+    y = 100;
     currentImage = 0;
     world;
     live = 100;
@@ -9,8 +9,13 @@ class Endboss extends MovableObject {
     intervals = []
     firstContact = false
     world;
-    speed = 1;
     damage = 20;
+    arenaLeft = 3150;
+    arenaRight = 3600;
+    x = 3600;
+    walkSpeed = 3;
+    jumpSpeed = 7
+   
 
     hitboxOffsetX = 80;
     hitboxOffsetY = 60;
@@ -21,6 +26,10 @@ class Endboss extends MovableObject {
     WALK = MOVABELS.boss.IMAGES_WALK
     DYING = MOVABELS.boss.IMAGES_DYING
     ATTACK = MOVABELS.boss.IMAGES_ATTACK
+    JUMP = MOVABELS.boss.IMAGES_JUMP
+
+    SCREAM = SOUNDS.boss.SCREAM
+    SLASH = SOUNDS.boss.SLASH
 
     constructor() {
         super().loadImage('gameassets/Hell_Knight/PNG/PNG Sequences/Idle/0_Hell_Knight_Idle_000.png')
@@ -28,46 +37,95 @@ class Endboss extends MovableObject {
         this.loadImages(this.DYING);
         this.loadImages(this.ATTACK);
         this.loadImages(this.WALK);
-        this.x = 3480;
+        this.loadImages(this.JUMP);
+        this.currentAction = null;
+        this.actionCounter = 0;
+        this.actionRepeats = 0;
+        this.applyGravity();
+        this.animate();
+
+    }
+
+    isAboveGround(){    
+        return this.y < 90;
+    }
+
+    firstContactWithBoss(){
+        if (world.character.x >= 3150 && !this.firstContact){
+            playSound(this.SCREAM)
+            this.firstContact = true 
+            console.log("first contact!")
+        } else return 
+    }
+
+    animate() {
+    setInterval(() => {
+    this.firstContactWithBoss()
+    if(this.firstContact)
+            if ((this.actionCounter >= this.actionRepeats) && this.firstContact)
+                this.chooseRandomAction();
+            
+            this.otherDirection = true;
+            this.executeCurrentAction();
+            this.actionCounter++;
+        }, 1000 / 20);
+    }
+
+    chooseRandomAction() {
+        const random = Math.random();
+        
+        if (random < 0.3) {
+            this.currentAction = 'walk';
+            this.actionRepeats = Math.floor(Math.random() * 20) + 10;
+            this.walkDirection = Math.random() < 0.5 ? -1 : 1;
+        } else if (random < 0.5 && this.y === 100) {
+            this.currentAction = 'jump';
+            this.actionRepeats = 32;
+        } else if (random < 0.75) {
+            this.currentAction = 'attack';
+            this.actionRepeats = this.ATTACK.length * 1;
+        } else {
+            this.currentAction = 'idle';
+            this.actionRepeats = Math.floor(Math.random() * 30) + 20;
+        }
+        this.actionCounter = 0;
+    }
+
+    executeCurrentAction() {
+        switch(this.currentAction) {
+            case 'walk':
+                this.walkInArena();
+                break;
+            case 'idle':
+                this.idleState();
+                break;
+            case 'attack':
+                this.attackState();
+                break;
+            case 'jump':
+                this.jumpState();
+                break;
+        }
+    }
+
+    walkInArena() {
+        if (this.walkDirection === -1 && this.x >= this.arenaLeft) {
+            this.inArenaLeft(this.walkSpeed)
+        } else if (this.walkDirection === 1 && this.x <= this.arenaRight) {
+            this.inArenaRight(this.walkSpeed)
+        }
+        this.playAnimationLoop(this.WALK);
+    }
+
+    inArenaLeft(speed){
+        this.x -= speed;
         this.otherDirection = true;
-        this.animateBoss();
     }
 
 
-    animateBoss() {
-    let stateTimer = 0;
-    let state = 0;
-    
-    const animateBoss = setInterval(() => {
-        if (world.character.x > 3180) {
-            if (!this.firstContact) {
-                this.firstContact = true;
-                state = 0;
-                stateTimer = 0;
-            }
-            this.updateBossState(state);
-            stateTimer += 100;
-            
-            if (stateTimer >= 5000) {
-                state++;
-                if (state > 2) state = 0;
-                stateTimer = 0;
-            }
-        } else {
-            this.idleState();
-        }
-    }, 1000 / 20);
-    this.intervals.push(animateBoss);
-}
-
-    updateBossState(state) {
-        if (state === 0) {
-            this.walkState();
-        } else if (state === 1) {
-            this.idleState();
-        } else if (state === 2) {
-            this.attackState();
-        }
+    inArenaRight(speed){
+        this.x += speed;
+        this.otherDirection = false;
     }
 
     attackState() {
@@ -75,24 +133,33 @@ class Endboss extends MovableObject {
         this.hitboxOffsetX = 20;
         this.hitboxWidth = 200;
         this.playAnimationLoop(this.ATTACK);
+        
+        if (this.currentImage % this.ATTACK.length === 1) {
+            playSound(this.SLASH);
+        }
     }
 
-    walkState() {
-        this.hitboxOffsetX = 80;
-        this.hitboxWidth = 140;
-        this.isAttacking = false;
-        this.moveLeft(1);
-        this.playAnimationLoop(this.WALK);
-    }
+jumpState() {
+    if (this.actionCounter === 0 && !this.isAboveGround()) {
+        this.speedY = 20;
+        this.jumpDirectionX = Math.random() < 0.5 ? -1 : 1;
+        if ((this.jumpDirectionX === -1 && this.x <= this.arenaLeft) || 
+            (this.jumpDirectionX === 1 && this.x >= this.arenaRight)) {
+            this.jumpDirectionX *= -1;
+        }
+    }  
+    if (this.jumpDirectionX === -1 && this.x > this.arenaLeft) 
+        this.inArenaLeft(this.jumpSpeed)
+     else if (this.jumpDirectionX === 1 && this.x < this.arenaRight) 
+        this.inArenaRight(this.jumpSpeed)
+
+    this.playAnimationLoop(this.JUMP);
+}
 
     idleState() {
         this.isAttacking = false;
+        this.hitboxOffsetX = 80;
+        this.hitboxWidth = 140;
         this.playAnimationLoop(this.IDLE);
     }
-
-    
-    stopInterval(){
-            this.intervals.forEach(clearInterval)
-            this.playAnimationOnce(this.DYING);
-        }
 }

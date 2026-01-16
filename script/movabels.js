@@ -240,5 +240,13 @@ const MOVABELS = {
             'gameassets/Hell_Knight/PNG/PNG Sequences/Slashing/0_Hell_Knight_Slashing_010.png',
             'gameassets/Hell_Knight/PNG/PNG Sequences/Slashing/0_Hell_Knight_Slashing_011.png',
         ],
+        IMAGES_JUMP: [
+            'gameassets/Hell_Knight/PNG/PNG Sequences/Falling Down/0_Hell_Knight_Falling Down_000.png',
+            'gameassets/Hell_Knight/PNG/PNG Sequences/Falling Down/0_Hell_Knight_Falling Down_001.png',
+            'gameassets/Hell_Knight/PNG/PNG Sequences/Falling Down/0_Hell_Knight_Falling Down_002.png',
+            'gameassets/Hell_Knight/PNG/PNG Sequences/Falling Down/0_Hell_Knight_Falling Down_003.png',
+            'gameassets/Hell_Knight/PNG/PNG Sequences/Falling Down/0_Hell_Knight_Falling Down_004.png',
+            'gameassets/Hell_Knight/PNG/PNG Sequences/Falling Down/0_Hell_Knight_Falling Down_005.png',
+        ],
     }
 };

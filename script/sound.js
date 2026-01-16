@@ -25,6 +25,22 @@ const SOUNDS = {
             VOLUME: 0.2
         }
     },
+    enemies:{
+        SCREAM: {
+            SOUND: new Audio('gameassets/sounds/enemie.mp3'),
+            VOLUME: 0.5
+        },
+    },
+    boss:{
+        SCREAM: {
+            SOUND: new Audio('gameassets/sounds/boss.mp3'),
+            VOLUME: 1
+        },
+        SLASH: {
+            SOUND: new Audio('gameassets/sounds/boss_slashing.mp3'),
+            VOLUME: 0.5
+        },
+    },
     collectables: {
         COIN: {
             SOUND: new Audio('gameassets/sounds/coin.mp3'),

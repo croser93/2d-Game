@@ -10,7 +10,7 @@ class MovableObject extends DrawableObject {
             this.y -= this.speedY;
             this.speedY -= this.acceleration;
         }
-        if (this.x < -50 || this.x > 3600) {
+        if (this.x < -50 || this.x > 4600) {
             this.y += this.acceleration + 5;
         }
     }, 1000 / 25);

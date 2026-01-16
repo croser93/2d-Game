@@ -3,13 +3,14 @@ class Character extends MovableObject{
     speed = 2;
     currentImage = 0;
     world;
-    endOfMap = 3600;
-    live = 100;
+    endOfMap = 3750;
+    live = 100000;
     mana = 50;
     coin = 20;
     lastHit;
     dead = false
     intervals = [];
+    x = 3000
 
     walkSound = SOUNDS.character.WALKING
     hurtSound = SOUNDS.character.HURT

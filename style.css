@@ -548,7 +548,7 @@ strong {
   }
 }
 
-@media only screen and (max-width: 760px) {
+@media only screen and (max-width: 720px) {
   .resultImage,
   .winOrLose,
   canvas {

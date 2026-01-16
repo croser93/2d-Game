@@ -8,7 +8,7 @@ function initLevel() {
 
 class LevelGenerator {
     constructor() {
-        this.mapLength = 3600;
+        this.mapLength = 3750;
         this.tileWidth = 80;
         this.screenWidth = 720;
         this.groundY = 340;
@@ -20,7 +20,7 @@ class LevelGenerator {
         this.generatedMapEnd = 3040;
         this.bossSpikeX = 3040;
         this.bossPlatformStart = 3184;
-        this.bossPlatformLength = 416;
+        this.bossPlatformLength = 566;
         
         this.enemyCount = 1;
         this.coinCount = 1;
@@ -190,7 +190,7 @@ class LevelGenerator {
     getBossTileType(index) {
         if (index === 0) {
             return { groundTile: this.tiles.ground.start, underTile: this.tiles.underground.start };
-        } else if (index === 5) {
+        } else if (index === 7) {
             return { groundTile: this.tiles.ground.end, underTile: this.tiles.underground.end };
         } else {
             return { groundTile: this.tiles.ground.middle, underTile: this.tiles.underground.middle };
