@@ -40,6 +40,10 @@ const SOUNDS = {
             SOUND: new Audio('gameassets/sounds/boss_slashing.mp3'),
             VOLUME: 0.5
         },
+        JUMP: {
+            SOUND: new Audio('gameassets/sounds/bossjump.mp3'),
+            VOLUME: 0.5
+        },
     },
     collectables: {
         COIN: {
@@ -83,29 +87,16 @@ function playSoundloop(sound){
     } 
 }
 
-    function worldsound(sound)  {
-        let soundSnipped = sound.SOUND
-        volume = sound.VOLUME
-        soundSnipped.volume = volume;
-        if (soundmodeON) {
-            soundSnipped.loop = true;
-            soundSnipped.play();
-        }else if (!soundmodeON){
-            soundSnipped.pause();
-            soundSnipped.loop = false;
-        }
-        
-    }    
+function worldsound(sound)  {
+    let soundSnipped = sound.SOUND
+    volume = sound.VOLUME
+    soundSnipped.volume = volume;
+    if (soundmodeON) {
+        soundSnipped.loop = true;
+        soundSnipped.play();
+    }else if (!soundmodeON){
+        soundSnipped.pause();
+        soundSnipped.loop = false;
+    }
     
-    function playSoundloopUnlimited(soundSnipped, longidle){   
-        
-         if (this.soundmodeON && longidle) { 
-             soundSnipped.loop = true;
-             soundSnipped.currentTime = 0;
-             soundSnipped.play();
-         }else{
-             soundSnipped.pause();
-             soundSnipped.currentTime = 0;
-             soundSnipped.loop = false;
-        }
-     }
+}    

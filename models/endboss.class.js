@@ -30,6 +30,7 @@ class Endboss extends MovableObject {
 
     SCREAM = SOUNDS.boss.SCREAM
     SLASH = SOUNDS.boss.SLASH
+    JUMPING = SOUNDS.boss.JUMP
 
     constructor() {
         super().loadImage('gameassets/Hell_Knight/PNG/PNG Sequences/Idle/0_Hell_Knight_Idle_000.png')
@@ -43,6 +44,9 @@ class Endboss extends MovableObject {
         this.actionRepeats = 0;
         this.applyGravity();
         this.animate();
+        this.attackSoundPlayed = false;
+        this.jumpSoundPlayed = false;
+
 
     }
 
@@ -104,6 +108,7 @@ class Endboss extends MovableObject {
                 break;
             case 'jump':
                 this.jumpState();
+                console.log("jump")
                 break;
         }
     }
@@ -129,37 +134,54 @@ class Endboss extends MovableObject {
     }
 
     attackState() {
+        this.attackSoundPlayed = false;
         this.isAttacking = true;
         this.hitboxOffsetX = 20;
         this.hitboxWidth = 200;
         this.playAnimationLoop(this.ATTACK);
-        
-        if (this.currentImage % this.ATTACK.length === 1) {
-            playSound(this.SLASH);
-        }
+        this.playSoundOnce(this.SLASH, 'attackSoundPlayed');
     }
 
-jumpState() {
+    jumpState() {
+    this.jumpDirectionX = this.jumpingCalculation();
+    
+    if (this.jumpDirectionX === -1 && this.x > this.arenaLeft) {
+        this.inArenaLeft(this.jumpSpeed);
+    } else if (this.jumpDirectionX === 1 && this.x < this.arenaRight) {
+        this.inArenaRight(this.jumpSpeed);
+    }
+
+    this.playAnimationLoop(this.JUMP);
+    this.playSoundOnce(this.JUMPING, 'jumpSoundPlayed');
+}
+
+jumpingCalculation(){
     if (this.actionCounter === 0 && !this.isAboveGround()) {
         this.speedY = 20;
+        this.jumpSoundPlayed = false;
         this.jumpDirectionX = Math.random() < 0.5 ? -1 : 1;
         if ((this.jumpDirectionX === -1 && this.x <= this.arenaLeft) || 
             (this.jumpDirectionX === 1 && this.x >= this.arenaRight)) {
             this.jumpDirectionX *= -1;
-        }
-    }  
-    if (this.jumpDirectionX === -1 && this.x > this.arenaLeft) 
-        this.inArenaLeft(this.jumpSpeed)
-     else if (this.jumpDirectionX === 1 && this.x < this.arenaRight) 
-        this.inArenaRight(this.jumpSpeed)
-
-    this.playAnimationLoop(this.JUMP);
+        }       
+    }
+    return this.jumpDirectionX;
 }
+
 
     idleState() {
         this.isAttacking = false;
         this.hitboxOffsetX = 80;
         this.hitboxWidth = 140;
         this.playAnimationLoop(this.IDLE);
+        }
+
+
+    playSoundOnce(sound, flagName) {
+    if (!this[flagName]) {
+        playSound(sound);
+        this[flagName] = true;
     }
+}
+
 }
