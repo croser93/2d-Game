@@ -4,6 +4,7 @@ let keyboard = new Keyboard;
 let loadingProgress = 0;
 let totalAssets = 0;
 let loadedAssets = 0;
+let gameStarted = false;
 const IMAGE_CACHE = {};
 const imageSources = [
     'gameassets/img/game-background-image.png',
@@ -23,7 +24,6 @@ const audioSources = [
 ];
 
     function init() {
-        checkScreenOrientation();
         preloadAllImages();
     }
 
@@ -53,7 +53,9 @@ function updateLoadingProgress() {
         loadingScreen();
         initLevel();
         initWorld();
+        gameStarted = true;
         setFooter()
+        setMobilebuttons();
     }
 }
 
@@ -61,9 +63,9 @@ function preloadAssets() {
     loadingScreen();
     totalAssets = imageSources.length + audioSources.length;
     loadedAssets = 0;
-    
     preloadSound();
     preloadImg();
+
 }
 
 function preloadImg() {
@@ -82,7 +84,6 @@ function preloadSound(){
         audio.onerror = updateLoadingProgress;
         audio.src = src;
     });
-
 }
 
 function initWorld() {
@@ -99,38 +100,54 @@ function startGame(){
     preloadAssets()
     mobileControls();
 
+
 }
 
 function setFooter() {
     if (window.innerWidth > 1025)
     document.getElementById('footerLine').classList.remove('dnone')
+    document.getElementById('footerLine').classList.add('dpf')
     
 }
 
 window.addEventListener('resize', checkScreenOrientation);
 window.addEventListener('orientationchange', checkScreenOrientation);
+document.addEventListener('DOMContentLoaded', () => {
+    checkScreenOrientation();
+    setMobilebuttons();
+});
 
 function checkScreenOrientation() {
+    
     const switchScreen = document.getElementById('switchMobileDevice');
+        if (window.innerHeight > window.innerWidth) {
+            switchScreen.classList.add('dpf');
+            switchScreen.classList.remove('dnone');
+
+        } 
+        else {
+            switchScreen.classList.remove('dpf');
+            switchScreen.classList.add('dnone');
+        }
+
+}
+
+function setMobilebuttons() {
     const hud = document.getElementById('hud')
     const burger = document.getElementById('burgerBtn')
-
-    if (window.innerHeight > window.innerWidth) {
-
-        switchScreen.classList.add('dpf');
-        switchScreen.classList.remove('dnone');
-        
-    } else if((window.innerWidth > window.innerHeight) && window.innerWidth < 1200){
-        hud.classList.add('dpf');
-        hud.classList.remove('dnone');
-        burger.classList.add('dpf');
-        burger.classList.remove('dnone');
-    } 
-
-    else {
-        switchScreen.classList.remove('dpf');
-        switchScreen.classList.add('dnone');
-    }
+    if(window.innerWidth < 1200 && gameStarted == true){
+            hud.classList.add('dpf');
+            hud.classList.remove('dnone');
+            burger.classList.add('dpf');
+            burger.classList.remove('dnone');
+        }else{
+            hud.classList.remove('dpf');
+            hud.classList.add('dnone');
+            burger.classList.remove('dpf');
+            burger.classList.add('dnone');
+        }
+    
+    
 }
 
 
@@ -197,7 +214,7 @@ function toggleSoundmode() {
 }
 
 function fullscreen(){
-    document.getElementById('canvas').requestFullscreen();           
+    document.getElementById('test').requestFullscreen();           
 }
 
 function exitFullscreen(){

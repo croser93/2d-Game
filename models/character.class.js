@@ -4,13 +4,14 @@ class Character extends MovableObject{
     currentImage = 0;
     world;
     endOfMap = 3750;
-    live = 100000;
+    live = 100;
     mana = 50;
     coin = 20;
     lastHit;
     dead = false
     intervals = [];
-    x = 3000
+    x = 100
+    y = 260
 
     walkSound = SOUNDS.character.WALKING
     hurtSound = SOUNDS.character.HURT
@@ -25,10 +26,10 @@ class Character extends MovableObject{
     JUMPING = MOVABELS.character.IMAGES_JUMPING
     LONG_IDLE = MOVABELS.character.IMAGES_LONG_IDLE
 
-    hitboxOffsetX = 20;
-    hitboxOffsetY = 10;
-    hitboxWidth = 60;
-    hitboxHeight = 80;
+    hitboxOffsetX = 27;
+    hitboxOffsetY = 25;
+    hitboxWidth = 45;
+    hitboxHeight = 60;
 
 
     constructor() {
@@ -54,7 +55,7 @@ class Character extends MovableObject{
         this.keyboardInterval();
         this.playAnimationKeyboard ();
         }   
-    }  
+    }
 
    keyboardInterval() {
         let animateInterval = setInterval(() => {

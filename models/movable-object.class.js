@@ -13,11 +13,11 @@ class MovableObject extends DrawableObject {
         if (this.x < -50 || this.x > 4600) {
             this.y += this.acceleration + 5;
         }
-    }, 1000 / 25);
+    }, 1000 / 30);
 }
 
     isAboveGround(){    
-        return this.y < 250
+        return this.y <= 260
         
     }
 

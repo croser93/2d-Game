@@ -22,7 +22,7 @@ class LevelGenerator {
         this.bossPlatformStart = 3184;
         this.bossPlatformLength = 566;
         
-        this.enemyCount = 1;
+        this.enemyCount = 5;
         this.coinCount = 1;
         this.strongCount = 1;
         this.liveCount = 1;

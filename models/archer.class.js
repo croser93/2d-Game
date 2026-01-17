@@ -3,11 +3,12 @@ class Archer extends MovableObject{
     world;
     currentImage = 0;
     
-    hitboxOffsetX = 20;
-    hitboxOffsetY = 10;
-    hitboxWidth = 60;
-    hitboxHeight = 80;
+    hitboxOffsetX = 27;
+    hitboxOffsetY = 25;
+    hitboxWidth = 45;
+    hitboxHeight = 60;
     damageMultiplier = 1.8;
+    y = 260
     live = 100;
     dead = false;
     intervals = [];

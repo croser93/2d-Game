@@ -13,6 +13,7 @@ class World {
     live = level_1.live;
     attack = [];
     intervals = [];
+    debugMode = true
 
     manaSound = SOUNDS.collectables.MANA;
     coinSound = SOUNDS.collectables.COIN;
@@ -62,7 +63,7 @@ class World {
        
     checkCollisions(){
     this.level_1.enemies.forEach((enemy) => {
-                if(this.character.isColliding(enemy) &&!enemy.dead){
+                if(this.character.isColliding(enemy) &&!enemy.dead && this.character.y >= 210){
                     this.character.hit(enemy.damage)
                     this.statusBar.setPercentage(this.character.live)        
                 }})} 
@@ -88,12 +89,12 @@ class World {
 
     checkJumpAttack(){
         this.level_1.enemies.forEach((enemy, index) => {
-            if(this.character.isColliding(enemy) && this.canJumpAttack() &&this.character.y <= 200 && !enemy.dead && Math.abs(this.character.x - enemy.x) <= 25){
-                enemy.live -= 25;
+            if(this.character.isColliding(enemy) && this.canJumpAttack() &&this.character.y <= 220 && !enemy.dead && Math.abs(this.character.x - enemy.x) <= 35){
                 if (enemy.live <= 0 && !enemy.dead) {
                     this.enemyDead(enemy)
                 }
-                this.character.setSpeedY(10)
+                this.character.setSpeedY(12);       
+                enemy.live -= 10;
             }
         });
     }
@@ -103,6 +104,7 @@ class World {
         const now = Date.now();
         return now - this.character.lastHit > 500; 
     }
+ 
 
 
     checkAttack() {
@@ -196,6 +198,7 @@ class World {
         }
         
         item.drawItem(this.ctx);
+
         if (this.debugMode) {
             item.drawFrame(this.ctx);
         }

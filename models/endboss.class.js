@@ -84,7 +84,7 @@ class Endboss extends MovableObject {
             this.walkDirection = Math.random() < 0.5 ? -1 : 1;
         } else if (random < 0.5 && this.y === 100) {
             this.currentAction = 'jump';
-            this.actionRepeats = 32;
+            this.actionRepeats = 30;
         } else if (random < 0.75) {
             this.currentAction = 'attack';
             this.actionRepeats = this.ATTACK.length * 1;
@@ -120,6 +120,15 @@ class Endboss extends MovableObject {
             this.inArenaRight(this.walkSpeed)
         }
         this.playAnimationLoop(this.WALK);
+        this.returnHitbox
+    }
+
+    returnHitbox(){
+    this.hitboxOffsetX = 80;
+    this.hitboxOffsetY = 60;
+    this.hitboxWidth = 140;
+    this.hitboxHeight = 200;
+
     }
 
     inArenaLeft(speed){
@@ -144,6 +153,7 @@ class Endboss extends MovableObject {
 
     jumpState() {
     this.jumpDirectionX = this.jumpingCalculation();
+    this.returnHitbox();
     
     if (this.jumpDirectionX === -1 && this.x > this.arenaLeft) {
         this.inArenaLeft(this.jumpSpeed);
@@ -157,7 +167,7 @@ class Endboss extends MovableObject {
 
 jumpingCalculation(){
     if (this.actionCounter === 0 && !this.isAboveGround()) {
-        this.speedY = 20;
+        this.speedY = 22;
         this.jumpSoundPlayed = false;
         this.jumpDirectionX = Math.random() < 0.5 ? -1 : 1;
         if ((this.jumpDirectionX === -1 && this.x <= this.arenaLeft) || 
