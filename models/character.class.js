@@ -113,7 +113,8 @@ class Character extends MovableObject{
 
     isHurtDamage(){
         this.playAnimationLoop(this.HURT);
-        playSound(this.hurtSound);  
+        playSound(this.hurtSound);
+        this.resetIdle()
     }
 
     longIdle(){
@@ -132,7 +133,6 @@ class Character extends MovableObject{
             this.dead = true;       
         }else
             this.lastHit = new Date().getTime();
-        resetIdle()   
     }
 
     collect(type, amount){

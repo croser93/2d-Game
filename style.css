@@ -18,10 +18,11 @@ body {
   flex-direction: column;
   justify-content: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #6b6b6b;
+  max-width: 1720px
 }
 
-.test {
+.gameSection {
   background-image: url("./gameassets/img/Heroimage.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -113,7 +114,7 @@ h1 {
   background-color: transparent;
   border: none;
 }
-
+#burgerBtnInCanvas img,
 .burgerMenu img {
   width: 32px;
   height: 32px;
@@ -207,6 +208,7 @@ dialog {
   justify-content: space-between;
   align-items: center;
   gap: 16px;
+  max-width: 1720px;
   width: calc(100vw - 10%);
   z-index: 8;
 }
@@ -231,11 +233,11 @@ dialog {
   padding: 16px;
 }
 
-.gameWindow {
+/* .gameWindow {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
+} */
 .rotate90deg {
   transform: rotate(90deg);
 }
@@ -606,3 +608,34 @@ strong {
     padding-top: 60px;
     gap: 8px;
 }}
+
+#burgerBtnInCanvas{
+position: absolute;
+height: 48px;
+width: 48px;
+top: 4px;
+right: 0px;
+background-color: transparent;
+border: none;
+z-index: 10;
+}
+
+.gameWindow100 {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+.burgerDialogUi {
+  position: absolute;
+  display: flex;
+  top: 0;
+  right: 0;
+  width: 100px;
+  border-radius: 0 0 12px 12px;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  gap: 24px;
+  z-index: 9;
+}

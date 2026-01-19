@@ -3,13 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Hellgate Shadowfall</title>
     <link rel="stylesheet" href="./style.css" />
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="./gameassets/Collectable Object/Diamond.png"
-    />
+    <link rel="icon" type="image/x-icon" href="./gameassets/Collectable Object/Diamond.png"/>
 
     <script src="./models/drawable-object.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
@@ -35,33 +31,58 @@
     <script src="./script/game.js"></script>
   </head>
   <body onload="init()"  oncontextmenu="return true;">
-    <section id="test" class="test">
-      
+    <section id="gameSection" class="gameSection">
       <header>
-        <h1>Elves in the World of Demons</h1>
+        <h1>Hellgate Shadowfall</h1>
       </header>
 
-      <button id="burgerBtn" class="burgerMenu dnone" onclick="toggleBurgerMenu()">
+      <button id="burgerBtn" class="burgerMenu dnone" onclick="toggleBurgerMenu('burgerDialog')">
         <img src="gameassets/img/icons/burger menu.png" alt="Burger Menu Button" />
       </button>
 
       <main>
-        <section id="gameWindow">
-          <canvas class="dnone" id="canvas" width="720" height="480"></canvas>
-          <div id="winOrLose" class="winOrLose dnone"></div>
+        <div id="gameWindow">
+            <canvas class="dnone" id="canvas" width="720" height="480"></canvas>
 
-          <div id="loadingScreen" class="loading-screen dnone">
-            <div class="loading-content">
-              <h2>Loading...</h2>
-              <div class="loading-bar">
-                <div id="loadingBar" class="loading-bar-fill"></div>
+            <div id="ui100" class="dnone">
+              <button id="burgerBtnInCanvas" onclick="toggleBurgerMenu('burgerDialogUi')">
+                <img src="gameassets/img/icons/burger menu.png" alt="Burger Menu Button" />
+              </button>
+
+              <div id="hudIu" class="hud">
+                <div class="mobileBtnLine">
+                  <div class="mobilBtnfield">
+                    <button id="btnLeft" class="mobileBtn"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt="Button Left"/></button>
+                    <button id="btnRight" class="mobileBtn rotate180deg"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt="Button Right"/></button>
+                  </div>
+                  <div class="mobilBtnfield">
+                    <button id="btnUp" class="mobileBtn rotate90deg"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt="Button UP"/></button>
+                    <button id="btnAttack" class="mobileBtn attackBtn"><img src="./gameassets/img/icons/attack.svg" alt="Button Attack" /></button>
+                  </div>
+                </div>
               </div>
-              <p id="loadingPercentage">0%</p>
+
+              <div id="burgerDialogUi" class="burgerDialogUi dnone">
+                <button id="burgerSoundmode"><img class="burgerIcon" id="burgerSoundIconUi"onclick="toggleSoundmode()" src="gameassets/img/icons/soundmute.png" alt="Sound On/OFF Button"/></button>
+                <button id="burgerFullscreen"><img class="burgerIcon"src="./gameassets/img/icons/fullscreen.png" alt="Fullscreen Button"onclick="fullscreen()"/>
+                <button id="burgerInfo"><img class="burgerIcon" src="./gameassets/img/icons/info.png" alt="Info Button"onclick="openInfoDialog()"/></button>
+              </div>
+
+              <div id="uiSwitchMobileDevice" class="switchMobileDevice dnone"><h3>Switch Mobile Screen</h3></div>
             </div>
+        </div>
+          
+        <div id="winOrLose" class="winOrLose dnone"></div>
+          
+        <div id="loadingScreen" class="loading-screen dnone">
+          <div class="loading-content">
+            <h2>Loading...</h2>
+            <div class="loading-bar">
+              <div id="loadingBar" class="loading-bar-fill"></div>
+            </div>
+            <p id="loadingPercentage">0%</p>
           </div>
-
-
-        </section>
+        </div>
       </main>
 
       <div class="mainButton" id="mainButton">
@@ -98,7 +119,7 @@
       <div id="burgerDialog" class="burgerDialog dnone">
           <button id="burgerSoundmode"><img class="burgerIcon" id="burgerSoundIcon"onclick="toggleSoundmode()" src="gameassets/img/icons/soundmute.png" alt="Sound On/OFF Button"/></button>
           <button id="burgerFullscreen"><img class="burgerIcon"src="./gameassets/img/icons/fullscreen.png" alt="Fullscreen Button"onclick="fullscreen()"/>
-          </button><button id="burgerInfo"><imgc lass="burgerIcon"src="./gameassets/img/icons/info.png" alt="Info Button"onclick="openInfoDialog()"/></button>
+          <button id="burgerInfo"><img class="burgerIcon"src="./gameassets/img/icons/info.png" alt="Info Button"onclick="openInfoDialog()"/></button>
       </div>
     </section>
 

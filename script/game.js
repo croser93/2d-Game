@@ -77,7 +77,7 @@ function initWorld() {
 }
 
 function startGame(){
-    document.getElementById('test').classList.remove('test')
+    document.getElementById('gameSection').classList.remove('gameSection')
     document.getElementById('canvas').classList.remove('dnone')
     document.getElementById('mainButton').classList.add('dnone')
     document.body.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
@@ -102,18 +102,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function checkScreenOrientation() {
-    
     const switchScreen = document.getElementById('switchMobileDevice');
+    const switchscreenUi = document.getElementById('uiSwitchMobileDevice')
         if (window.innerHeight > window.innerWidth) {
-            // switchScreen.classList.add('dpf');
             switchScreen.classList.remove('dnone');
-
+            switchscreenUi.classList.remove('dnone');
         } 
         else {
-            // switchScreen.classList.remove('dpf');
             switchScreen.classList.add('dnone');
+            switchscreenUi.classList.add('dnone');
         }
-
 }
 
 function setMobilebuttons() {
@@ -161,7 +159,7 @@ const endboss = world.enemies.find(enemy => enemy instanceof Endboss);
 
     function winOrLosescreen(result) {
         if(document.fullscreenElement){
-            exitFullscreen()
+            exitFullscreen();
         }
     setTimeout(() => {  
     document.getElementById('winOrLose').classList.remove('dnone')
@@ -185,30 +183,62 @@ const endboss = world.enemies.find(enemy => enemy instanceof Endboss);
 function toggleSoundmode() {
     let soundIcon = document.getElementById('soundIcon');
     let soundIconBurger = document.getElementById('burgerSoundIcon')
+    let burgerSoundmodeUi = document.getElementById('burgerSoundIconUi')
 
     if (soundmodeON) {
         soundmodeON = false
         soundIcon.src = 'gameassets/img/icons/soundmute.png';
         soundIconBurger.src = 'gameassets/img/icons/soundmute.png';
+        burgerSoundmodeUi.src = 'gameassets/img/icons/soundmute.png';
         worldsound(SOUNDS.Worldsounds.BACKGROUNDSOUND)
 
     } else if (soundmodeON == false) {
         soundmodeON = true
         soundIcon.src = 'gameassets/img/icons/soundOn.png';
          soundIconBurger.src = 'gameassets/img/icons/soundOn.png';
+         burgerSoundmodeUi.src = 'gameassets/img/icons/soundOn.png';
         worldsound(SOUNDS.Worldsounds.BACKGROUNDSOUND)
     }
 }
 
-function fullscreen(){
-    if(!document.fullscreenElement){
-    document.getElementById('testscreen').requestFullscreen();           
-    } else exitFullscreen()
+function fullscreen() {
+  const gameWindow = document.getElementById('gameWindow');
+  const canvas = document.getElementById('canvas');
+  const menu = document.getElementById('ui100');
+
+  if (!document.fullscreenElement) {
+    gameWindow.classList.add('gameWindow100');
+    canvas.classList.add('gameWindow100');
+    menu.classList.remove('dnone');
+    enterfullScreen(gameWindow);
+  } else {
+    gameWindow.classList.remove('gameWindow100');
+    canvas.classList.remove('gameWindow100');
+    menu.classList.add('dnone');
+    exitFullscreen();
+  }
 }
 
-function exitFullscreen(){
-    document.exitFullscreen();           
+
+function enterfullScreen(element){
+    if(element.requestFullscreen)
+        element.requestFullscreen()
+    else if (element.msRequestFullscreen)
+        element.msRequestFullscreen();
+    else if(element.webkitRequestFullscreen)
+        element.webkitRequestFullscreen();
+    else exitFullscreen(element)
 }
+
+function exitFullscreen() {
+  if (document.exitFullscreen) 
+    document.exitFullscreen();
+ else if (document.msExitFullscreen) 
+    document.msExitFullscreen();
+   else if (document.webkitExitFullscreen) 
+    document.webkitExitFullscreen();
+}        
+
 
 function openInfoDialog() {
     const dialog = document.querySelector('dialog');
@@ -220,8 +250,8 @@ function closeInfoDialog() {
     dialog.close();
 }
 
-function toggleBurgerMenu() {
-    document.getElementById('burgerDialog').classList.toggle('dnone')
+function toggleBurgerMenu(menu) {
+    document.getElementById(menu).classList.toggle('dnone')
 }
 
 function loadingScreen() {
