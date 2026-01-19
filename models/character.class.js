@@ -97,17 +97,18 @@ class Character extends MovableObject{
     walk (){
         this.playAnimationLoop(this.WALK);
         playSound(this.walkSound);
-
+        this.resetIdle()
     }
 
     dead(){
         this.playAnimationOnce(this.DYING);   
-        playSound(this.deadSound)     
+        playSound(this.deadSound)   
     }
 
     jump(){
       this.playAnimationLoop(this.JUMPING);
-        playSound(this.jumpSound);  
+        playSound(this.jumpSound);
+        this.resetIdle()  
     }
 
     isHurtDamage(){
@@ -130,7 +131,8 @@ class Character extends MovableObject{
             this.live = 0
             this.dead = true;       
         }else
-            this.lastHit = new Date().getTime();     
+            this.lastHit = new Date().getTime();
+        resetIdle()   
     }
 
     collect(type, amount){
@@ -149,18 +151,13 @@ class Character extends MovableObject{
     startIdleTimer() {
         this.idleTime = 0;
         this.isLongIdle = false;
-    
-    let longIdleInterval = setInterval(() => {
-            if (!this.world.keyboard.RIGHT && !this.world.keyboard.LEFT && 
-                !this.world.keyboard.SPACE && !this.world.keyboard.UP) {
+        let longIdleInterval = setInterval(() => {
+            if (!this.dead) {
                 this.idleTime += 100;
                 if (this.idleTime >= 15000 && !this.isLongIdle) {
                     this.isLongIdle = true;
-                    // playSound(this.idleSound);
+                    playSoundloop(this.idleSound, true);
                 }
-            } else {
-                this.resetIdle();
-                // playSound(this.idleSound);
             }
         }, 100);
         this.intervals.push(longIdleInterval);
@@ -169,6 +166,7 @@ class Character extends MovableObject{
     resetIdle() {
     this.idleTime = 0;
     this.isLongIdle = false;
+    playSoundloop(this.idleSound, false);
     }
 
 }

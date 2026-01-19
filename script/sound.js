@@ -24,12 +24,16 @@ const SOUNDS = {
         DAMAGE: {
             SOUND: new Audio('gameassets/sounds/damage.mp3'),
             VOLUME: 0.2
+        },
+        WIN: {
+            SOUND: new Audio('gameassets/sounds/win.mp3'),
+            VOLUME: 0.1
         }
     },
     enemies:{
         SCREAM: {
             SOUND: new Audio('gameassets/sounds/enemie.mp3'),
-            VOLUME: 0.5
+            VOLUME: 0.1
         },
     },
     boss:{
@@ -84,6 +88,7 @@ const preloadStartSound = [
     'gameassets/sounds/boss.mp3',
     'gameassets/sounds/boss_slashing.mp3',
     'gameassets/sounds/bossjump.mp3',
+    'gameassets/sounds/win.mp3'
 ];
 let soundmodeON = false;
 
@@ -96,13 +101,26 @@ function playSound(sound){
     }
      }
 
-function playSoundloop(sound){
+function playSoundclone(sound){
     if (soundmodeON) { 
         soundSnipped = sound.SOUND.cloneNode(true);
         volume = sound.VOLUME
         soundSnipped.volume = volume; 
         soundSnipped.play();    
     } 
+}
+
+function playSoundloop(sound, trigger){
+    soundSnipped = sound.SOUND
+    volume = sound.VOLUME
+    soundSnipped.volume = volume;
+    if (soundmodeON && trigger) { 
+        soundSnipped.loop = true;
+        soundSnipped.play();    
+    } 
+    else{
+        soundSnipped.pause();
+    soundSnipped.loop = false;}
 }
 
 function worldsound(sound)  {
@@ -117,4 +135,5 @@ function worldsound(sound)  {
         soundSnipped.loop = false;
     }
     
-}    
+}
+

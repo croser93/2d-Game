@@ -1,8 +1,6 @@
 class Archer extends MovableObject{
-
     world;
     currentImage = 0;
-    
     hitboxOffsetX = 27;
     hitboxOffsetY = 25;
     hitboxWidth = 45;
@@ -18,6 +16,7 @@ class Archer extends MovableObject{
     WALK = MOVABELS.archer.IMAGES_WALK
     DYING = MOVABELS.archer.IMAGES_DYING
 
+    SOUND = SOUNDS.enemies.SCREAM
 
 
     constructor(){
@@ -39,6 +38,7 @@ class Archer extends MovableObject{
             }, 1000 / 10 );
             const enemiesLeftInterval = setInterval(() =>{ 
             this.moveLeft();   
+            this.playRandomEnemySound();
 
             }, 1000 / 60);
             this.intervals.push(enemiesAnimationInterval);
@@ -48,5 +48,15 @@ class Archer extends MovableObject{
         stopInterval(){
             this.intervals.forEach(clearInterval)
             this.playAnimationOnce(this.DYING);
+        }
+
+        playRandomEnemySound() {
+            let random = Math.floor(Math.random() * 1000) === 0 ? 1 : 0;
+            if (random >= 1 && !this.dead){
+            playSound(this.SOUND)
+            }
+            
+            
+        
         }
 }

@@ -140,9 +140,11 @@ function winOrLoseOverlay() {
 const endboss = world.enemies.find(enemy => enemy instanceof Endboss);
         if (world.character.live <= 0 && world.character.dead) {
         winOrLosescreen('lose')
-        clearAllIntervals()       
+        clearAllIntervals()
+        playSound(SOUNDS.character.DEAD)   
     }else if (world.character.live > 0 && endboss.dead) {
         winOrLosescreen('win')
+        playSound(SOUNDS.character.WIN)   
         clearAllIntervals()
     }
     else  return;
@@ -154,6 +156,7 @@ const endboss = world.enemies.find(enemy => enemy instanceof Endboss);
             enemy.intervals.forEach(interval => clearInterval(interval));
         });
         world.intervals.forEach(interval => clearInterval(interval));
+
     }
 
     function winOrLosescreen(result) {

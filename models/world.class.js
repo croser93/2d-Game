@@ -46,6 +46,7 @@ class World {
             this.statusBar.setPercentage(this.character.live);
             this.checkFallDamage;
             winOrLoseOverlay();
+            this.enemieOutOfMAP()
         }, 1000 / 5);
         this.intervals.push(slowinterval);
     }  
@@ -110,8 +111,9 @@ class World {
         this.attack.push(newattack);
         this.character.mana -= 5
         this.keyboard.SPACE = false;
-        playSoundloop(this.damageSound);
-        }
+        playSoundclone(this.damageSound);
+        this.character.resetIdle();
+    }
     }
 
     checkAttackHit() { 
@@ -133,6 +135,14 @@ class World {
         });
     });
 }
+    enemieOutOfMAP()
+    {this.level_1.enemies.forEach((enemy) => {
+        if(enemy.y >= 300){
+            enemy.dead = true        
+            this.enemyDead(enemy)}
+    }) 
+
+    }
 
     enemyDead(enemy){
         enemy.dead = true;
@@ -146,7 +156,7 @@ class World {
     }
 
     draw(){
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height) //cleart die funktion
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         this.ctx.translate(this.camera_x, 0)
         this.addObjectsToMap(this.background);
         this.addObjectsToMap(this.backgroundassets);

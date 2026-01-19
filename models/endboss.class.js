@@ -32,6 +32,8 @@ class Endboss extends MovableObject {
     SLASH = SOUNDS.boss.SLASH
     JUMPING = SOUNDS.boss.JUMP
 
+    intervals = [];
+
     constructor() {
         super().loadImage('gameassets/Hell_Knight/PNG/PNG Sequences/Idle/0_Hell_Knight_Idle_000.png')
         this.loadImages(this.IDLE);
@@ -61,7 +63,7 @@ class Endboss extends MovableObject {
     }
 
     animate() {
-    setInterval(() => {
+    let bossInterval = setInterval(() => {
     this.firstContactWithBoss()
     if(this.firstContact)
             if ((this.actionCounter >= this.actionRepeats) && this.firstContact)
@@ -71,6 +73,7 @@ class Endboss extends MovableObject {
             this.executeCurrentAction();
             this.actionCounter++;
         }, 1000 / 20);
+         this.intervals.push(bossInterval)
     }
 
     chooseRandomAction() {
