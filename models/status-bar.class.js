@@ -9,10 +9,12 @@ class StatusBar extends DrawableObject {
     borderWidth = 2;
     gradientColorStart = '#fa4e4eff';
     gradientColorEnd = '#f32323ff';
+    img ='gameassets/Collectable Object/Life.png'
 
     constructor() {
         super();
- 
+        this.loadImage('gameassets/Collectable Object/Life.png');
+        
     }
         setPercentage(percentage) {
         this.percentage = Math.max(0, Math.min(100, percentage));
@@ -31,6 +33,10 @@ class StatusBar extends DrawableObject {
         gradient.addColorStop(0, this.gradientColorStart);
         gradient.addColorStop(1, this.gradientColorEnd);
         ctx.fillStyle = gradient;
-        ctx.fillRect(this.x, this.y, fillWidth, this.height);}
+        ctx.fillRect(this.x, this.y, fillWidth, this.height);
+
+        ctx.drawImage(this.img, this.x - 15, this.y - 5, 25, 25);
+    }
+
         
 }

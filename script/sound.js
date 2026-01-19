@@ -1,3 +1,4 @@
+
 const SOUNDS = {
     character: {
         LONG_IDLE: {
@@ -67,6 +68,23 @@ const SOUNDS = {
 
     }
 };
+
+const preloadStartSound = [
+    'gameassets/sounds/backgroundambiente.mp3',
+    'gameassets/sounds/coin.mp3',
+    'gameassets/sounds/life.mp3',
+    'gameassets/sounds/mana.mp3',
+    'gameassets/sounds/step.mp3',
+    'gameassets/sounds/damage.mp3',
+    'gameassets/sounds/dead.mp3',
+    'gameassets/sounds/snoring.mp3',
+    'gameassets/sounds/jump.mp3',
+    'gameassets/sounds/hurt.mp3',
+    'gameassets/sounds/enemie.mp3',
+    'gameassets/sounds/boss.mp3',
+    'gameassets/sounds/boss_slashing.mp3',
+    'gameassets/sounds/bossjump.mp3',
+];
 let soundmodeON = false;
 
 function playSound(sound){

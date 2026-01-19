@@ -1,3 +1,4 @@
+
 const MOVABELS = {
     character: {
         IMAGES_IDLE: [
@@ -105,6 +106,19 @@ const MOVABELS = {
             'gameassets/Elves/PNG/PNG Sequences/Dying/0_Dark_Elves_Dying_013.png',
             'gameassets/Elves/PNG/PNG Sequences/Dying/0_Dark_Elves_Dying_014.png',  
         ],
+        IMAGES_ATTACK: [
+                'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_1.png',
+                'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_2.png',
+                'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_3.png',
+                'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_4.png',
+                'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_5.png',
+                'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_6.png',
+                'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_7.png',
+                'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_8.png',
+                'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_9.png',
+                'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_10.png',
+
+    ]
     },
     
     archer:{
@@ -250,3 +264,15 @@ const MOVABELS = {
         ],
     }
 };
+
+const preloadStartImg = [
+    'gameassets/img/game-background-image.png',
+    'gameassets/img/icons/soundmute.png',
+    'gameassets/img/icons/soundOn.png',
+    'gameassets/img/lose.png',
+    'gameassets/img/win.png',
+    'gameassets/Collectable Object/Life.png',
+    'gameassets/Collectable Object/mana.png',
+  '  gameassets/Collectable Object/Coin_01.png'
+
+];

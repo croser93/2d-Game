@@ -34,7 +34,7 @@
     <script src="./script/movabels.js"></script>
     <script src="./script/game.js"></script>
   </head>
-  <body onload="init()">
+  <body onload="init()"  oncontextmenu="return true;">
     <section id="test" class="test">
       <header>
         <h1>Elves in the World of Demons</h1>
@@ -45,7 +45,7 @@
         class="burgerMenu dnone"
         onclick="toggleBurgerMenu()"
       >
-        <img src="gameassets/img/icons/burger menu.png" alt="" />
+        <img src="gameassets/img/icons/burger menu.png" alt="Burger Menu Button" />
       </button>
 
       <main>
@@ -90,13 +90,13 @@
                 <button id="btnLeft" class="mobileBtn">
                     <img
                     src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg"
-                    alt=""
+                    alt="Button Left"
                     />
                 </button>
                 <button id="btnRight" class="mobileBtn rotate180deg">
                     <img
                     src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg"
-                    alt=""
+                    alt="Button Right"
                     />
                 </button>
                 </div>
@@ -104,11 +104,12 @@
                 <button id="btnUp" class="mobileBtn rotate90deg">
                     <img
                     src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg"
-                    alt=""
+                    alt="Button UP"
                     />
                 </button>
                 <button id="btnAttack" class="mobileBtn attackBtn">
-                    <img src="./gameassets/img/icons/attack.svg" alt="" />
+                    <img src="./gameassets/img/icons/attack.svg" 
+                    alt="Button Attack" />
                 </button>
                 </div>
         </div>
@@ -116,7 +117,7 @@
         <dialog>
           <img class="dialogImg" src="./gameassets/img/dialog.png" alt="" />
           <button class="dialoCloseBtn" onclick="closeInfoDialog()">
-            <img src="./gameassets/img/icons/button.png" alt="" />
+            <img src="./gameassets/img/icons/button.png" alt="Close Dialog" />
           </button>
         </dialog>
         <div id="burgerDialog" class="burgerDialog dnone">
@@ -126,14 +127,14 @@
               id="burgerSoundIcon"
               onclick="toggleSoundmode()"
               src="gameassets/img/icons/soundmute.png"
-              alt=""
+              alt="Sound On/OFF Button"
             />
           </button>
           <button id="burgerFullscreen">
             <img
               class="burgerIcon"
               src="./gameassets/img/icons/fullscreen.png"
-              alt=""
+              alt="Fullscreen Button"
               onclick="fullscreen()"
             />
           </button>
@@ -141,7 +142,7 @@
             <img
               class="burgerIcon"
               src="./gameassets/img/icons/info.png"
-              alt=""
+              alt="Info Button"
               onclick="openInfoDialog()"
             />
           </button>
@@ -156,20 +157,20 @@
             id="soundIcon"
             onclick="toggleSoundmode()"
             src="gameassets/img/icons/soundmute.png"
-            alt=""
+            alt="Sound On/OFF Button"
           />
         </button>
         <button id="fullscreen">
           <img
             src="./gameassets/img/icons/fullscreen.png"
-            alt=""
+            alt="Fullscreen Button"
             onclick="fullscreen()"
           />
         </button>
         <button id="info">
           <img
             src="./gameassets/img/icons/info.png"
-            alt=""
+            alt="Info Button"
             onclick="openInfoDialog()"
           />
         </button>

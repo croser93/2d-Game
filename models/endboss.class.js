@@ -46,8 +46,6 @@ class Endboss extends MovableObject {
         this.animate();
         this.attackSoundPlayed = false;
         this.jumpSoundPlayed = false;
-
-
     }
 
     isAboveGround(){    
@@ -108,7 +106,6 @@ class Endboss extends MovableObject {
                 break;
             case 'jump':
                 this.jumpState();
-                console.log("jump")
                 break;
         }
     }
@@ -177,7 +174,6 @@ jumpingCalculation(){
     }
     return this.jumpDirectionX;
 }
-
 
     idleState() {
         this.isAttacking = false;

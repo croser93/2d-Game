@@ -6,26 +6,10 @@ let totalAssets = 0;
 let loadedAssets = 0;
 let gameStarted = false;
 const IMAGE_CACHE = {};
-const imageSources = [
-    'gameassets/img/game-background-image.png',
-    'gameassets/img/icons/soundmute.png',
-    'gameassets/img/icons/soundOn.png',
-];
-const audioSources = [
-    'gameassets/sounds/backgroundambiente.mp3',
-    'gameassets/sounds/coin.mp3',
-    'gameassets/sounds/life.mp3',
-    'gameassets/sounds/mana.mp3',
-    'gameassets/sounds/step.mp3',
-    'gameassets/sounds/damage.mp3',
-    'gameassets/sounds/damage.mp3',
-    'gameassets/sounds/dead.mp3',
-    'gameassets/sounds/snoring.mp3'
-];
 
-    function init() {
-        preloadAllImages();
-    }
+function init() {
+    preloadAllImages();
+}
 
 function preloadAllImages() {
     const allImages = [];
@@ -61,7 +45,7 @@ function updateLoadingProgress() {
 
 function preloadAssets() {
     loadingScreen();
-    totalAssets = imageSources.length + audioSources.length;
+    totalAssets = preloadStartImg.length + preloadStartSound.length;
     loadedAssets = 0;
     preloadSound();
     preloadImg();
@@ -69,7 +53,7 @@ function preloadAssets() {
 }
 
 function preloadImg() {
-    imageSources.forEach(src => {
+    preloadStartImg.forEach(src => {
         const img = new Image();
         img.onload = updateLoadingProgress;
         img.onerror = updateLoadingProgress;
@@ -78,7 +62,7 @@ function preloadImg() {
 }
 
 function preloadSound(){
-    audioSources.forEach(src => {
+    preloadStartSound.forEach(src => {
         const audio = new Audio();
         audio.oncanplaythrough = updateLoadingProgress;
         audio.onerror = updateLoadingProgress;
@@ -106,7 +90,7 @@ function startGame(){
 function setFooter() {
     if (window.innerWidth > 1025)
     document.getElementById('footerLine').classList.remove('dnone')
-    document.getElementById('footerLine').classList.add('dpf')
+    // document.getElementById('footerLine').classList.add('dpf')
     
 }
 
@@ -121,12 +105,12 @@ function checkScreenOrientation() {
     
     const switchScreen = document.getElementById('switchMobileDevice');
         if (window.innerHeight > window.innerWidth) {
-            switchScreen.classList.add('dpf');
+            // switchScreen.classList.add('dpf');
             switchScreen.classList.remove('dnone');
 
         } 
         else {
-            switchScreen.classList.remove('dpf');
+            // switchScreen.classList.remove('dpf');
             switchScreen.classList.add('dnone');
         }
 
@@ -136,14 +120,14 @@ function setMobilebuttons() {
     const hud = document.getElementById('hud')
     const burger = document.getElementById('burgerBtn')
     if(window.innerWidth < 1200 && gameStarted == true){
-            hud.classList.add('dpf');
+            // hud.classList.add('dpf');
             hud.classList.remove('dnone');
-            burger.classList.add('dpf');
+            // burger.classList.add('dpf');
             burger.classList.remove('dnone');
         }else{
-            hud.classList.remove('dpf');
+            // hud.classList.remove('dpf');
             hud.classList.add('dnone');
-            burger.classList.remove('dpf');
+            // burger.classList.remove('dpf');
             burger.classList.add('dnone');
         }
     
@@ -214,7 +198,9 @@ function toggleSoundmode() {
 }
 
 function fullscreen(){
+    if(!document.fullscreenElement){
     document.getElementById('test').requestFullscreen();           
+    } else exitFullscreen()
 }
 
 function exitFullscreen(){
@@ -233,7 +219,6 @@ function closeInfoDialog() {
 
 function toggleBurgerMenu() {
     document.getElementById('burgerDialog').classList.toggle('dnone')
-    document.getElementById('burgerDialog').classList.toggle('dpf')
 }
 
 function loadingScreen() {

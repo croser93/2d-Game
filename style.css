@@ -72,7 +72,7 @@ footer {
 }
 
 .dnone {
-  display: none;
+  display: none !important;
 }
 
 h1 {
@@ -83,7 +83,7 @@ h1 {
 }
 
 .footerLine {
-  /* display: flex; */
+  display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 16px;
@@ -148,6 +148,7 @@ dialog {
   background-size: cover;
 }
 .hud {
+  display: flex;
   position: absolute;
   bottom: 0px;
   flex-direction: column;
@@ -155,6 +156,7 @@ dialog {
 }
 
 .burgerMenu {
+  display: flex;
   position: absolute;
   top: 16px;
   left: 16px;
@@ -170,6 +172,7 @@ dialog {
 
 .burgerDialog {
   position: absolute;
+  display: flex;
   top: 0;
   left: 0;
   width: 100px;
@@ -332,6 +335,7 @@ p {
 
 .switchMobileDevice {
   position: absolute;
+  display: flex;
   background-color: #212121;
   height: 100vh;
   width: 100vw;

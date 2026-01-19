@@ -1,5 +1,5 @@
 class World {
-    level_1 = level_1
+    level_1 = level_1;
     character = new Character();
     enemies = level_1.enemies;
     background = level_1.background;
@@ -13,7 +13,7 @@ class World {
     live = level_1.live;
     attack = [];
     intervals = [];
-    debugMode = true
+    debugMode = false;
 
     manaSound = SOUNDS.collectables.MANA;
     coinSound = SOUNDS.collectables.COIN;
@@ -28,7 +28,7 @@ class World {
         this.setWorld();
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
-        this.keyboard = keyboard
+        this.keyboard = keyboard;
         this.draw();
         this.runSlow();
         this.runFast();
@@ -44,8 +44,7 @@ class World {
             this.collecableBar.setPercentage(this.character.coin);
             this.manaBar.setPercentage(this.character.mana);
             this.statusBar.setPercentage(this.character.live);
-            this.checkFallDamage
-            this.canJumpAttack()
+            this.checkFallDamage;
             winOrLoseOverlay();
         }, 1000 / 5);
         this.intervals.push(slowinterval);
@@ -81,7 +80,7 @@ class World {
                     this.character.collect(charItem, amount);
                     statBar.setPercentage(collectItem);
                     items.splice(index, 1);
-                   playSound(sound)
+                   playSound(sound);
                 }
             });
         });
@@ -91,10 +90,10 @@ class World {
         this.level_1.enemies.forEach((enemy, index) => {
             if(this.character.isColliding(enemy) && this.canJumpAttack() &&this.character.y <= 220 && !enemy.dead && Math.abs(this.character.x - enemy.x) <= 35){
                 if (enemy.live <= 0 && !enemy.dead) {
-                    this.enemyDead(enemy)
+                    this.enemyDead(enemy);
                 }
                 this.character.setSpeedY(12);       
-                enemy.live -= 10;
+                enemy.live -= 15;
             }
         });
     }
@@ -105,15 +104,13 @@ class World {
         return now - this.character.lastHit > 500; 
     }
  
-
-
     checkAttack() {
         if (this.keyboard.SPACE && this.character.mana > 0) {
         let newattack = new Attack(this.character.x, this.character.y, this.character.otherDirection);
         this.attack.push(newattack);
         this.character.mana -= 5
         this.keyboard.SPACE = false;
-        playSoundloop(this.damageSound)
+        playSoundloop(this.damageSound);
         }
     }
 
@@ -121,17 +118,16 @@ class World {
     this.attack.forEach((attackObj, attackIndex) => {
         this.level_1.enemies.forEach((enemy, enemyIndex) => {
             if (attackObj.isColliding(enemy)) {
-                if (!attackObj.hitEnemies) {
-                    attackObj.hitEnemies = [];
-                }
+                if (!attackObj.hitEnemies) 
+                    attackObj.hitEnemies = [];         
                 
                 if (!attackObj.hitEnemies.includes(enemy)) {
                     enemy.live -= attackObj.damage * (enemy.damageMultiplier || 1);
                     attackObj.hitEnemies.push(enemy);
                     
-                    if (enemy.live <= 0 && !enemy.dead) {
-                        this.enemyDead(enemy)
-                    }
+                    if (enemy.live <= 0 && !enemy.dead) 
+                        this.enemyDead(enemy);
+                    
                 }
             }
         });
@@ -140,7 +136,6 @@ class World {
 
     enemyDead(enemy){
         enemy.dead = true;
-        console.log(enemy.dead)
         enemy.stopInterval();
         setTimeout(() => {
             const index = this.level_1.enemies.indexOf(enemy);
@@ -152,9 +147,7 @@ class World {
 
     draw(){
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height) //cleart die funktion
-
         this.ctx.translate(this.camera_x, 0)
-
         this.addObjectsToMap(this.background);
         this.addObjectsToMap(this.backgroundassets);
         this.addObjectsToMap(this.backgroundassetsunderworld);
@@ -163,18 +156,13 @@ class World {
         this.addObjectsToMap(this.coins)
         this.addObjectsToMap(this.strong)
         this.addObjectsToMap(this.live)
-
-        
         this.ctx.translate(-this.camera_x, 0);
         this.addToMap(this.statusBar);
         this.addToMap(this.manaBar);
         this.addToMap(this.collecableBar);
         this.ctx.translate(this.camera_x, 0)
-
-
         this.addObjectsToMap(this.enemies);
-        this.ctx.translate(-this.camera_x, 0);
-        
+        this.ctx.translate(-this.camera_x, 0);    
         let self = this;
         requestAnimationFrame(function() {
             self.draw()
@@ -186,7 +174,6 @@ class World {
         objects.forEach(o => {
             this.addToMap(o)
         })
-
     }
 
     addToMap(item, x) {
@@ -195,14 +182,11 @@ class World {
             this.ctx.translate(item.width, 0);
             this.ctx.scale(-1, 1);
             item.x = item.x * -1;    
-        }
-        
+        }        
         item.drawItem(this.ctx);
-
-        if (this.debugMode) {
+        if (this.debugMode) 
             item.drawFrame(this.ctx);
-        }
-
+        
         if (item.otherDirection) {
             item.x = item.x * -1 ;
             this.ctx.restore();   

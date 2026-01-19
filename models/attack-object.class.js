@@ -1,16 +1,5 @@
 class Attack extends MovableObject {
-    IMAGE_ATTACK = ['gameassets/Elves/PNG/PNG Sequences/attack/Explosion_1.png',
-                    'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_2.png',
-                    'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_3.png',
-                    'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_4.png',
-                    'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_5.png',
-                    'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_6.png',
-                    'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_7.png',
-                    'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_8.png',
-                    'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_9.png',
-                    'gameassets/Elves/PNG/PNG Sequences/attack/Explosion_10.png',
-
-    ];
+    ATTACK = MOVABELS.character.IMAGES_ATTACK
 
     currentImage = 0;
     world;
@@ -23,7 +12,7 @@ class Attack extends MovableObject {
 
     constructor(x, y, otherDirection){
         super().loadImage('gameassets/Elves/PNG/PNG Sequences/attack/Explosion_3.png')
-        this.loadImages(this.IMAGE_ATTACK);
+        this.loadImages(this.ATTACK);
         this.trow ()
         this.x = x ;
         this.y = y ;
@@ -49,8 +38,8 @@ trow (){
 playExplosion() {
     this.currentImage = 0;
     const explosionInterval = setInterval(() => {
-        if(this.currentImage < this.IMAGE_ATTACK.length) {
-            this.playAnimationOnce(this.IMAGE_ATTACK);
+        if(this.currentImage < this.ATTACK.length) {
+            this.playAnimationOnce(this.ATTACK);
         } else {
             clearInterval(explosionInterval);
             this.removeFromWorld();

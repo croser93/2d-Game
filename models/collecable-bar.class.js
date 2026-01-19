@@ -9,9 +9,11 @@ class CollectableBar extends StatusBar {
     borderWidth = 2;
     gradientColorStart = '#f7cc6fff';
     gradientColorEnd = '#f8b600ff';
+    img ='gameassets/Collectable Object/Coin_01.png'
 
     constructor() {
         super();
+        this.loadImage('gameassets/Collectable Object/Coin_01.png');
     }
 
     setPercentage(percentage) {

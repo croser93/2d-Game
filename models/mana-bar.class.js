@@ -9,10 +9,12 @@ class ManaBar extends StatusBar {
     borderWidth = 2;
     gradientColorStart = '#4e84faff';
     gradientColorEnd = '#0f57f1ff';
+    img ='gameassets/Collectable Object/mana.png'
 
 
     constructor() {
         super();
+        this.loadImage('gameassets/Collectable Object/mana.png');
     }
 
     setPercentage(percentage) {
