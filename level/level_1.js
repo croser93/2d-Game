@@ -22,10 +22,10 @@ class LevelGenerator {
         this.bossPlatformStart = 3184;
         this.bossPlatformLength = 566;
         
-        this.enemyCount = 5;
-        this.coinCount = 1;
-        this.strongCount = 1;
-        this.liveCount = 1;
+        this.enemyCount = this.randomBetween(15, 25);
+        this.coinCount = this.randomBetween(5, 10);
+        this.strongCount = this.randomBetween(3, 5)
+        this.liveCount = this.randomBetween(3, 5)
         
         this.tiles = {
             ground: {
@@ -48,6 +48,10 @@ class LevelGenerator {
                 './gameassets/Levels/DUNGEON CARTOON 2D PLATFORMER TILESET/PNG/Background/Background_02.png',
             ]
         };
+    }
+
+    randomBetween(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
     generateLevel() {

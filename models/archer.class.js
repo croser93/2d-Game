@@ -24,8 +24,8 @@ class Archer extends MovableObject{
         this.loadImages(this.IDLE);
         this.loadImages(this.WALK);
         this.loadImages(this.DYING);
-        this.speed = 0.15 + Math.random() * 1.5; 
-        this.x = 400 + Math.random() * 3000;
+        this.speed = 0.5 + Math.random() * 1;
+        this.x = 600 + Math.random() * (Math.random() * (5 - 1) * 3000);
         this.otherDirection = true;
         // this.animateEnemiesRunLeft()
         this.applyGravity();

@@ -202,7 +202,7 @@ function toggleSoundmode() {
 
 function fullscreen(){
     if(!document.fullscreenElement){
-    document.getElementById('test').requestFullscreen();           
+    document.getElementById('testscreen').requestFullscreen();           
     } else exitFullscreen()
 }
 

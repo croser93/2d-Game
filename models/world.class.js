@@ -40,10 +40,10 @@ class World {
     
     runSlow(){
        let slowinterval = setInterval(() => {
-            this.checkCollisions();
             this.collecableBar.setPercentage(this.character.coin);
             this.manaBar.setPercentage(this.character.mana);
             this.statusBar.setPercentage(this.character.live);
+            this.checkCollisions();
             this.checkFallDamage;
             winOrLoseOverlay();
             this.enemieOutOfMAP()
@@ -63,7 +63,7 @@ class World {
        
     checkCollisions(){
     this.level_1.enemies.forEach((enemy) => {
-                if(this.character.isColliding(enemy) &&!enemy.dead && this.character.y >= 210){
+                if(this.character.isColliding(enemy) && !enemy.dead && !this.character.isAboveGround()){
                     this.character.hit(enemy.damage)
                     this.statusBar.setPercentage(this.character.live)        
                 }})} 
