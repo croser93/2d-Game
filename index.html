@@ -36,15 +36,12 @@
   </head>
   <body onload="init()"  oncontextmenu="return true;">
     <section id="test" class="test">
+      
       <header>
         <h1>Elves in the World of Demons</h1>
       </header>
 
-      <button
-        id="burgerBtn"
-        class="burgerMenu dnone"
-        onclick="toggleBurgerMenu()"
-      >
+      <button id="burgerBtn" class="burgerMenu dnone" onclick="toggleBurgerMenu()">
         <img src="gameassets/img/icons/burger menu.png" alt="Burger Menu Button" />
       </button>
 
@@ -62,16 +59,13 @@
               <p id="loadingPercentage">0%</p>
             </div>
           </div>
+
+
         </section>
       </main>
 
       <div class="mainButton" id="mainButton">
-        <button
-          id="startGame"
-          type="button "
-          class="btn startGame"
-          onclick="startGame()"
-        >
+        <button id="startGame" type="button" class="btn startGame" onclick="startGame()">
           <strong>Start Game</strong>
           <div id="container-stars">
             <div id="stars"></div>
@@ -83,102 +77,39 @@
         </button>
       </div>
     
+      <div id="hud" class="hud dnone">
+          <div class="mobileBtnLine">
+              <div class="mobilBtnfield">
+                <button id="btnLeft" class="mobileBtn"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt="Button Left"/></button>
+                <button id="btnRight" class="mobileBtn rotate180deg"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt="Button Right"/></button>
+              </div>
+              <div class="mobilBtnfield">
+                <button id="btnUp" class="mobileBtn rotate90deg"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt="Button UP"/></button>
+                <button id="btnAttack" class="mobileBtn attackBtn"><img src="./gameassets/img/icons/attack.svg" alt="Button Attack" /></button>
+              </div>
+          </div>
+      </div>
 
-        <div id="hud" class="hud dnone">
-            <div class="mobileBtnLine">
-                <div class="mobilBtnfield">
-                <button id="btnLeft" class="mobileBtn">
-                    <img
-                    src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg"
-                    alt="Button Left"
-                    />
-                </button>
-                <button id="btnRight" class="mobileBtn rotate180deg">
-                    <img
-                    src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg"
-                    alt="Button Right"
-                    />
-                </button>
-                </div>
-                <div class="mobilBtnfield">
-                <button id="btnUp" class="mobileBtn rotate90deg">
-                    <img
-                    src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg"
-                    alt="Button UP"
-                    />
-                </button>
-                <button id="btnAttack" class="mobileBtn attackBtn">
-                    <img src="./gameassets/img/icons/attack.svg" 
-                    alt="Button Attack" />
-                </button>
-                </div>
-        </div>
-        </div>
-        <dialog>
+      <dialog>
           <img class="dialogImg" src="./gameassets/img/dialog.png" alt="" />
-          <button class="dialoCloseBtn" onclick="closeInfoDialog()">
-            <img src="./gameassets/img/icons/button.png" alt="Close Dialog" />
-          </button>
-        </dialog>
-        <div id="burgerDialog" class="burgerDialog dnone">
-          <button id="burgerSoundmode">
-            <img
-              class="burgerIcon"
-              id="burgerSoundIcon"
-              onclick="toggleSoundmode()"
-              src="gameassets/img/icons/soundmute.png"
-              alt="Sound On/OFF Button"
-            />
-          </button>
-          <button id="burgerFullscreen">
-            <img
-              class="burgerIcon"
-              src="./gameassets/img/icons/fullscreen.png"
-              alt="Fullscreen Button"
-              onclick="fullscreen()"
-            />
-          </button>
-          <button id="burgerInfo">
-            <img
-              class="burgerIcon"
-              src="./gameassets/img/icons/info.png"
-              alt="Info Button"
-              onclick="openInfoDialog()"
-            />
-          </button>
-        </div>
+          <button class="dialoCloseBtn" onclick="closeInfoDialog()"><img src="./gameassets/img/icons/button.png" alt="Close Dialog"/></button>
+      </dialog>
+
+      <div id="burgerDialog" class="burgerDialog dnone">
+          <button id="burgerSoundmode"><img class="burgerIcon" id="burgerSoundIcon"onclick="toggleSoundmode()" src="gameassets/img/icons/soundmute.png" alt="Sound On/OFF Button"/></button>
+          <button id="burgerFullscreen"><img class="burgerIcon"src="./gameassets/img/icons/fullscreen.png" alt="Fullscreen Button"onclick="fullscreen()"/>
+          </button><button id="burgerInfo"><imgc lass="burgerIcon"src="./gameassets/img/icons/info.png" alt="Info Button"onclick="openInfoDialog()"/></button>
+      </div>
     </section>
 
-
     <footer>
-      <div id="footerLine" class="footerLine dnone">
-        <button id="soundmode">
-          <img
-            id="soundIcon"
-            onclick="toggleSoundmode()"
-            src="gameassets/img/icons/soundmute.png"
-            alt="Sound On/OFF Button"
-          />
-        </button>
-        <button id="fullscreen">
-          <img
-            src="./gameassets/img/icons/fullscreen.png"
-            alt="Fullscreen Button"
-            onclick="fullscreen()"
-          />
-        </button>
-        <button id="info">
-          <img
-            src="./gameassets/img/icons/info.png"
-            alt="Info Button"
-            onclick="openInfoDialog()"
-          />
-        </button>
-      </div>
+        <div id="footerLine" class="footerLine dnone">
+          <button id="soundmode"><img id="soundIcon" onclick="toggleSoundmode()" src="gameassets/img/icons/soundmute.png" alt="Sound On/OFF Button"/></button>
+          <button id="fullscreen"><img src="./gameassets/img/icons/fullscreen.png" alt="Fullscreen Button" onclick="fullscreen()"/></button>
+          <button id="info"><img src="./gameassets/img/icons/info.png" alt="Info Button" onclick="openInfoDialog()"/> </button>
+        </div>
     </footer>
 
-    <div id="switchMobileDevice" class="switchMobileDevice dnone">
-      <h3>Switch Mobile Screen</h3>
-    </div>
+    <div id="switchMobileDevice" class="switchMobileDevice dnone"><h3>Switch Mobile Screen</h3></div>
   </body>
 </html>
