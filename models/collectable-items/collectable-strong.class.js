@@ -1,6 +1,6 @@
 class CollectableStrong extends CollectableItem {
 
-        IMAGE_STRONG = [
+        IMAGE_MANA = [
         "gameassets/Collectable Object/collectable/1.png",
         "gameassets/Collectable Object/collectable/1.png",
         "gameassets/Collectable Object/collectable/2.png",
@@ -25,7 +25,7 @@ class CollectableStrong extends CollectableItem {
 
     constructor(){
         super().loadImage('gameassets/Collectable Object/collectable/1.png')
-        this.loadImages(this.IMAGE_STRONG);
+        this.loadImages(this.IMAGE_MANA);
         this.height = 90
         this.width = 90
         this.y = 280
@@ -33,10 +33,13 @@ class CollectableStrong extends CollectableItem {
         this.animateCollectable();
     }
 
-        animateCollectable() {
-            setInterval(() => {
-                this.playAnimationLoop(this.IMAGE_STRONG)
-            },1000 / 10);
-        }
+/**
+ * play life mana loop
+ */
+    animateCollectable() {
+        setInterval(() => {
+            this.playAnimationLoop(this.IMAGE_MANA)
+        },1000 / 10);
+    }
 
 }

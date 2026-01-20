@@ -17,6 +17,10 @@ class ManaBar extends StatusBar {
         this.loadImage('gameassets/Collectable Object/mana.png');
     }
 
+/**
+ * Sets the percentage value for the status bar.
+ * @param {number} percentage - The percentage value to set (clamped between 0 and 100).
+ */
     setPercentage(percentage) {
         this.percentage = Math.max(0, Math.min(100, percentage));
     }

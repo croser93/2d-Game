@@ -133,7 +133,6 @@ function worldsound(sound)  {
     }else if (!soundmodeON){
         soundSnipped.pause();
         soundSnipped.loop = false;
-    }
-    
+    }  
 }
 

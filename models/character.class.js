@@ -40,6 +40,9 @@ class Character extends MovableObject{
         this.startIdleTimer();
     }
 
+/**
+ * Loads all character animation images.
+ */
     loadImageChar(){
         this.loadImages(this.IDLE);
         this.loadImages(this.WALK);
@@ -47,16 +50,19 @@ class Character extends MovableObject{
         this.loadImages(this.DYING);
         this.loadImages(this.JUMPING);
         this.loadImages(this.LONG_IDLE);
-
     }
 
-    animate() {
-        if (!this.dead) {
+/**
+ * Initializes character animation and keyboard controls.
+ */
+    animate() {     
         this.keyboardInterval();
-        this.playAnimationKeyboard ();
-        }   
+        this.playAnimationKeyboard (); 
     }
 
+/**
+ * Handles keyboard input for character movement.
+ */
    keyboardInterval() {
         let animateInterval = setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < this.endOfMap) {
@@ -74,58 +80,82 @@ class Character extends MovableObject{
         },1000 / 60);
         this.intervals.push(animateInterval);
     }
-    
-        playAnimationKeyboard () {
+
+/**
+ * Manages animation playback based on character state.
+ */
+    playAnimationKeyboard () {
         let animationInterval = setInterval(() => {
-        if (this.isAboveGround()) 
-           this.jump(); 
-        else if (this.isHurt()){
-            this.isHurtDamage()}
-        else if((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && this.isAboveGround)
-            this.walk ();
-        else if(this.live <= 0)
-            this.dead()  
-        else if (this.isLongIdle) 
-        this.longIdle()  
-        else
-        this.idle()   
+            if (this.isAboveGround()) 
+                this.jump(); 
+            else if (this.isHurt()){
+                this.isHurtDamage()}
+            else if((this.world.keyboard.RIGHT || this.world.keyboard.LEFT) && this.isAboveGround)
+                this.walk ();
+            else if(this.live <= 0)
+                this.deadAnimation();  
+            else if (this.isLongIdle) 
+                this.longIdle(); 
+            else
+            this.idle(); 
         },     
-      1000 / 10);
-      this.intervals.push(animationInterval);      
+        1000 / 10);
+        this.intervals.push(animationInterval);      
     }
 
+/**
+ * Plays the walking animation and sound.
+ */
     walk (){
         this.playAnimationLoop(this.WALK);
         playSound(this.walkSound);
         this.resetIdle()
     }
 
-    dead(){
-        this.playAnimationOnce(this.DYING);   
-        playSound(this.deadSound)   
+/**
+ * Plays the death animation and sound.
+ */
+    deadAnimation(){
+        this.playAnimationOnce(this.DYING);
     }
 
+/**
+ * Plays the jumping animation and sound.
+ */
     jump(){
       this.playAnimationLoop(this.JUMPING);
         playSound(this.jumpSound);
         this.resetIdle()  
     }
 
+/**
+ * Plays the hurt animation and sound.
+ */
     isHurtDamage(){
         this.playAnimationLoop(this.HURT);
         playSound(this.hurtSound);
         this.resetIdle()
     }
 
+/**
+ * Plays the long idle animation.
+ */
     longIdle(){
         this.playAnimationOnce(this.LONG_IDLE);
         
     }
 
+/**
+ * Plays the idle animation.
+ */
     idle(){
         this.playAnimationLoop(this.IDLE); 
     }
-    
+
+/**
+ * Applies damage to the character.
+ * @param {number} damage - The amount of damage to apply.
+ */
     hit(damage) {
         this.live -= damage;  
         if (this.live <= 0) {
@@ -135,6 +165,11 @@ class Character extends MovableObject{
             this.lastHit = new Date().getTime();
     }
 
+/**
+ * Collects an item and increases the specified stat.
+ * @param {string} type - The type of stat to increase (coin, mana, live).
+ * @param {number} amount - The amount to increase.
+ */
     collect(type, amount){
         this[type] += amount;
         if (this[type] > 100) {
@@ -142,12 +177,19 @@ class Character extends MovableObject{
         }    
     }
 
+/**
+ * Checks if the character is currently hurt.
+ * @returns {boolean} True if hurt, false otherwise.
+ */
     isHurt(){
         let timepassed = new Date().getTime() - this.lastHit
         timepassed = timepassed / 1000
         return timepassed < 0.2
     }
 
+/**
+ * Starts the idle timer for long idle animation.
+ */
     startIdleTimer() {
         this.idleTime = 0;
         this.isLongIdle = false;
@@ -163,10 +205,13 @@ class Character extends MovableObject{
         this.intervals.push(longIdleInterval);
     }
 
+/**
+ * Resets the idle timer and stops long idle animation.
+ */
     resetIdle() {
-    this.idleTime = 0;
-    this.isLongIdle = false;
-    playSoundloop(this.idleSound, false);
+        this.idleTime = 0;
+        this.isLongIdle = false;
+        playSoundloop(this.idleSound, false);
     }
 
 }

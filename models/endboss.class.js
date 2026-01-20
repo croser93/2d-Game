@@ -4,7 +4,7 @@ class Endboss extends MovableObject {
     y = 100;
     currentImage = 0;
     world;
-    live = 100;
+    live = 250;
     dead = false;
     intervals = []
     firstContact = false
@@ -50,18 +50,27 @@ class Endboss extends MovableObject {
         this.jumpSoundPlayed = false;
     }
 
+ /**
+ * Checks if the endboss is above the ground level.
+ * @returns {boolean} True if above ground, false otherwise.
+ */
     isAboveGround(){    
         return this.y < 90;
     }
 
+/**
+ * Triggers the first contact event when the character enters the boss arena.
+ */    
     firstContactWithBoss(){
         if (world.character.x >= 3150 && !this.firstContact){
             playSound(this.SCREAM)
             this.firstContact = true 
-            console.log("first contact!")
         } else return 
     }
 
+/**
+ * Main animation loop for the endboss behavior.
+ */
     animate() {
     let bossInterval = setInterval(() => {
     this.firstContactWithBoss()
@@ -76,6 +85,9 @@ class Endboss extends MovableObject {
          this.intervals.push(bossInterval)
     }
 
+/**
+ * Randomly selects the next action for the endboss.
+ */
     chooseRandomAction() {
         const random = Math.random();
         
@@ -96,6 +108,9 @@ class Endboss extends MovableObject {
         this.actionCounter = 0;
     }
 
+/**
+ * Executes the current action based on the endboss state.
+ */    
     executeCurrentAction() {
         switch(this.currentAction) {
             case 'walk':
@@ -113,35 +128,49 @@ class Endboss extends MovableObject {
         }
     }
 
+/**
+ * Handles the walking behavior within the arena boundaries.
+ */
     walkInArena() {
-        if (this.walkDirection === -1 && this.x >= this.arenaLeft) {
+        if (this.walkDirection === -1 && this.x >= this.arenaLeft) 
             this.inArenaLeft(this.walkSpeed)
-        } else if (this.walkDirection === 1 && this.x <= this.arenaRight) {
-            this.inArenaRight(this.walkSpeed)
-        }
+        else if (this.walkDirection === 1 && this.x <= this.arenaRight) 
+            this.inArenaRight(this.walkSpeed) 
         this.playAnimationLoop(this.WALK);
         this.returnHitbox
     }
 
+/**
+ * Resets the hitbox after Attack to default values.
+ */
     returnHitbox(){
     this.hitboxOffsetX = 80;
     this.hitboxOffsetY = 60;
     this.hitboxWidth = 140;
     this.hitboxHeight = 200;
-
     }
 
+/**
+ * Moves the endboss to the left within the arena.
+ * @param {number} speed - The movement speed.
+ */
     inArenaLeft(speed){
         this.x -= speed;
         this.otherDirection = true;
     }
 
-
+/**
+ * Moves the endboss to the right within the arena.
+ * @param {number} speed - The movement speed.
+ */
     inArenaRight(speed){
         this.x += speed;
         this.otherDirection = false;
     }
 
+/**
+ * Handles the attack state animation and hitbox changes.
+ */
     attackState() {
         this.attackSoundPlayed = false;
         this.isAttacking = true;
@@ -151,41 +180,54 @@ class Endboss extends MovableObject {
         this.playSoundOnce(this.SLASH, 'attackSoundPlayed');
     }
 
+/**
+ * Handles the jump state with directional movement.
+ */
     jumpState() {
-    this.jumpDirectionX = this.jumpingCalculation();
-    this.returnHitbox();
-    
-    if (this.jumpDirectionX === -1 && this.x > this.arenaLeft) {
-        this.inArenaLeft(this.jumpSpeed);
-    } else if (this.jumpDirectionX === 1 && this.x < this.arenaRight) {
-        this.inArenaRight(this.jumpSpeed);
+        this.jumpDirectionX = this.jumpingCalculation();
+        this.returnHitbox();
+        
+        if (this.jumpDirectionX === -1 && this.x > this.arenaLeft) 
+            this.inArenaLeft(this.jumpSpeed);
+         else if (this.jumpDirectionX === 1 && this.x < this.arenaRight) 
+            this.inArenaRight(this.jumpSpeed);
+        
+        this.playAnimationLoop(this.JUMP);
+        this.playSoundOnce(this.JUMPING, 'jumpSoundPlayed');
     }
 
-    this.playAnimationLoop(this.JUMP);
-    this.playSoundOnce(this.JUMPING, 'jumpSoundPlayed');
-}
-
-jumpingCalculation(){
-    if (this.actionCounter === 0 && !this.isAboveGround()) {
-        this.speedY = 22;
-        this.jumpSoundPlayed = false;
-        this.jumpDirectionX = Math.random() < 0.5 ? -1 : 1;
-        if ((this.jumpDirectionX === -1 && this.x <= this.arenaLeft) || 
-            (this.jumpDirectionX === 1 && this.x >= this.arenaRight)) {
-            this.jumpDirectionX *= -1;
-        }       
+/**
+ * Calculates the jump direction and initiates the jump.
+ * @returns {number} The jump direction (-1 for left, 1 for right).
+ */
+    jumpingCalculation(){
+        if (this.actionCounter === 0 && !this.isAboveGround()) {
+            this.speedY = 22;
+            this.jumpSoundPlayed = false;
+            this.jumpDirectionX = Math.random() < 0.5 ? -1 : 1;
+            if ((this.jumpDirectionX === -1 && this.x <= this.arenaLeft) || 
+                (this.jumpDirectionX === 1 && this.x >= this.arenaRight)) {
+                this.jumpDirectionX *= -1;
+            }       
+        }
+        return this.jumpDirectionX;
     }
-    return this.jumpDirectionX;
-}
 
+/**
+ * Handles the idle state animation and hitbox reset.
+ */
     idleState() {
         this.isAttacking = false;
         this.hitboxOffsetX = 80;
         this.hitboxWidth = 140;
         this.playAnimationLoop(this.IDLE);
-        }
+    }
 
-
+/**
+ * Plays a sound once using a flag to prevent repeated playback.
+ * @param {string} sound - The sound to play.
+ * @param {string} flagName - The flag name to track if sound was played.
+ */
     playSoundOnce(sound, flagName) {
     if (!this[flagName]) {
         playSound(sound);

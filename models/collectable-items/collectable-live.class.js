@@ -12,12 +12,14 @@ class CollectableLive extends CollectableItem {
         this.x = 400 + Math.random() * 3000;
         this.animateCollectable();
     }
-
-        animateCollectable() {
-            setInterval(() => {
-                this.playAnimationLoop(this.IMAGE_LIVE)
-            },1000 / 10);
-        }
+/**
+ * play life animet loop
+ */
+    animateCollectable() {
+        setInterval(() => {
+            this.playAnimationLoop(this.IMAGE_LIVE)
+        },1000 / 10);
+    }
 
 
 }

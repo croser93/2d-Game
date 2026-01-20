@@ -27,36 +27,43 @@ class Archer extends MovableObject{
         this.speed = 0.5 + Math.random() * 1;
         this.x = 600 + Math.random() * (Math.random() * (5 - 1) * 3000);
         this.otherDirection = true;
-        // this.animateEnemiesRunLeft()
+        this.animateEnemiesRunLeft()
         this.applyGravity();
     }
 
-        animateEnemiesRunLeft() {
-            const enemiesAnimationInterval = setInterval(() => {
-                this.playAnimationLoop(this.WALK)    
-       
-            }, 1000 / 10 );
-            const enemiesLeftInterval = setInterval(() =>{ 
-            this.moveLeft();   
-            this.playRandomEnemySound();
+/**
+ * Animates the archer enemy moving left with walking animation.
+ */
+    animateEnemiesRunLeft() {
+        const enemiesAnimationInterval = setInterval(() => {
+            this.playAnimationLoop(this.WALK)    
+    
+        }, 1000 / 10 );
+        const enemiesLeftInterval = setInterval(() =>{ 
+        this.moveLeft();   
+        this.playRandomEnemySound();
 
-            }, 1000 / 60);
-            this.intervals.push(enemiesAnimationInterval);
-            this.intervals.push(enemiesLeftInterval);            
-        }
+        }, 1000 / 60);
+        this.intervals.push(enemiesAnimationInterval);
+        this.intervals.push(enemiesLeftInterval);            
+    }
 
-        stopInterval(){
-            this.intervals.forEach(clearInterval)
-            this.playAnimationOnce(this.DYING);
-        }
+/**
+ * Stops all intervals and plays the dying animation.
+ */
+    stopInterval(){
+        this.intervals.forEach(clearInterval)
+        this.playAnimationOnce(this.DYING);
+    }
 
-        playRandomEnemySound() {
-            let random = Math.floor(Math.random() * 1000) === 0 ? 1 : 0;
-            if (random >= 1 && !this.dead){
-            playSound(this.SOUND)
-            }
-            
-            
-        
-        }
+/**
+ * Randomly plays the enemy scream sound.
+ */
+    playRandomEnemySound() {
+        let random = Math.floor(Math.random() * 1000) === 0 ? 1 : 0;
+        if (random >= 1 && !this.dead){
+        playSound(this.SOUND)
+        } 
+    
+    }
 }

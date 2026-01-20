@@ -32,6 +32,9 @@ window.addEventListener('keyup', (e) => {
     }    
 })
 
+/**
+ * Sets up mobile touch controls for the game buttons.
+ */
 function mobileControls() {
     document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
         e.preventDefault();
