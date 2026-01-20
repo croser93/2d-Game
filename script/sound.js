@@ -36,6 +36,12 @@ const SOUNDS = {
             VOLUME: 0.1
         },
     },
+     devil:{
+        SCREAM: {
+            SOUND: new Audio('gameassets/sounds/devil.mp3'),
+            VOLUME: 0.3
+        },
+    },
     boss:{
         SCREAM: {
             SOUND: new Audio('gameassets/sounds/boss.mp3'),

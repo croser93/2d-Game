@@ -10,6 +10,7 @@ class DrawableObject {
     hitboxOffsetY = 0;
     hitboxWidth = 0;
     hitboxHeight = 0;
+   
 
 /**
  * Loads multiple images into the image cache.
@@ -45,7 +46,7 @@ class DrawableObject {
  * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
  */
     drawFrame(ctx){
-    if (this instanceof Character || this instanceof Archer || this instanceof Endboss || this instanceof CollectableItem || this instanceof Attack) {
+    if (this instanceof Character || this instanceof Archer || this instanceof Endboss || this instanceof CollectableItem || this instanceof Attack || this instanceof Devil)  {
         ctx.beginPath();
         ctx.lineWidth = ('2');
         ctx.strokeStyle = ('red');
