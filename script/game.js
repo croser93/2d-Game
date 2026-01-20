@@ -113,7 +113,7 @@ const IMAGE_CACHE = {};
  * Sets the footer visibility based on screen width.
  */
     function setFooter() {
-        if (window.innerWidth > 1025)
+        if (window.innerWidth > 1200)
         document.getElementById('footerLine').classList.remove('dnone')
     }
 
