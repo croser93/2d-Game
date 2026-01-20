@@ -52,18 +52,16 @@ class Archer extends MovableObject{
  * Stops all intervals and plays the dying animation.
  */
     stopInterval(){
-        this.intervals.forEach(clearInterval)
+        this.intervals.forEach(clearInterval);
         this.playAnimationOnce(this.DYING);
     }
 
 /**
- * Randomly plays the enemy scream sound.
+ * Randomly plays the enemy and devil sound.
  */
     playRandomEnemySound() {
-        let random = Math.floor(Math.random() * 1000) === 0 ? 1 : 0;
-        if (random >= 1 && !this.dead){
-        playSound(this.SOUND)
-        } 
-    
+        let random = Math.floor(Math.random() * 3000) === 0 ? 1 : 0;
+        if (random >= 1 && !this.dead)
+        playSound(this.SOUND) 
     }
 }

@@ -1,9 +1,9 @@
-class Devil extends Archer{
+class Devil extends MovableObject{
     world;
     height = 180;
     width = 180;
     y = 205
-    curren0Image = 0;
+    currentImage = 0;
     hitboxOffsetX = 50;
     hitboxOffsetY = 40;
     hitboxWidth = 80;
@@ -57,4 +57,23 @@ class Devil extends Archer{
         this.intervals.push(devilAnimationInterval);
         this.intervals.push(devilLeftInterval);            
     }
-}
+
+/**
+ * Stops all intervals and plays the dying animation.
+ */
+    stopInterval(){
+        this.intervals.forEach(clearInterval)
+        this.playAnimationOnce(this.DYING, this.currentImage);
+    }
+
+/**
+ * Randomly plays the enemy and devil sound.
+ */
+    playRandomEnemySound() {
+        let random = Math.floor(Math.random() * 3000) === 0 ? 1 : 0;
+        if (random >= 1 && !this.dead){
+            playSound(this.SOUND)
+        } 
+    
+    }
+}   

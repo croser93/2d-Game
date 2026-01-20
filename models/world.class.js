@@ -13,7 +13,7 @@ class World {
     live = level_1.live;
     attack = [];
     intervals = [];
-    debugMode = true;
+    debugMode = false;
 
     manaSound = SOUNDS.collectables.MANA;
     coinSound = SOUNDS.collectables.COIN;
@@ -190,7 +190,7 @@ class World {
                 if (index > -1) {
                     this.level_1.enemies.splice(index, 1);
                 }
-            }, 3000);        
+            }, 5000);        
         }
     }
 

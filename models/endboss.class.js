@@ -229,10 +229,18 @@ class Endboss extends MovableObject {
  * @param {string} flagName - The flag name to track if sound was played.
  */
     playSoundOnce(sound, flagName) {
-    if (!this[flagName]) {
-        playSound(sound);
-        this[flagName] = true;
+        if (!this[flagName]) {
+            playSound(sound);
+            this[flagName] = true;
+        }
     }
-}
+
+/**
+ * Stops all intervals and plays the dying animation.
+ */
+    stopInterval(){
+        this.intervals.forEach(clearInterval);
+        this.playAnimationOnce(this.DYING);}
+
 
 }
