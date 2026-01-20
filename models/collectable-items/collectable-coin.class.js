@@ -15,7 +15,7 @@ class CollectableItem extends MovableObject {
         this.loadImages(this.IMAGE_COIN);
         this.height = 32
         this.width = 32
-        this.y = 310
+        this.y = this.y = Math.random() * (280 - 160) + 160;
         this.x = 600 + Math.random() * 3000;
         this.animateCollectable();
     }

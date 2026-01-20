@@ -28,7 +28,6 @@ class CollectableStrong extends CollectableItem {
         this.loadImages(this.IMAGE_MANA);
         this.height = 90
         this.width = 90
-        this.y = 280
         this.x = 400 + Math.random() * 3000;
         this.animateCollectable();
     }

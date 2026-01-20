@@ -91,10 +91,12 @@ class World {
         collectables.forEach(({items, type, statBar, amount, collectItem, charItem, sound}) => {
             items.forEach((item, index) => {
                 if(this.character.isColliding(item)){
-                    this.character.collect(charItem, amount);
-                    statBar.setPercentage(collectItem);
-                    items.splice(index, 1);
-                   playSound(sound);
+                    this.character.collect(charItem, amount)
+                    if (collectItem < 100) {
+                        statBar.setPercentage(collectItem);
+                        items.splice(index, 1);
+                        playSound(sound);
+                    }else return
                 }
             });
         });

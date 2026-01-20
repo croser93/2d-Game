@@ -319,4 +319,6 @@ class LevelGenerator {
         }
         return { coins, strong, live };
     }
+
+    
 }

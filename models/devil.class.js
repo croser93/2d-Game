@@ -2,7 +2,7 @@ class Devil extends MovableObject{
     world;
     height = 180;
     width = 180;
-    y = 205
+    y = 200
     currentImage = 0;
     hitboxOffsetX = 50;
     hitboxOffsetY = 40;
@@ -26,7 +26,7 @@ class Devil extends MovableObject{
         this.loadImages(this.IDLE);
         this.loadImages(this.WALK);
         this.loadImages(this.DYING);
-        this.speed =  0.05 * Math.random()
+        this.speed =  0.5 * Math.random()
         this.x = 600 + Math.random() * (Math.random() * (5 - 1) * 2000);
         this.otherDirection = true;
         this.animateEnemiesRunLeft()
