@@ -13,7 +13,7 @@ class World {
     live = level_1.live;
     attack = [];
     intervals = [];
-    debugMode = false;
+    debugMode = true;
 
     manaSound = SOUNDS.collectables.MANA;
     coinSound = SOUNDS.collectables.COIN;

@@ -12,6 +12,7 @@ const IMAGE_CACHE = {};
  */
     function init() {
         preloadAllImages();
+
     }
 
 /**
@@ -48,8 +49,7 @@ const IMAGE_CACHE = {};
             initLevel();
             initWorld();
             gameStarted = true;
-            setFooter()
-            setMobilebuttons();
+
         }
     }
 
@@ -105,54 +105,33 @@ const IMAGE_CACHE = {};
         document.getElementById('canvas').classList.remove('dnone')
         document.getElementById('mainButton').classList.add('dnone')
         document.body.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
+        startGameButtons()
         preloadAssets()
-        mobileControls();
     }
 
-/**
- * Sets the footer visibility based on screen width.
- */
-    function setFooter() {
-        if (window.innerWidth > 1200)
-        document.getElementById('footerLine').classList.remove('dnone')
-    }
+
+
 
     window.addEventListener('resize', checkScreenOrientation);
     window.addEventListener('orientationchange', checkScreenOrientation);
     document.addEventListener('DOMContentLoaded', () => {
         checkScreenOrientation();
-        setMobilebuttons();
+
     });
     
 /**
  * Checks the screen orientation and displays a rotation prompt if needed.
  */
     function checkScreenOrientation() {
-        const switchScreen = document.getElementById('switchMobileDevice');
-        const switchscreenUi = document.getElementById('uiSwitchMobileDevice')
-            if (window.innerHeight > window.innerWidth) {
-                switchScreen.classList.remove('dnone');
-                switchscreenUi.classList.remove('dnone');
-            }else {
-                switchScreen.classList.add('dnone');
-                switchscreenUi.classList.add('dnone');
-            }
-    }
-
-/**
- * Sets the visibility of mobile control buttons based on screen size and game state.
- */
-    function setMobilebuttons() {
-        const hud = document.getElementById('hud')
-        const burger = document.getElementById('burgerBtn')
-        if(window.innerWidth < 1200 && gameStarted == true){
-                hud.classList.remove('dnone');
-                burger.classList.remove('dnone');
-            }else{
-                hud.classList.add('dnone');
-                burger.classList.add('dnone');
-            }
-    }
+    const elements = [
+        document.getElementById('switchMobileDevice'),
+        document.getElementById('uiSwitchMobileDevice')
+    ];
+    const portrait = window.innerHeight > window.innerWidth;
+    elements.forEach(el =>
+        el.classList.toggle('dnone', !portrait)
+    );
+}
 
 /**
  * Checks win or lose conditions and displays the appropriate overlay.
@@ -188,14 +167,17 @@ const IMAGE_CACHE = {};
         clearAllIntervals()
         if(document.fullscreenElement)
             exitFullscreen(); 
-            setTimeout(() => {  
-            document.getElementById('winOrLose').classList.remove('dnone')
-            document.getElementById('winOrLose').innerHTML =
-                    `<div class="winScreen"> 
-                        <img  class="resultImage" src="./gameassets/img/${result}.png" alt="${result} screen">
-                        <button class="dialoCloseBtn" onclick="restartGame()"><img src="./gameassets/img/icons/button.png" alt=""></button>
-                    </div>`
-            }, 1000);
+        setTimeout(() => {  
+        document.getElementById('winOrLose').classList.remove('dnone')
+        document.getElementById('winOrLose').innerHTML =
+                `<div class="winScreen"> 
+                    <img  class="resultImage" src="./gameassets/img/${result}.png" alt="${result} screen">
+                    <div class="buttonLineWinOrLose">
+                        <button class="btnWinOrLose" onclick="goHome()"></button>
+                        <button class="btnWinOrLose" onclick="restartGame()"></button>
+                    </div>
+                </div>`
+        }, 1000);
     }
 
 /**
@@ -237,21 +219,24 @@ const IMAGE_CACHE = {};
  */
     function fullscreen() {
     const gameWindow = document.getElementById('gameWindow');
-    const canvas = document.getElementById('canvas');
-    const menu = document.getElementById('ui100');
 
     if (!document.fullscreenElement) {
-        gameWindow.classList.add('gameWindow100');
-        canvas.classList.add('gameWindow100');
-        menu.classList.remove('dnone');
+        document.getElementById('canvas').classList.add('gameWindow100')
+        document.getElementById('burgerBtnInCanvas').classList.remove('dnone')
         enterfullScreen(gameWindow);
+        toggleBurgerMenu('burgerDialog')
+        dnoneGameButtons() 
     } else {
-        gameWindow.classList.remove('gameWindow100');
-        canvas.classList.remove('gameWindow100');
-        menu.classList.add('dnone');
-        exitFullscreen();
+        document.getElementById('canvas').classList.remove('gameWindow100')
+        document.getElementById('burgerBtnInCanvas').classList.add('dnone')
+        toggleBurgerMenu('burgerDialogUi')
+        toggleBurgerMenu('burgerDialog')
+        exitFullscreen()
+        startGameButtons()
+
     }
     }
+
 
 /**
  * Enters fullscreen mode for the specified element.
@@ -308,4 +293,19 @@ const IMAGE_CACHE = {};
  */
     function loadingScreen() {
         document.getElementById('loadingScreen').classList.toggle('dnone');
+    }
+
+    function startGameButtons() {
+        document.getElementById('hud').classList.remove('dnone')
+        document.getElementById('burgerBtn').classList.remove('dnone')
+        document.getElementById('footer').classList.add('dnone')
+        document.getElementById('menuButtonLine').classList.remove('dnone')
+        
+    }
+
+     function dnoneGameButtons() {
+        document.getElementById('hud').classList.add('dnone')
+        document.getElementById('burgerBtn').classList.add('dnone')
+        document.getElementById('menuButtonLine').classList.add('dnone')
+        
     }

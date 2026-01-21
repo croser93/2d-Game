@@ -1,4 +1,8 @@
 class CollectableItem extends MovableObject {
+       hitboxOffsetX = 8;
+        hitboxOffsetY = 8;
+        hitboxWidth = 15;
+        hitboxHeight = 15;
 
     IMAGE_COIN = [
         "gameassets/Collectable Object/Coin_01.png",

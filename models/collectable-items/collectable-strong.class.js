@@ -18,10 +18,10 @@ class CollectableStrong extends CollectableItem {
     ];
 
     currentImage = 0;
-    hitboxOffsetX = 10;
-    hitboxOffsetY = 10;
-    hitboxWidth = 65;
-    hitboxHeight = 60;
+    hitboxOffsetX = 30;
+    hitboxOffsetY = 30;
+    hitboxWidth = 30;
+    hitboxHeight = 30;
 
     constructor(){
         super().loadImage('gameassets/Collectable Object/collectable/1.png')

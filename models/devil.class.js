@@ -29,7 +29,7 @@ class Devil extends MovableObject{
         this.speed =  0.5 * Math.random()
         this.x = 600 + Math.random() * (Math.random() * (5 - 1) * 2000);
         this.otherDirection = true;
-        this.animateEnemiesRunLeft()
+        // this.animateEnemiesRunLeft()
         this.applyGravity();
     }
 

@@ -1,0 +1,144 @@
+/* pad */
+
+
+
+/* mobile */
+
+.mobileBtnLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  z-index: 8;
+}
+.mobileBtn img,
+.mobileBtn {
+  height: 48px;
+  width: 48px;
+  background-color: rgb(163 161 161 / 20%);
+  border: none;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+
+.mobileBtn:active {
+  background-color: rgba(61, 61, 61, 0.2);
+}
+
+.mobilBtnfield {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+}
+
+#burgerBtnInCanvas{
+position: absolute;
+height: 48px;
+width: 48px;
+top: 12px;
+right: 12px;
+background-color: transparent;
+border: none;
+z-index: 10;
+cursor: pointer;
+}
+
+#burgerDialogUi {
+  position: absolute;
+  display: flex;
+  top: 0;
+  right: 0;
+  width: 100px;
+  border-radius: 0 0 12px 12px;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  gap: 24px;
+  z-index: 9;
+}
+.burgerDialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    padding-top: 60px;
+    gap: 8px;
+}
+
+#burgerBtnInCanvas img,
+.burgerMenu img {
+  width: 32px;
+  height: 32px;
+}
+
+.burgerMenu {
+  display: flex;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  height: 48px;
+  width: 48px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  justify-content: center;
+  align-items: center;
+}
+
+.burgerDialog {
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  width: 100px;
+  border-radius: 0 0 12px 12px;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(4px);
+  flex-direction: column;
+  align-items: center;
+  padding-top: 100px;
+  gap: 24px;
+  z-index: 9;
+}
+
+.burgerIcon {
+  height: 48px;
+  width: 48px;
+}
+
+@media (pointer: coarse) {
+.switchMobileDevice {
+    position: absolute;
+    display: flex;
+    background-color: #212121;
+    height: 100vh;
+    width: 100vw;
+    top: 0px;
+    left: 0px;
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: clamp(1rem, 8vw, 4rem);
+    font-family: "FreckleFace-Regular";
+    z-index: 9999;
+  } 
+}
+
+#burgerBtn,
+#hud {
+        display: none;
+    }
+
+
+@media (pointer: coarse) {
+    #burgerBtn,
+    #hud {
+        display: flex;
+    }
+  }
+

@@ -2,6 +2,11 @@ class CollectableLive extends CollectableItem {
 
         IMAGE_LIVE = [
         "gameassets/Collectable Object/Life.png"];
+        
+        hitboxOffsetX = 8;
+        hitboxOffsetY = 8;
+        hitboxWidth = 15;
+        hitboxHeight = 15;
 
 
 

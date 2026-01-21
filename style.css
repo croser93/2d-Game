@@ -19,14 +19,14 @@ body {
   justify-content: center;
   background-repeat: no-repeat;
   background-color: #6b6b6b;
-    background-size: cover;
+  background-size: cover;   
+  background-image: url("./gameassets/img/Heroimage.png");
 }
 
 .gameSection {
-  background-image: url("./gameassets/img/Heroimage.png");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: calc(100vh - 63px - 127px);
 }
 canvas {
   background-color: black;
@@ -61,11 +61,7 @@ main {
   position: relative;
 }
 
-footer {
-display: flex;
-justify-content: end;
-padding: 0px 24px;
-}
+
 
 .dpf {
   display: flex;
@@ -82,12 +78,11 @@ h1 {
   text-shadow: 2px 2px 2px rgb(236, 229, 230);
 }
 
-.footerLine {
+.menuButtonLine{
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 16px;
-  max-width: 750px;
 }
 
 #info,
@@ -113,11 +108,6 @@ h1 {
   background-color: transparent;
   border: none;
 }
-#burgerBtnInCanvas img,
-.burgerMenu img {
-  width: 32px;
-  height: 32px;
-}
 
 dialog {
   background-color: transparent;
@@ -133,58 +123,25 @@ dialog {
   width: clamp(27.625rem, 40vw, 43.75rem);
 }
 
-.dialoCloseBtn {
+.buttonLineWinOrLose {
   position: absolute;
   top: 80%;
   left: 50%;
   transform: translate(-50%, -20%);
-  background-color: transparent;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+.btnWinOrLose{
   border: none;
   cursor: pointer;
-}
-.dialoCloseBtn img {
-  height: 48px;
-  width: 200px;
-  background-size: cover;
-}
-.hud {
-  display: flex;
-  position: absolute;
-  bottom: 0px;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.burgerMenu {
-  display: flex;
-  position: absolute;
-  top: 16px;
-  left: 16px;
   height: 48px;
   width: 48px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-  justify-content: center;
-  align-items: center;
+  background-color: #45b010;
+  border-radius: 50%;
 }
 
-.burgerDialog {
-  position: absolute;
-  display: flex;
-  top: 0;
-  left: 0;
-  width: 100px;
-  border-radius: 0 0 12px 12px;
-  background-color: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(4px);
-  flex-direction: column;
-  align-items: center;
-  padding-top: 100px;
-  gap: 24px;
-  z-index: 9;
-}
 
 #burgerSoundmode,
 #burgerFullscreen,
@@ -197,45 +154,6 @@ dialog {
   background-color: transparent;
 }
 
-.burgerIcon {
-  height: 48px;
-  width: 48px;
-}
-
-.mobileBtnLine {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 16px;
-  width: calc(100vw - 10%);
-  z-index: 8;
-}
-.mobileBtn img,
-.mobileBtn {
-  height: 48px;
-  width: 48px;
-  background-color: rgb(163 161 161 / 20%);
-  border: none;
-  border-radius: 12px;
-  backdrop-filter: blur(4px);
-  cursor: pointer;
-}
-
-.mobileBtn:active {
-  background-color: rgba(61, 61, 61, 0.2);
-}
-
-.mobilBtnfield {
-  display: flex;
-  gap: 16px;
-  padding: 16px;
-}
-
-/* .gameWindow {
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-} */
 .rotate90deg {
   transform: rotate(90deg);
 }
@@ -258,6 +176,7 @@ dialog {
   max-width: 720px;
   max-height: 480px;
 }
+
 .resultImage {
   max-width: 720px;
   max-height: 480px;
@@ -284,6 +203,7 @@ dialog {
 ::backdrop {
   background-color: rgba(0, 0, 0, 0.6);
 }
+
 .loadingScreen {
   position: fixed;
   top: 0;
@@ -333,22 +253,7 @@ p {
   transition: width 0.3s;
 }
 
-.switchMobileDevice {
-  position: absolute;
-  display: flex;
-  background-color: #212121;
-  height: 100vh;
-  width: 100vw;
-  top: 0px;
-  left: 0px;
-  z-index: 100;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: clamp(1rem, 8vw, 4rem);
-  font-family: "FreckleFace-Regular";
-  z-index: 11;
-}
+
 
 /* From Uiverse.io by StealthWorm */
 .btn {
@@ -548,7 +453,10 @@ strong {
   header {
     display: none;
   }
-  footer {
+  .gameSection{
+    height: calc(100vh - 63px);
+  }
+  .menuButton {
     display: none;
   }
 }
@@ -607,33 +515,65 @@ strong {
     gap: 8px;
 }}
 
-#burgerBtnInCanvas{
-position: absolute;
-height: 48px;
-width: 48px;
-top: 4px;
-right: 0px;
-background-color: transparent;
-border: none;
-z-index: 10;
-}
-
 .gameWindow100 {
   width: 100vw !important;
   height: 100vh !important;
 }
-.burgerDialogUi {
-  position: absolute;
-  display: flex;
-  top: 0;
-  right: 0;
-  width: 100px;
-  border-radius: 0 0 12px 12px;
-  background-color: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(4px);
-  flex-direction: column;
-  align-items: center;
-  padding-top: 100px;
-  gap: 24px;
-  z-index: 9;
+
+
+footer{
+border-top: 3px solid rgba(0, 0, 0, 0.192);
+background: #45b010;
+background: linear-gradient(135deg,rgba(69, 176, 16, 0.1) 0%, rgba(207, 104, 25, 0.8) 55%, rgba(235, 40, 33, 1) 100%);
+padding: 10px 0px;
 }
+
+.footerLine{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.buttonFooter{
+  display:flex;
+  justify-content: center;
+  background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  width: 144px;
+  border: silver 3px solid;
+  padding: 8px 24px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: white
+}
+
+.broder {
+margin: 20px 80px;
+}
+.content_beg_1440px {
+max-width: 1440px;
+box-sizing: border-box;
+margin: auto;
+}
+
+
+#menuButtonLine { 
+        display: none;
+    }
+
+
+@media (pointer: fine) {
+    #menuButtonLine{
+      display: flex;
+    }
+
+    #uiSwitchMobileDevice,
+    #switchMobileDevice {
+    display: none;
+  }
+  }
+  
+
+         
