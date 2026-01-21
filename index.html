@@ -31,48 +31,30 @@
     <script src="./script/sound.js"></script>
     <script src="./script/movabels.js"></script>
     <script src="./script/game.js"></script>
+    <script src="./gameassets/templates/template.js"></script>
   </head>
   
   <body onload="init()" oncontextmenu="return true">
 
     <header class="content_beg_1440px">
       <h1>Hellgate Shadowfall</h1>
+      <button id="burgerBtn" class="burgerMenu " onclick="toggleBurgerMenu('burgerOutOfUI')"><img src="gameassets/img/icons/burger menu.png" alt="Burger Menu Button" /></button>
     </header>
 
     <main id="gameSection" class="gameSection">
-
-      <button id="burgerBtn" class="burgerMenu dnone" onclick="toggleBurgerMenu('burgerDialog')">
-        <img src="gameassets/img/icons/burger menu.png" alt="Burger Menu Button" />
-      </button>
 
 
       <section id="gameWindow" class="content_beg_1440px">
         <canvas class="dnone" id="canvas" width="720" height="480"></canvas>
         
         <section class="ui">
+          
+          <button id="burgerBtnInCanvas" class="dnone" onclick="toggleBurgerMenu('burgerInUI')"><img src="gameassets/img/icons/burger menu.png" alt="Burger Menu Button" /></button>
+          
+          <div id="burgerInUI"></div>
+          <div id="hudID"></div>
+          
           <div id="uiSwitchMobileDevice" class="switchMobileDevice dnone"><h3>Switch Mobile Screen</h3></div>
-          
-          <button id="burgerBtnInCanvas" class="dnone" onclick="toggleBurgerMenu('burgerDialogUi')"><img src="gameassets/img/icons/burger menu.png" alt="Burger Menu Button" /></button>
-          
-          <div id="burgerDialogUi" class="dnone">
-            <button id="burgerSoundmode"><img class="burgerIcon" id="burgerSoundIcon"onclick="toggleSoundmode()" src="gameassets/img/icons/soundmute.png" alt="Sound On/OFF Button"/></button>
-            <button id="burgerFullscreen"><img class="burgerIcon"src="./gameassets/img/icons/fullscreen.png" alt="Fullscreen Button"onclick="fullscreen()"/>
-              <button id="burgerInfo"><img class="burgerIcon"src="./gameassets/img/icons/info.png" alt="Info Button"onclick="openInfoDialog()"/></button>
-          </div>
-
-          <div id="hud" class="hud dnone">
-            <div class="mobileBtnLine content_beg_1440px">
-              <div class="mobilBtnfield">
-                <button id="btnLeft" class="mobileBtn"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt="Button Left"/></button>
-                <button id="btnRight" class="mobileBtn rotate180deg"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt="Button Right"/></button>
-              </div>
-              <div class="mobilBtnfield">
-                <button id="btnUp" class="mobileBtn rotate90deg"><img src="./gameassets/img/icons/arrow-left-square-svgrepo-com.svg" alt="Button UP"/></button>
-                <button id="btnAttack" class="mobileBtn attackBtn"><img src="./gameassets/img/icons/attack.svg" alt="Button Attack" /></button>
-              </div>
-            </div>
-          </div>
-
         </section>
       </section>
 
@@ -92,9 +74,8 @@
 
     <footer id="footer">
       <div class="footerLine content_beg_1440px">     
-        <a class="buttonFooter" href="https://github.com/croser93/2d-Game.git">Impressum</a>
+        <a class="buttonFooter" href="./pages/impressum.html">Impressum</a>
         <a class="buttonFooter" href="https://github.com/croser93/2d-Game.git">GitHub</a>
-        <a class="buttonFooter" href="https://github.com/croser93/2d-Game.git">Datenschutz</a>
       </div>
     </footer>
   
@@ -126,11 +107,7 @@
         <button class="dialoCloseBtn" onclick="closeInfoDialog()"><img src="./gameassets/img/icons/button.png" alt="Close Dialog"/></button>
     </dialog>
     
-    <div id="burgerDialog" class="burgerDialog dnone">
-        <button id="burgerSoundmode"><img class="burgerIcon" id="burgerSoundIcon"onclick="toggleSoundmode()" src="gameassets/img/icons/soundmute.png" alt="Sound On/OFF Button"/></button>
-        <button id="burgerFullscreen"><img class="burgerIcon"src="./gameassets/img/icons/fullscreen.png" alt="Fullscreen Button"onclick="fullscreen()"/>
-        <button id="burgerInfo"><img class="burgerIcon"src="./gameassets/img/icons/info.png" alt="Info Button"onclick="openInfoDialog()"/></button>
-    </div>
+    <div id="burgerOutOfUI"></div>
     <div id="switchMobileDevice" class="switchMobileDevice"><h3>Switch Mobile Screen</h3></div>
   </section>
 

@@ -32,6 +32,22 @@
   padding: 16px;
 }
 
+.burgerInUI {
+  position: absolute;
+  display: flex;
+  top: 120px;
+  right: 0;
+  width: 100px;
+  border-radius: 12px 0 0px 12px;
+  background-color: rgba(0, 0, 0, 0.6);
+  flex-direction: column;
+  align-items: center;
+  padding: 24px;
+  gap: 24px;
+  z-index: 9;
+  animation: slideInFromRight 0.4s ease-out forwards;
+}
+
 #burgerBtnInCanvas{
 position: absolute;
 height: 48px;
@@ -44,34 +60,15 @@ z-index: 10;
 cursor: pointer;
 }
 
-#burgerDialogUi {
-  position: absolute;
-  display: flex;
-  top: 0;
-  right: 0;
-  width: 100px;
-  border-radius: 0 0 12px 12px;
-  background-color: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(4px);
-  flex-direction: column;
-  align-items: center;
-  padding-top: 100px;
-  gap: 24px;
-  z-index: 9;
-}
-.burgerDialog {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 80px;
-    padding-top: 60px;
-    gap: 8px;
-}
-
 #burgerBtnInCanvas img,
 .burgerMenu img {
   width: 32px;
   height: 32px;
+}
+
+.burgerIcon {
+  height: 48px;
+  width: 48px;
 }
 
 .burgerMenu {
@@ -89,26 +86,43 @@ cursor: pointer;
   align-items: center;
 }
 
-.burgerDialog {
-  position: absolute;
-  display: flex;
-  top: 0;
-  left: 0;
-  width: 100px;
-  border-radius: 0 0 12px 12px;
-  background-color: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(4px);
-  flex-direction: column;
-  align-items: center;
-  padding-top: 100px;
-  gap: 24px;
-  z-index: 9;
+.burgerOutOfUI {
+    position: absolute;
+    display: flex;
+    top: 200px;
+    left: 0;
+    width: 100px;
+    border-radius: 0 12px 12px 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    gap: 24px;
+    z-index: 9;
+    animation: slideInFromLeft 0.4s ease-out forwards;
 }
 
-.burgerIcon {
-  height: 48px;
-  width: 48px;
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-120%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
+
 
 @media (pointer: coarse) {
 .switchMobileDevice {

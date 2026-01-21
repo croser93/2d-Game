@@ -12,7 +12,6 @@ const IMAGE_CACHE = {};
  */
     function init() {
         preloadAllImages();
-
     }
 
 /**
@@ -48,8 +47,8 @@ const IMAGE_CACHE = {};
             loadingScreen();
             initLevel();
             initWorld();
+            setBtn();
             gameStarted = true;
-
         }
     }
 
@@ -173,8 +172,8 @@ const IMAGE_CACHE = {};
                 `<div class="winScreen"> 
                     <img  class="resultImage" src="./gameassets/img/${result}.png" alt="${result} screen">
                     <div class="buttonLineWinOrLose">
-                        <button class="btnWinOrLose" onclick="goHome()"></button>
-                        <button class="btnWinOrLose" onclick="restartGame()"></button>
+                        <button class="golden-button" onclick="goHome()"><span class="golden-text">Go Home</span></button>
+                        <button class="golden-button" onclick="restartGame()"><span class="golden-text">Restart</span></button>
                     </div>
                 </div>`
         }, 1000);
@@ -189,6 +188,22 @@ const IMAGE_CACHE = {};
         document.getElementById('winOrLose').classList.add('dnone')
         document.getElementById('winOrLose').innerHTML = "";
         startGame()     
+    }
+
+    function goHome() {
+        levelGenerator ;
+        level_1 ;
+        document.getElementById('winOrLose').classList.add('dnone')
+        document.getElementById('winOrLose').innerHTML = "";
+        document.getElementById('canvas').classList.add('dnone')
+        document.getElementById('footer').classList.remove('dnone')
+        document.getElementById('mainButton').classList.remove('dnone')
+        document.getElementById('hudID').innerHTML = ""
+
+
+        document.getElementById('gameSection').classList.add('gameSection')
+        document.body.style.backgroundImage = "url('gameassets/img/Heroimage.png')";
+        dnoneGameButtons()
     }
 
 /**
@@ -220,21 +235,18 @@ const IMAGE_CACHE = {};
     function fullscreen() {
     const gameWindow = document.getElementById('gameWindow');
 
-    if (!document.fullscreenElement) {
-        document.getElementById('canvas').classList.add('gameWindow100')
-        document.getElementById('burgerBtnInCanvas').classList.remove('dnone')
-        enterfullScreen(gameWindow);
-        toggleBurgerMenu('burgerDialog')
-        dnoneGameButtons() 
-    } else {
-        document.getElementById('canvas').classList.remove('gameWindow100')
-        document.getElementById('burgerBtnInCanvas').classList.add('dnone')
-        toggleBurgerMenu('burgerDialogUi')
-        toggleBurgerMenu('burgerDialog')
-        exitFullscreen()
-        startGameButtons()
-
-    }
+        if (!document.fullscreenElement) {
+            document.getElementById('canvas').classList.add('gameWindow100')
+            document.getElementById('burgerBtnInCanvas').classList.remove('dnone')
+            enterfullScreen(gameWindow);
+            toggleBurgerMenu('burgerOutOfUI')
+        } else {
+            document.getElementById('canvas').classList.remove('gameWindow100')
+            document.getElementById('burgerBtnInCanvas').classList.add('dnone')
+            toggleBurgerMenu('burgerInUI')
+            toggleBurgerMenu('burgerOutOfUI')
+            exitFullscreen()
+        }
     }
 
 
@@ -284,8 +296,12 @@ const IMAGE_CACHE = {};
  * Toggles the visibility of the burger menu.
  * @param {string} menu - The ID of the menu element to toggle.
  */
-    function toggleBurgerMenu(menu) {
-        document.getElementById(menu).classList.toggle('dnone')
+    function toggleBurgerMenu(currentDiv) {
+        const toggleMenu = document.getElementById(currentDiv)
+        if (toggleMenu.innerHTML === "") {
+            setBurger(currentDiv)    
+        } else
+            toggleMenu.innerHTML = ""
     }
 
 /**
@@ -296,16 +312,22 @@ const IMAGE_CACHE = {};
     }
 
     function startGameButtons() {
-        document.getElementById('hud').classList.remove('dnone')
+        // document.getElementById('hud').classList.remove('dnone')
         document.getElementById('burgerBtn').classList.remove('dnone')
         document.getElementById('footer').classList.add('dnone')
         document.getElementById('menuButtonLine').classList.remove('dnone')
+ 
+      
+    }
+
+    function setBtn() {
+       const btnContainer = document.getElementById('hudID')
+       btnContainer.innerHTML += mobileBtn();
         
     }
 
-     function dnoneGameButtons() {
-        document.getElementById('hud').classList.add('dnone')
-        document.getElementById('burgerBtn').classList.add('dnone')
-        document.getElementById('menuButtonLine').classList.add('dnone')
+    function setBurger(currentDiv) {
+       const burgerContainer = document.getElementById(currentDiv)
+       burgerContainer.innerHTML += burgerMenu(currentDiv);
         
     }
