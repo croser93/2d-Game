@@ -92,19 +92,16 @@ class Endboss extends MovableObject {
     chooseRandomAction() {
         const random = Math.random();
         
-        if (random < 0.3) {
-            this.currentAction = 'walk';
-            this.actionRepeats = Math.floor(Math.random() * 20) + 10;
-            this.walkDirection = Math.random() < 0.5 ? -1 : 1;
-        } else if (random < 0.5 && this.y === 100) {
+         if (random < 0.4 && this.y === 100) {
             this.currentAction = 'jump';
             this.actionRepeats = 30;
-        } else if (random < 0.75) {
+        } else if (random < 0.6) {
             this.currentAction = 'attack';
             this.actionRepeats = this.ATTACK.length * 1;
         } else {
-            this.currentAction = 'idle';
-            this.actionRepeats = Math.floor(Math.random() * 30) + 20;
+            this.currentAction = 'walk';
+            this.actionRepeats = Math.floor(Math.random() * 20) + 10;
+            this.walkDirection = Math.random() < 0.5 ? -1 : 1;
         }
         this.actionCounter = 0;
     }
@@ -116,9 +113,6 @@ class Endboss extends MovableObject {
         switch(this.currentAction) {
             case 'walk':
                 this.walkInArena();
-                break;
-            case 'idle':
-                this.idleState();
                 break;
             case 'attack':
                 this.attackState();
@@ -214,15 +208,6 @@ class Endboss extends MovableObject {
         return this.jumpDirectionX;
     }
 
-/**
- * Handles the idle state animation and hitbox reset.
- */
-    idleState() {
-        this.isAttacking = false;
-        this.hitboxOffsetX = 80;
-        this.hitboxWidth = 140;
-        this.playAnimationLoop(this.IDLE);
-    }
 
 /**
  * Plays a sound once using a flag to prevent repeated playback.

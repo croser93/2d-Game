@@ -107,15 +107,22 @@ class World {
  */    
     checkJumpAttack(){
         this.level_1.enemies.forEach((enemy, index) => {
-            if(this.isJumpingOnEnemy(enemy) && this.character.y > enemy.hitboxTop && !enemy.dead){
+            if(this.isJumpingOnEnemy(enemy) && !enemy.dead){
                 if (enemy.live <= 0 && !enemy.dead) 
                     this.enemyDead(enemy);
                 this.character.setSpeedY(12);       
-                enemy.live -= 0
+                enemy.live -= 10
             }
         });
     }
 
+
+
+/**
+ * checks if character and enemie are superior to each other.
+ * @param {Object} enemy - The enemy object that contact
+ * @returns {boolean} True if jump attack is allowed, false otherwise.
+ */   
 isJumpingOnEnemy(enemy) {
     const characterBottom = this.character.y + this.character.hitboxOffsetY + (this.character.hitboxHeight || this.character.height);
     const enemyTop = enemy.y + enemy.hitboxOffsetY;
@@ -129,17 +136,6 @@ isJumpingOnEnemy(enemy) {
            Math.abs(characterCenterX - enemyCenterX) < maxDistance;
 }
     
-
-
-/**
- * Determines if enough time has passed since the last hit to allow a jump attack.
- * @returns {boolean} True if jump attack is allowed, false otherwise.
- */    
-    canJumpAttack() {
-    if (!this.character.lastHit) return true;
-        const now = Date.now();
-        return now - this.character.lastHit > 500; 
-    }
 
 /**
  * Checks if the player initiates an attack and creates a new attack object.
@@ -175,6 +171,9 @@ isJumpingOnEnemy(enemy) {
 
 /**
  * Enemie Hit with Objekt 
+ * @param {Object} enemy - The enemy object that hit
+ * @param {Object} attackObj - The attack object
+ * @param {Number} baseDamage - damage from attack-object class
  */
    enemieHit(enemy, attackObj, baseDamage) {
         this.calcDamage(enemy, baseDamage);
@@ -190,6 +189,8 @@ isJumpingOnEnemy(enemy) {
 
 /**
  * Calculate damage from Character and Enemie resistance
+ * @param {Object} enemy - The enemy object that hit
+ * @param {Number} baseDamage - damage from attack-object class
  */
     calcDamage(enemy, baseDamage) {
         const finalDamage = baseDamage * enemy.resistance;
@@ -202,6 +203,7 @@ isJumpingOnEnemy(enemy) {
 
 /**
  * Splice attackObj form attack array
+ * @param {Object} attackOb - The attack object
  */
     removeAttack(attackObj) {
         const index = this.attack.indexOf(attackObj);
@@ -212,6 +214,8 @@ isJumpingOnEnemy(enemy) {
 
 /**
  * Calculation enemie damage with multiplier
+ * @param {Object} enemy - The enemy object that hit
+ * @param {Object} attackObj - The attack object
  */
     damageOnEnemie(enemy, attackObj){
         enemy.live -= attackObj.damage * (enemy.damageMultiplier || 1);
@@ -255,6 +259,8 @@ isJumpingOnEnemy(enemy) {
         this.addObjectsToMap(this.background);
         this.addObjectsToMap(this.backgroundassets);
         this.addObjectsToMap(this.backgroundassetsunderworld);
+        this.addObjectsToMap(this.attack);
+        this.addToMap(this.character);
         this.addObjectsToMap(this.coins)
         this.addObjectsToMap(this.strong)
         this.addObjectsToMap(this.live)
@@ -264,8 +270,6 @@ isJumpingOnEnemy(enemy) {
         this.addToMap(this.collecableBar);
         this.ctx.translate(this.camera_x, 0)
         this.addObjectsToMap(this.enemies);
-        this.addObjectsToMap(this.attack);
-        this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);    
         let self = this;
         requestAnimationFrame(function() {
