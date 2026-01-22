@@ -15,6 +15,7 @@ class Endboss extends MovableObject {
     x = 3600;
     walkSpeed = 3;
     jumpSpeed = 7
+    resistance = 1
    
 
     hitboxOffsetX = 80;

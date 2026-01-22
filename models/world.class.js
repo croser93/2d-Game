@@ -64,7 +64,7 @@ class World {
         let fastinterval = setInterval(() => {
             this.checkAttack();
             this.checkCollect();
-            this.checkAttackHit();
+            this.checkAttackCollisions();
             this.checkJumpAttack();
         },1000 / 60)
         this.intervals.push(fastinterval);
@@ -156,24 +156,59 @@ isJumpingOnEnemy(enemy) {
     }
 
 /**
- * Checks if any attack objects hit enemies and applies damage.
+ * Checks if any attack objects hit enemies 
  */
-    checkAttackHit() { 
-    this.attack.forEach((attackObj, attackIndex) => {
-        this.level_1.enemies.forEach((enemy, enemyIndex) => {
-            if (attackObj.isColliding(enemy)) {
-                if (!attackObj.hitEnemies) 
-                    attackObj.hitEnemies = [];         
-                
-                if (!attackObj.hitEnemies.includes(enemy)) 
-                    this.damageOnEnemie(enemy, attackObj)
-                    
-                    if (enemy.live <= 0 && !enemy.dead) 
-                        this.enemyDead(enemy);
-            }
+    checkAttackCollisions() {
+        this.attack.forEach((attackObj) => {
+            const baseDamage = attackObj.damage
+             if (attackObj.hasDealtDamage) return;
+            this.level_1.enemies.forEach((enemy) => {
+                if (attackObj.isColliding(enemy) && !enemy.dead && !attackObj.hasDealtDamage ) {
+                    attackObj.hasDealtDamage = true;
+                    this.enemieHit(enemy, attackObj, baseDamage);
+                } else{setTimeout(() => {
+                    this.removeAttack(attackObj);
+                }, 2000);}
+            });
         });
-    });
-}
+    }
+
+/**
+ * Enemie Hit with Objekt 
+ */
+   enemieHit(enemy, attackObj, baseDamage) {
+        this.calcDamage(enemy, baseDamage);
+        clearInterval(attackObj.throwInterval);
+        attackObj.speedY = 0;
+        attackObj.acceleration = 0;
+        attackObj.playExplosion();
+
+        setTimeout(() => {
+            this.removeAttack(attackObj);
+        }, 1000);
+    }
+
+/**
+ * Calculate damage from Character and Enemie resistance
+ */
+    calcDamage(enemy, baseDamage) {
+        const finalDamage = baseDamage * enemy.resistance;
+        enemy.live -= finalDamage;
+        if (enemy.live <= 0) {
+            enemy.dead = true;
+            this.enemyDead(enemy);
+        }
+    }
+
+/**
+ * Splice attackObj form attack array
+ */
+    removeAttack(attackObj) {
+        const index = this.attack.indexOf(attackObj);
+        if (index > -1) {
+            this.attack.splice(index, 1);
+        }
+    }
 
 /**
  * Calculation enemie damage with multiplier
@@ -220,8 +255,6 @@ isJumpingOnEnemy(enemy) {
         this.addObjectsToMap(this.background);
         this.addObjectsToMap(this.backgroundassets);
         this.addObjectsToMap(this.backgroundassetsunderworld);
-        this.addObjectsToMap(this.attack);
-        this.addToMap(this.character);
         this.addObjectsToMap(this.coins)
         this.addObjectsToMap(this.strong)
         this.addObjectsToMap(this.live)
@@ -231,6 +264,8 @@ isJumpingOnEnemy(enemy) {
         this.addToMap(this.collecableBar);
         this.ctx.translate(this.camera_x, 0)
         this.addObjectsToMap(this.enemies);
+        this.addObjectsToMap(this.attack);
+        this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);    
         let self = this;
         requestAnimationFrame(function() {

@@ -11,6 +11,7 @@ class Archer extends MovableObject{
     dead = false;
     intervals = [];
     damage = 5;
+    resistance = 2
 
     IDLE = MOVABELS.archer.IMAGES_IDLE
     WALK = MOVABELS.archer.IMAGES_WALK

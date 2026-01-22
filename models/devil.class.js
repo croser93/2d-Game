@@ -13,6 +13,7 @@ class Devil extends MovableObject{
     dead = false;
     intervals = [];
     damage = 10;
+    resistance = 1.5
 
     IDLE = MOVABELS.devil.IMAGES_IDLE
     WALK = MOVABELS.devil.IMAGES_WALK

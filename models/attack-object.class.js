@@ -3,11 +3,12 @@ class Attack extends MovableObject {
 
     currentImage = 0;
     world;
-    hitboxOffsetX = 0;
-    hitboxOffsetY = 0;
-    hitboxWidth = 0;
-    hitboxHeight = 0;
-    damage = 20;
+    hitboxOffsetX = 42;
+    hitboxOffsetY = 52;
+    hitboxWidth = 15;
+    hitboxHeight = 15;
+    damage = 25;
+    hasDealtDamage = false;
 
     constructor(x, y, otherDirection){
         super().loadImage('gameassets/Elves/PNG/PNG Sequences/attack/Explosion_3.png')
@@ -15,7 +16,7 @@ class Attack extends MovableObject {
         this.trow ()
         this.x = x ;
         this.y = y ;
-         this.otherDirection = otherDirection;      
+        this.otherDirection = otherDirection;      
     }
 
 /**
@@ -26,7 +27,7 @@ class Attack extends MovableObject {
         this.applyGravity();
         this.throwInterval = setInterval(() => {
             if (this.otherDirection) 
-                this.x -= 15;
+                this.x = 0;
             else 
                 this.x += 15;
             if(this.y >= 274) {
@@ -46,7 +47,6 @@ class Attack extends MovableObject {
                 this.playAnimationOnce(this.ATTACK);
             } else {
                 clearInterval(explosionInterval);
-                this.removeFromWorld();
             }
         }, 60);
     }
