@@ -15,7 +15,9 @@ class MovableObject extends DrawableObject {
             }
             if (this.x < -50 || this.x > 4600) {
                 this.y += this.acceleration + 5;
-            }
+            }    if (this.y > 261 && this instanceof Character) {
+                this.y = 260;
+        }
         }, 1000 / 30);
     }
 
@@ -24,7 +26,7 @@ class MovableObject extends DrawableObject {
  * @returns {boolean} True if the object is above ground, false otherwise.
  */
     isAboveGround(){    
-        return this.y <= 260  
+        return this.y <= 259  
     }
 
 /**

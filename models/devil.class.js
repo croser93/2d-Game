@@ -5,9 +5,9 @@ class Devil extends MovableObject{
     y = 200
     currentImage = 0;
     hitboxOffsetX = 50;
-    hitboxOffsetY = 40;
+    hitboxOffsetY = 50;
     hitboxWidth = 80;
-    hitboxHeight = 115;
+    hitboxHeight = 100;
     damageMultiplier = 1.8;
     live = 100;
     dead = false;

@@ -249,7 +249,6 @@ const IMAGE_CACHE = {};
         }
     }
 
-
 /**
  * Enters fullscreen mode for the specified element.
  * @param {HTMLElement} element - The element to display in fullscreen.

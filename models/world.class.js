@@ -107,14 +107,29 @@ class World {
  */    
     checkJumpAttack(){
         this.level_1.enemies.forEach((enemy, index) => {
-            if(this.character.isColliding(enemy) && this.canJumpAttack() &&this.character.y <= 220 && !enemy.dead && Math.abs(this.character.x - enemy.x) <= 35){
+            if(this.isJumpingOnEnemy(enemy) && this.character.y > enemy.hitboxTop && !enemy.dead){
                 if (enemy.live <= 0 && !enemy.dead) 
                     this.enemyDead(enemy);
                 this.character.setSpeedY(12);       
-                enemy.live -= 15;
+                enemy.live -= 0
             }
         });
     }
+
+isJumpingOnEnemy(enemy) {
+    const characterBottom = this.character.y + this.character.hitboxOffsetY + (this.character.hitboxHeight || this.character.height);
+    const enemyTop = enemy.y + enemy.hitboxOffsetY;
+    const characterCenterX = this.character.x + this.character.hitboxOffsetX + (this.character.hitboxWidth || this.character.width) / 2;
+    const enemyCenterX = enemy.x + enemy.hitboxOffsetX + (enemy.hitboxWidth || enemy.width) / 2;
+    const maxDistance = (enemy.hitboxWidth || enemy.width) * 0.3;
+    
+    return characterBottom > enemyTop && 
+           characterBottom < enemyTop + 20 &&
+           this.character.speedY < 0 &&
+           Math.abs(characterCenterX - enemyCenterX) < maxDistance;
+}
+    
+
 
 /**
  * Determines if enough time has passed since the last hit to allow a jump attack.
