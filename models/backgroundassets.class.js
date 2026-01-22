@@ -1,7 +1,8 @@
 class Backgroundassets extends MovableObject{
 
     constructor(imagePath, x, y = 340){
-        super().loadImage(imagePath)
+        super();
+        this.loadImage(imagePath)
         this.x = x
         this.y = y
         this.height = 80
@@ -11,10 +12,11 @@ class Backgroundassets extends MovableObject{
 
 }
 
-class Backgroundassetsunder extends Backgroundassets{
+class Backgroundassetsunder extends MovableObject{
 
     constructor(imagePath, x, y = 420){
-        super().loadImage(imagePath)
+        super();
+        this.loadImage((imagePath))
         this.x = x
         this.y = y
     }
