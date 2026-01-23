@@ -141,7 +141,7 @@ class Character extends MovableObject{
  * Plays the long idle animation.
  */
     longIdle(){
-        this.playAnimationOnce(this.LONG_IDLE);
+        this.playAnimationLoop(this.LONG_IDLE);
         
     }
 

@@ -108,9 +108,6 @@ const IMAGE_CACHE = {};
         preloadAssets()
     }
 
-
-
-
     window.addEventListener('resize', checkScreenOrientation);
     window.addEventListener('orientationchange', checkScreenOrientation);
     document.addEventListener('DOMContentLoaded', () => {
@@ -209,25 +206,26 @@ const IMAGE_CACHE = {};
 /**
  * Toggles icon and soundmode between on and off.
  */
-    function toggleSoundmode() {
-        const icons = [
-        document.getElementById('soundIcon'),
-        document.getElementById('burgerSoundIcon'),
-        document.getElementById('burgerSoundIconUi')];
+function toggleSoundmode() {
+    soundmodeON = !soundmodeON;
 
-        if (soundmodeON) {
-            soundmodeON = false
-            icons.forEach(icon => {
-                icon.src = 'gameassets/img/icons/soundmute.png'});
-            worldsound(SOUNDS.Worldsounds.BACKGROUNDSOUND)
+    document.querySelectorAll('.soundImg').forEach(icon => {
+        icon.classList.toggle('sound-on', soundmodeON);
+        icon.classList.toggle('sound-off', !soundmodeON);
+    });
+    worldsound(SOUNDS.Worldsounds.BACKGROUNDSOUND);
+}
 
-        } else if (soundmodeON == false) {
-             icons.forEach(icon => {
-                icon.src = 'gameassets/img/icons/soundOn.png'});
-            soundmodeON = true
-            worldsound(SOUNDS.Worldsounds.BACKGROUNDSOUND)
-        }
-    }
+/**
+ * Update mobile sound buttons
+ */
+function sycnIconinTemplate(){
+   const burgerSoundmode = document.getElementById('burgerSoundmode')
+        if (soundmodeON) 
+        burgerSoundmode.classList.add('sound-on')
+        else
+        burgerSoundmode.classList.add('sound-off')
+}
 
 /**
  * Toggles fullscreen mode for the game window.
@@ -326,7 +324,8 @@ const IMAGE_CACHE = {};
     }
 
     function setBurger(currentDiv) {
-       const burgerContainer = document.getElementById(currentDiv)
-       burgerContainer.innerHTML += burgerMenu(currentDiv);
+        const burgerContainer = document.getElementById(currentDiv)
+        burgerContainer.innerHTML += burgerMenu(currentDiv);
+        sycnIconinTemplate();
         
     }

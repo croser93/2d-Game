@@ -154,6 +154,22 @@ dialog {
   background-color: transparent;
 }
 
+.soundImg{
+    height: 64px;
+    width: 64px;
+    background-size: cover;
+}
+
+.sound-on {
+    background-image: url('gameassets/img/icons/soundOn.png');
+    background-size: cover;
+}
+
+.sound-off {
+    background-image: url('gameassets/img/icons/soundmute.png');
+    background-size: cover;
+}
+
 .rotate90deg {
   transform: rotate(90deg);
 }

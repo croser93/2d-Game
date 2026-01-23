@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.border{
+    padding: 24px;
+    max-width: 1440px;
+}
+
+.dpf{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
