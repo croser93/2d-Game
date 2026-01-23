@@ -6,6 +6,12 @@
   font-style: normal;
   font-display: swap;
 }
+html {
+  height: 100vh;
+  background: url("./gameassets/img/Heroimage.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 * {
   box-sizing: border-box;
@@ -18,9 +24,6 @@ body {
   flex-direction: column;
   justify-content: center;
   background-repeat: no-repeat;
-  background-color: #6b6b6b;
-  background-size: cover;   
-  background-image: url("./gameassets/img/Heroimage.png");
 }
 
 .gameSection {
@@ -85,11 +88,11 @@ h1 {
   gap: 16px;
 }
 
+
+#soundmode,
 #info,
-#soundmode img,
-#soundmode {
-  height: 64px;
-  width: 64px;
+#fullscreen,
+#fullscreen img {
   display: flex;
   justify-content: center;
   cursor: pointer;
@@ -97,16 +100,9 @@ h1 {
   border: none;
 }
 
-#info,
-#fullscreen,
-#fullscreen img {
-  height: 64px;
-  width: 64px;
-  display: flex;
-  justify-content: center;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
+.iconSize{
+height: 64px;
+width: 64px;
 }
 
 dialog {
@@ -517,14 +513,18 @@ strong {
   }
 }
 @media only screen and (max-width: 1025px) {
-  h1 {
+  footer,
+  header {
     display: none;
   }
   .gameSection{
-    height: calc(100vh - 111px);
+    height: calc(100vh);
   }
   .menuButton {
     display: none;
+  }
+  .burgerOutOfUI{
+    top:84px
   }
 }
 
@@ -535,11 +535,21 @@ strong {
     width: 100%;
   }
   main {
-    height: 100%;
+    height: calc(100vh - 97px);
   }
   .dialoCloseBtn img {
     height: 24px;
     width: 200px;
+  }
+
+  .soundImg{
+    height: 48px;
+    width: 48px;
+  
+  }
+  .iconSize{
+  height: 48px;
+  width: 48px;
   }
 }
 
@@ -572,7 +582,6 @@ strong {
     width: 24px;
     height: 24px;
 }
-
 
 }
 .gameWindow100 {

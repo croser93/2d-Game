@@ -47,7 +47,7 @@ const IMAGE_CACHE = {};
             loadingScreen();
             initLevel();
             initWorld();
-            setBtn();
+            setBtn('mobileBtn')
             gameStarted = true;
         }
     }
@@ -103,7 +103,7 @@ const IMAGE_CACHE = {};
         document.getElementById('gameSection').classList.remove('gameSection')
         document.getElementById('canvas').classList.remove('dnone')
         document.getElementById('mainButton').classList.add('dnone')
-        document.body.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
+        document.documentElement.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
         startGameButtons()
         preloadAssets()
     }
@@ -259,6 +259,9 @@ function sycnIconinTemplate(){
         else if(element.webkitRequestFullscreen)
             element.webkitRequestFullscreen();
         else exitFullscreen(element)
+        document.getElementById('hudID').classList.add('MobileBtnFullscreen')
+        document.getElementById('mobileBtn').innerHTML = ""
+        setBtn('hudID')
     }
 
 /**
@@ -271,6 +274,8 @@ function sycnIconinTemplate(){
             document.msExitFullscreen();
         else if (document.webkitExitFullscreen) 
             document.webkitExitFullscreen();
+        document.getElementById('hudID').innerHTML = ""
+        setBtn('mobileBtn')
     }        
 
 /**
@@ -315,8 +320,8 @@ function sycnIconinTemplate(){
         document.getElementById('menuButtonLine').classList.remove('dnone')
     }
 
-    function setBtn() {
-       const btnContainer = document.getElementById('hudID')
+    function setBtn(hudcontainer) {
+       const btnContainer = document.getElementById(hudcontainer)
        btnContainer.innerHTML += mobileBtn();  
     }
 

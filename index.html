@@ -38,10 +38,10 @@
 
     <header class="content_beg_1440px">
       <h1>Hellgate Shadowfall</h1>
-      <button id="burgerBtn" class="burgerMenu " onclick="toggleBurgerMenu('burgerOutOfUI')"><img src="gameassets/img/icons/burger menu.png" alt="Burger Menu Button" /></button>
     </header>
-
+    
     <main id="gameSection" class="gameSection">
+      <button id="burgerBtn" class="burgerMenu " onclick="toggleBurgerMenu('burgerOutOfUI')"><img src="gameassets/img/icons/burger menu.png" alt="Burger Menu Button" /></button>
 
 
       <section id="gameWindow" class="content_beg_1440px">
@@ -83,11 +83,13 @@
     
     <div id="menuButtonLine" class="dnone">
       <div class="menuButtonLine content_beg_1440px">
-        <button id="soundmode"><div id="soundIcon" class="soundImg sound-off" onclick="toggleSoundmode()"></div></button>
-        <button id="fullscreen"><img src="./gameassets/img/icons/fullscreen.png" alt="Fullscreen Button" onclick="fullscreen()"/></button>
-        <button id="info"><img src="./gameassets/img/icons/info.png" alt="Info Button" onclick="openInfoDialog()"/> </button>
+        <button id="soundmode" class="iconSize"><div id="soundIcon" class="soundImg sound-off" onclick="toggleSoundmode()"></div></button>
+        <button id="fullscreen" class="iconSize"><img src="./gameassets/img/icons/fullscreen.png" alt="Fullscreen Button" onclick="fullscreen()"/></button>
+        <button id="info" class="iconSize"><img src="./gameassets/img/icons/info.png" alt="Info Button" onclick="openInfoDialog()"/> </button>
       </div>
     </div>
+
+    <div id="mobileBtn"></div>
     
     <div class="mainButton" id="mainButton">
       <button id="startGame" type="button" class="btn startGame" onclick="startGame()">
