@@ -18,10 +18,10 @@ class Endboss extends MovableObject {
     resistance = 1
    
 
-    hitboxOffsetX = 80;
-    hitboxOffsetY = 60;
-    hitboxWidth = 140;
-    hitboxHeight = 200;
+    hitboxOffsetX = 100
+    hitboxOffsetY = 80;
+    hitboxWidth = 110;
+    hitboxHeight = 170;
 
     IDLE = MOVABELS.boss.IMAGES_IDLE
     WALK = MOVABELS.boss.IMAGES_WALK
@@ -98,11 +98,13 @@ class Endboss extends MovableObject {
         } else if (random < 0.6) {
             this.currentAction = 'attack';
             this.actionRepeats = this.ATTACK.length * 1;
+
         } else {
             this.currentAction = 'walk';
             this.actionRepeats = Math.floor(Math.random() * 20) + 10;
             this.walkDirection = Math.random() < 0.5 ? -1 : 1;
         }
+        this.returnHitbox();
         this.actionCounter = 0;
     }
 
@@ -132,17 +134,16 @@ class Endboss extends MovableObject {
         else if (this.walkDirection === 1 && this.x <= this.arenaRight) 
             this.inArenaRight(this.walkSpeed) 
         this.playAnimationLoop(this.WALK);
-        this.returnHitbox
     }
 
 /**
  * Resets the hitbox after Attack to default values.
  */
     returnHitbox(){
-    this.hitboxOffsetX = 80;
-    this.hitboxOffsetY = 60;
-    this.hitboxWidth = 140;
-    this.hitboxHeight = 200;
+    this.hitboxOffsetX = 100
+    this.hitboxOffsetY = 80;
+    this.hitboxWidth = 110;
+    this.hitboxHeight = 170;
     }
 
 /**
@@ -150,6 +151,7 @@ class Endboss extends MovableObject {
  * @param {number} speed - The movement speed.
  */
     inArenaLeft(speed){
+ 
         this.x -= speed;
         this.otherDirection = true;
     }
@@ -159,6 +161,7 @@ class Endboss extends MovableObject {
  * @param {number} speed - The movement speed.
  */
     inArenaRight(speed){
+        
         this.x += speed;
         this.otherDirection = false;
     }
@@ -167,6 +170,7 @@ class Endboss extends MovableObject {
  * Handles the attack state animation and hitbox changes.
  */
     attackState() {
+
         this.attackSoundPlayed = false;
         this.isAttacking = true;
         this.hitboxOffsetX = 20;
@@ -180,7 +184,7 @@ class Endboss extends MovableObject {
  */
     jumpState() {
         this.jumpDirectionX = this.jumpingCalculation();
-        this.returnHitbox();
+
         
         if (this.jumpDirectionX === -1 && this.x > this.arenaLeft) 
             this.inArenaLeft(this.jumpSpeed);
@@ -198,6 +202,8 @@ class Endboss extends MovableObject {
     jumpingCalculation(){
         if (this.actionCounter === 0 && !this.isAboveGround()) {
             this.speedY = 22;
+            this.hitboxWidth = 90;
+            this.hitboxOffsetY = 60;
             this.jumpSoundPlayed = false;
             this.jumpDirectionX = Math.random() < 0.5 ? -1 : 1;
             if ((this.jumpDirectionX === -1 && this.x <= this.arenaLeft) || 
