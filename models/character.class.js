@@ -31,6 +31,7 @@ class Character extends MovableObject{
     hitboxWidth = 45;
     hitboxHeight = 60;
 
+    isLongIdle = false;
 
     constructor() {
         super().loadImage('gameassets/Elves/PNG/PNG Sequences/Idle/0_Dark_Elves_Idle_000.png')
@@ -189,30 +190,36 @@ class Character extends MovableObject{
 
 /**
  * Starts the idle timer for long idle animation.
- */
+*/
+
     startIdleTimer() {
-        this.idleTime = 0;
-        this.isLongIdle = false;
-        let longIdleInterval = setInterval(() => {
-            if (!this.dead) {
-                this.idleTime += 100;
-                if (this.idleTime >= 15000 && !this.isLongIdle) {
-                    this.isLongIdle = true;
-                    playSoundloop(this.idleSound, true);
-                }
-            }
-        }, 100);
-        this.intervals.push(longIdleInterval);
-    }
+    this.idleTime = 0;
+
+    let longIdleInterval = setInterval(() => {
+        if (this.dead) return;
+
+        this.idleTime += 100;
+
+        if (this.idleTime >= 15000 && !this.isLongIdle) {
+            this.isLongIdle = true;
+            playSoundloop(this.idleSound);
+        }
+    }, 100);
+
+    this.intervals.push(longIdleInterval);
+}
 
 /**
  * Resets the idle timer and stops long idle animation.
  */
     resetIdle() {
-        this.idleTime = 0;
-        this.isLongIdle = false;
-        playSoundloop(this.idleSound, false);
-    }
+    this.idleTime = 0;
+    this.isLongIdle = false;
+
+    const audio = this.idleSound.SOUND;
+    audio.pause();
+    audio.currentTime = 0;
+}
 
 }
 

@@ -25,12 +25,12 @@ class LevelGenerator {
         this.bossPlatformStart = 3184;
         this.bossPlatformLength = 566;
         
-        this.devilCount = this.randomBetween(1, 1);
+        this.devilCount = this.randomBetween(2, 5);
         this.aracherCount = this.randomBetween(1, 1);
 
-        this.coinCount = this.randomBetween(1, 1);
-        this.strongCount = this.randomBetween(1, 1)
-        this.liveCount = this.randomBetween(1, 1)
+        this.coinCount = this.randomBetween(10, 15);
+        this.strongCount = this.randomBetween(5, 7)
+        this.liveCount = this.randomBetween(4, 6)
         
         this.tiles = {
             ground: {

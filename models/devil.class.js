@@ -19,7 +19,7 @@ class Devil extends MovableObject{
     WALK = MOVABELS.devil.IMAGES_WALK
     DYING = MOVABELS.devil.IMAGES_DYING
 
-    SOUND = SOUNDS.devil.SCREAM
+    SOUND = SOUNDS.devil.DEAD
 
 
     constructor(){
@@ -28,9 +28,9 @@ class Devil extends MovableObject{
         this.loadImages(this.WALK);
         this.loadImages(this.DYING);
         this.speed =  0.5 * Math.random()
-        this.x = 600 + Math.random() * (Math.random() * (5 - 1) * 2000);
+        this.x = 600 + Math.random() * (3300 - 600);
         this.otherDirection = true;
-        // this.animateEnemiesRunLeft()
+        this.animateEnemiesRunLeft()
         this.applyGravity();
     }
 
@@ -52,7 +52,7 @@ class Devil extends MovableObject{
         }, 1000 / 7 );
         const devilLeftInterval = setInterval(() =>{ 
         this.moveLeft();   
-        this.playRandomEnemySound();
+
 
         }, 1000 / 60);
         this.intervals.push(devilAnimationInterval);
@@ -67,14 +67,4 @@ class Devil extends MovableObject{
         this.playAnimationOnce(this.DYING, this.currentImage);
     }
 
-/**
- * Randomly plays the enemy and devil sound.
- */
-    playRandomEnemySound() {
-        let random = Math.floor(Math.random() * 3000) === 0 ? 1 : 0;
-        if (random >= 1 && !this.dead){
-            playSound(this.SOUND)
-        } 
-    
-    }
 }   

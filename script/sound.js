@@ -31,14 +31,14 @@ const SOUNDS = {
         }
     },
     enemies:{
-        SCREAM: {
-            SOUND: new Audio('gameassets/sounds/enemie.mp3'),
+        DEAD: {
+            SOUND: new Audio('gameassets/sounds/aracher_dead.mp3'),
             VOLUME: 0.1
         },
     },
      devil:{
-        SCREAM: {
-            SOUND: new Audio('gameassets/sounds/devil.mp3'),
+        DEAD: {
+            SOUND: new Audio('gameassets/sounds/devil_dead.mp3'),
             VOLUME: 0.3
         },
     },
@@ -97,15 +97,18 @@ const preloadStartSound = [
     'gameassets/sounds/win.mp3'
 ];
 let soundmodeON = false;
+let intervals = []
 
-function playSound(sound){
-    if (soundmodeON) { 
-        soundSnipped = sound.SOUND
-        volume = sound.VOLUME
-        soundSnipped.volume = volume;
-        soundSnipped.play();
-    }
-     }
+function playSound(sound) {
+    if (!soundmodeON) return;
+
+    const audio = sound.SOUND;
+    audio.volume = sound.VOLUME;
+    audio.loop = false;
+
+    audio.play();
+
+}
 
 function playSoundclone(sound){
     if (soundmodeON) { 
@@ -116,17 +119,18 @@ function playSoundclone(sound){
     } 
 }
 
-function playSoundloop(sound, trigger){
-    soundSnipped = sound.SOUND
-    volume = sound.VOLUME
-    soundSnipped.volume = volume;
-    if (soundmodeON && trigger) { 
-        soundSnipped.loop = true;
-        soundSnipped.play();    
-    } 
-    else{
-        soundSnipped.pause();
-    soundSnipped.loop = false;}
+function playSoundloop(sound) {
+    const audio = sound.SOUND;
+    audio.volume = sound.VOLUME;
+    audio.loop = true;
+
+    if (soundmodeON && !audio.paused) return;
+
+    if (soundmodeON) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
 }
 
 function worldsound(sound)  {

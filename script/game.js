@@ -196,11 +196,8 @@ const IMAGE_CACHE = {};
         document.getElementById('footer').classList.remove('dnone')
         document.getElementById('mainButton').classList.remove('dnone')
         document.getElementById('hudID').innerHTML = ""
-
-
         document.getElementById('gameSection').classList.add('gameSection')
         document.body.style.backgroundImage = "url('gameassets/img/Heroimage.png')";
-        dnoneGameButtons()
     }
 
 /**
@@ -212,7 +209,10 @@ function toggleSoundmode() {
     document.querySelectorAll('.soundImg').forEach(icon => {
         icon.classList.toggle('sound-on', soundmodeON);
         icon.classList.toggle('sound-off', !soundmodeON);
-    });
+    }); 
+     if (world.character.isLongIdle) {
+        playSoundloop(world.character.idleSound);
+    }
     worldsound(SOUNDS.Worldsounds.BACKGROUNDSOUND);
 }
 
@@ -295,9 +295,9 @@ function sycnIconinTemplate(){
  */
     function toggleBurgerMenu(currentDiv) {
         const toggleMenu = document.getElementById(currentDiv)
-        if (toggleMenu.innerHTML === "") {
+        if (toggleMenu.innerHTML === "") 
             setBurger(currentDiv)    
-        } else
+        else
             toggleMenu.innerHTML = ""
     }
 
@@ -313,19 +313,15 @@ function sycnIconinTemplate(){
         document.getElementById('burgerBtn').classList.remove('dnone')
         document.getElementById('footer').classList.add('dnone')
         document.getElementById('menuButtonLine').classList.remove('dnone')
- 
-      
     }
 
     function setBtn() {
        const btnContainer = document.getElementById('hudID')
-       btnContainer.innerHTML += mobileBtn();
-        
+       btnContainer.innerHTML += mobileBtn();  
     }
 
     function setBurger(currentDiv) {
         const burgerContainer = document.getElementById(currentDiv)
         burgerContainer.innerHTML += burgerMenu(currentDiv);
         sycnIconinTemplate();
-        
     }

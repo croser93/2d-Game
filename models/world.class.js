@@ -225,13 +225,15 @@ isJumpingOnEnemy(enemy) {
 /**
  * Checks if enemies have fallen out of the map boundaries.
  */
-    enemieOutOfMAP(){
-        this.level_1.enemies.forEach((enemy) => {
-            if(enemy.y >= 300){
-            enemy.dead = true        
-            this.enemyDead(enemy)}
-        }) 
-    }
+    enemieOutOfMAP() {
+    this.level_1.enemies.forEach(enemy => {
+        if (enemy.y >= 300 && !enemy.isDying) {
+            enemy.isDying = true;
+            this.enemyDead(enemy);
+        }
+    });
+}
+
 
 /**
  * Handles enemy death and removal from the game.
@@ -239,6 +241,7 @@ isJumpingOnEnemy(enemy) {
  */    
     enemyDead(enemy){
         enemy.dead = true;
+        playSound(enemy.SOUND)
         if (world.enemies.length > 0) {
             enemy.stopInterval();
             setTimeout(() => {

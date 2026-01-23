@@ -13,8 +13,8 @@ class Endboss extends MovableObject {
     arenaLeft = 3150;
     arenaRight = 3600;
     x = 3600;
-    walkSpeed = 3;
-    jumpSpeed = 7
+    walkSpeed = 5;
+    jumpSpeed = 9
     resistance = 1
    
 

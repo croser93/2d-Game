@@ -17,7 +17,7 @@ class Archer extends MovableObject{
     WALK = MOVABELS.archer.IMAGES_WALK
     DYING = MOVABELS.archer.IMAGES_DYING
 
-    SOUND = SOUNDS.enemies.SCREAM
+    SOUND = SOUNDS.enemies.DEAD
 
 
     constructor(){
@@ -26,9 +26,9 @@ class Archer extends MovableObject{
         this.loadImages(this.WALK);
         this.loadImages(this.DYING);
         this.speed = 0.5 + Math.random() * 1;
-        this.x = 600 + Math.random() * (Math.random() * (5 - 1) * 3000);
+        this.x = 600 + Math.random() * (3300 - 600);
         this.otherDirection = true;
-        // this.animateEnemiesRunLeft()
+        this.animateEnemiesRunLeft()
         this.applyGravity();
     }
 
@@ -42,7 +42,7 @@ class Archer extends MovableObject{
         }, 1000 / 10 );
         const enemiesLeftInterval = setInterval(() =>{ 
         this.moveLeft();   
-        this.playRandomEnemySound();
+
 
         }, 1000 / 60);
         this.intervals.push(enemiesAnimationInterval);
@@ -57,12 +57,5 @@ class Archer extends MovableObject{
         this.playAnimationOnce(this.DYING);
     }
 
-/**
- * Randomly plays the enemy and devil sound.
- */
-    playRandomEnemySound() {
-        let random = Math.floor(Math.random() * 3000) === 0 ? 1 : 0;
-        if (random >= 1 && !this.dead)
-        playSound(this.SOUND) 
-    }
+
 }
