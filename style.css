@@ -29,7 +29,7 @@ body {
 .gameSection {
   background-repeat: no-repeat;
   background-size: cover;
-  height: calc(100vh - 63px - 127px);
+  height: calc(100vh - 63px - 125px);
 }
 canvas {
   background-color: black;
