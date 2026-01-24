@@ -18,6 +18,7 @@ class Devil extends MovableObject{
     IDLE = MOVABELS.devil.IMAGES_IDLE
     WALK = MOVABELS.devil.IMAGES_WALK
     DYING = MOVABELS.devil.IMAGES_DYING
+    HURT = MOVABELS.devil.IMAGES_HURT
 
     SOUND = SOUNDS.devil.DEAD
 
@@ -27,6 +28,7 @@ class Devil extends MovableObject{
         this.loadImages(this.IDLE);
         this.loadImages(this.WALK);
         this.loadImages(this.DYING);
+        this.loadImages(this.HURT);
         this.speed =  0.5 * Math.random()
         this.x = 600 + Math.random() * (3300 - 600);
         this.otherDirection = true;
@@ -47,7 +49,9 @@ class Devil extends MovableObject{
  */
     animateEnemiesRunLeft() {
         const devilAnimationInterval = setInterval(() => {
-            this.playAnimationLoop(this.WALK)    
+        if (!this.dead) 
+            this.playAnimationLoop(this.WALK);
+    
     
         }, 1000 / 7 );
         const devilLeftInterval = setInterval(() =>{ 
@@ -58,13 +62,19 @@ class Devil extends MovableObject{
         this.intervals.push(devilAnimationInterval);
         this.intervals.push(devilLeftInterval);            
     }
+       
+    playHurt() {
+    if (this.dead || this.live <= 0) return;
+    this.playAnimationOnce(this.HURT);
+}
 
 /**
  * Stops all intervals and plays the dying animation.
  */
     stopInterval(){
         this.intervals.forEach(clearInterval)
-        this.playAnimationOnce(this.DYING, this.currentImage);
+
+        this.playAnimationOnce(this.DYING);
     }
 
 }   

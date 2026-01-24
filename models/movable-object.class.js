@@ -70,13 +70,16 @@ class MovableObject extends DrawableObject {
  * Plays an animation once from the provided image array.
  * @param {Array<string>} images - Array of image paths for the animation.
  */
-   playAnimationOnce(images) {
+  playAnimationOnce(images, reset = false) {
+    if (reset) this.currentImage = 0;
+
     let index = Math.min(this.currentImage, images.length - 1);
     let path = images[index];
     this.img = this.imageCache[path];
-        if (this.currentImage < images.length) 
-            this.currentImage++;  
-    }
+
+    if (this.currentImage < images.length)
+        this.currentImage++;
+}
 
 /**
  * Sets the vertical speed of the object.

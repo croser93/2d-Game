@@ -108,15 +108,14 @@ class World {
     checkJumpAttack(){
         this.level_1.enemies.forEach((enemy, index) => {
             if(this.isJumpingOnEnemy(enemy) && !enemy.dead){
-                if (enemy.live <= 0 && !enemy.dead) 
+                enemy.live -= 50
+                if (enemy.live <= 0 && !enemy.dead)
                     this.enemyDead(enemy);
-                this.character.setSpeedY(12);       
-                enemy.live -= 15
+                this.character.setSpeedY(12);      
+                enemy.playHurt();
             }
         });
     }
-
-
 
 /**
  * checks if character and enemie are superior to each other.
@@ -128,7 +127,7 @@ isJumpingOnEnemy(enemy) {
     const enemyTop = enemy.y + enemy.hitboxOffsetY;
     const characterCenterX = this.character.x + this.character.hitboxOffsetX + (this.character.hitboxWidth || this.character.width) / 2;
     const enemyCenterX = enemy.x + enemy.hitboxOffsetX + (enemy.hitboxWidth || enemy.width) / 2;
-    const maxDistance = (enemy.hitboxWidth || enemy.width) * 0.3;
+    const maxDistance = (enemy.hitboxWidth || enemy.width) * 0.6;
     
     return characterBottom > enemyTop && 
            characterBottom < enemyTop + 20 &&
@@ -198,7 +197,8 @@ isJumpingOnEnemy(enemy) {
         if (enemy.live <= 0) {
             enemy.dead = true;
             this.enemyDead(enemy);
-        }
+        }if (enemy.live >= 0)
+            enemy.playHurt();
     }
 
 /**

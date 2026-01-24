@@ -16,6 +16,8 @@ class Archer extends MovableObject{
     IDLE = MOVABELS.archer.IMAGES_IDLE
     WALK = MOVABELS.archer.IMAGES_WALK
     DYING = MOVABELS.archer.IMAGES_DYING
+    HURT = MOVABELS.archer.IMAGES_HURT
+    
 
     SOUND = SOUNDS.enemies.DEAD
 
@@ -25,6 +27,7 @@ class Archer extends MovableObject{
         this.loadImages(this.IDLE);
         this.loadImages(this.WALK);
         this.loadImages(this.DYING);
+        this.loadImages(this.HURT);
         this.speed = 0.5 + Math.random() * 1;
         this.x = 600 + Math.random() * (3300 - 600);
         this.otherDirection = true;
@@ -37,7 +40,8 @@ class Archer extends MovableObject{
  */
     animateEnemiesRunLeft() {
         const enemiesAnimationInterval = setInterval(() => {
-            this.playAnimationLoop(this.WALK)    
+        if (!this.dead) 
+            this.playAnimationLoop(this.WALK);    
     
         }, 1000 / 10 );
         const enemiesLeftInterval = setInterval(() =>{ 
@@ -57,5 +61,11 @@ class Archer extends MovableObject{
         this.playAnimationOnce(this.DYING);
     }
 
+
+   playHurt() {
+    if (this.dead || this.live <= 0) return;
+    this.playAnimationOnce(this.HURT);
+
+}
 
 }

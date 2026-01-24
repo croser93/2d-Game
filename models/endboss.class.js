@@ -28,6 +28,7 @@ class Endboss extends MovableObject {
     DYING = MOVABELS.boss.IMAGES_DYING
     ATTACK = MOVABELS.boss.IMAGES_ATTACK
     JUMP = MOVABELS.boss.IMAGES_JUMP
+    HURT = MOVABELS.boss.IMAGES_HURT
 
     SCREAM = SOUNDS.boss.SCREAM
     SLASH = SOUNDS.boss.SLASH
@@ -42,6 +43,7 @@ class Endboss extends MovableObject {
         this.loadImages(this.ATTACK);
         this.loadImages(this.WALK);
         this.loadImages(this.JUMP);
+        this.loadImages(this.HURT);
         this.currentAction = null;
         this.actionCounter = 0;
         this.actionRepeats = 0;
@@ -213,6 +215,11 @@ class Endboss extends MovableObject {
         }
         return this.jumpDirectionX;
     }
+
+    playHurt() {
+        if (this.dead || this.live <= 0) return;
+        this.playAnimationOnce(this.HURT);
+}
 
 
 /**
