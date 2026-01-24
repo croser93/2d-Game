@@ -216,10 +216,13 @@ class Endboss extends MovableObject {
         return this.jumpDirectionX;
     }
 
+/**
+ * play hurt animation
+ */
     playHurt() {
         if (this.dead || this.live <= 0) return;
         this.playAnimationOnce(this.HURT);
-}
+    }
 
 
 /**

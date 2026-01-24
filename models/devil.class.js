@@ -62,11 +62,14 @@ class Devil extends MovableObject{
         this.intervals.push(devilAnimationInterval);
         this.intervals.push(devilLeftInterval);            
     }
-       
+
+/**
+ * play hurt animation
+ */       
     playHurt() {
-    if (this.dead || this.live <= 0) return;
-    this.playAnimationOnce(this.HURT);
-}
+        if (this.dead || this.live <= 0) return;
+        this.playAnimationOnce(this.HURT);
+    }
 
 /**
  * Stops all intervals and plays the dying animation.

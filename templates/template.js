@@ -17,7 +17,7 @@ function mobileBtn(){
 function burgerMenu(current){
     return`
         <div id="burgerDialog" class="${current}">
-            <button id="burgerSoundmode"><div id="burgerSoundIcon" class="soundImg" onclick="toggleSoundmode()"></div></button>
+            <button id="burgerSoundmode"><div id="burgerSoundIcon" class="soundImg sound-off" onclick="toggleSoundmode()"></div></button>
             <button id="burgerFullscreen"><img class="burgerIcon"src="./gameassets/img/icons/fullscreen.png" alt="Fullscreen Button"onclick="fullscreen()"/>
             <button id="burgerInfo"><img class="burgerIcon"src="./gameassets/img/icons/info.png" alt="Info Button"onclick="openInfoDialog()"/></button>
         </div>`

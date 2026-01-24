@@ -61,11 +61,13 @@ class Archer extends MovableObject{
         this.playAnimationOnce(this.DYING);
     }
 
-
+/**
+ * play hurt animation
+ */
    playHurt() {
-    if (this.dead || this.live <= 0) return;
-    this.playAnimationOnce(this.HURT);
+        if (this.dead || this.live <= 0) return;
+        this.playAnimationOnce(this.HURT);
 
-}
+    }
 
 }
