@@ -267,11 +267,6 @@ p {
   transition: width 0.3s;
 }
 
-
-
-/* From Uiverse.io by StealthWorm */
-/* ################################################################################################################# */
-/* From Uiverse.io by elijahgummer */ 
 .golden-button {
   font-weight: 700;
   touch-action: manipulation;
@@ -287,16 +282,16 @@ p {
   text-transform: uppercase;
   padding: 0 1em;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(110, 80, 20, 0.4),
-    inset 0 -2px 5px 1px rgba(139, 66, 8, 1),
+  inset 0 -2px 5px 1px rgba(139, 66, 8, 1),
     inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
-  background-image: linear-gradient(
+    background-image: linear-gradient(
     160deg,
     #a54e07,
     #b47e11,
     #fef1a2,
     #bc881b,
     #a54e07
-  );
+    );
   border: 1px solid #a55d07;
   color: rgb(120, 50, 5);
   text-shadow: 0 2px 2px rgba(250, 227, 133, 1);
@@ -317,7 +312,7 @@ p {
 
 .golden-button:active {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(110, 80, 20, 0.4),
-    inset 0 -2px 5px 1px #b17d10, inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
+  inset 0 -2px 5px 1px #b17d10, inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
 }
 
 
@@ -443,6 +438,68 @@ strong {
   background-size: 50px 50px;
   opacity: 0.5;
 }
+
+.gameWindow100 {
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+
+footer{
+border-top: 3px solid rgba(0, 0, 0, 0.192);
+background-color: #33333380;
+padding: 10px 0px;
+}
+
+.footerLine{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.buttonFooter{
+  display:flex;
+  justify-content: center;
+  background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
+  width: 144px;
+  border: silver 3px solid;
+  padding: 8px 24px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: white
+}
+
+.broder {
+margin: 20px 80px;
+}
+.content_beg_1440px {
+max-width: 1440px;
+box-sizing: border-box;
+margin: auto;
+}
+.closeBtnDialog{
+  position: absolute;
+  top: 4px; 
+  right: 4px;
+  background-color: transparent;
+  height: 48px;
+  width: 48px;
+  border: none;
+  cursor: pointer;
+}
+
+.closeBtnDialog img {
+  height: clamp(2rem, 5vw, 3em);
+  width: clamp(2rem, 5vw, 3rem);
+}
+
+
+#menuButtonLine { 
+        display: none;
+    }
 /* ################################################################################################################# */
 @keyframes fadeIn {
   from {
@@ -553,7 +610,9 @@ strong {
   height: 48px;
   width: 48px;
   }
-  
+    .buttonLineWinOrLose {
+    top: 60%;
+  }
 }
 
 @media only screen and (max-height: 480px) {
@@ -572,6 +631,7 @@ strong {
   .dialoCloseBtn {
     top: 76%;
   }
+
 }
 
 @media only screen and (max-height: 420px) {
@@ -586,69 +646,8 @@ strong {
     height: 24px;
 }
 
-}
-.gameWindow100 {
-  width: 100vw !important;
-  height: 100vh !important;
-}
 
-
-footer{
-border-top: 3px solid rgba(0, 0, 0, 0.192);
-background-color: #33333380;
-padding: 10px 0px;
 }
-
-.footerLine{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.buttonFooter{
-  display:flex;
-  justify-content: center;
-  background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
-  width: 144px;
-  border: silver 3px solid;
-  padding: 8px 24px;
-  border-radius: 16px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: none;
-  color: white
-}
-
-.broder {
-margin: 20px 80px;
-}
-.content_beg_1440px {
-max-width: 1440px;
-box-sizing: border-box;
-margin: auto;
-}
-.closeBtnDialog{
-  position: absolute;
-  top: 4px; 
-  right: 4px;
-  background-color: transparent;
-  height: 48px;
-  width: 48px;
-  border: none;
-  cursor: pointer;
-}
-
-.closeBtnDialog img {
-  height: clamp(2rem, 5vw, 3em);
-  width: clamp(2rem, 5vw, 3rem);
-}
-
-
-#menuButtonLine { 
-        display: none;
-    }
-
 
 @media (pointer: fine) {
     #menuButtonLine{
@@ -661,5 +660,4 @@ margin: auto;
   }
   }
   
-
          

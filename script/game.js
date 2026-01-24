@@ -49,7 +49,8 @@ const IMAGE_CACHE = {};
             initWorld();
             setBtn('mobileBtn')
             gameStarted = true;
-            startGameButtons()
+            startGameButtons();
+            mobileControls();
         }
     }
 
@@ -162,7 +163,7 @@ const IMAGE_CACHE = {};
  */
     function winOrLosescreen(result) {
         clearAllIntervals()
-        document.getElementById('mobileBtn').classList.add('dnone')
+        document.getElementById('mobileBtn').innerHTML = ""
         if(document.fullscreenElement){
             toggleForFullscreen();
             exitFullscreen()
@@ -182,7 +183,6 @@ const IMAGE_CACHE = {};
         level_1 ;
         document.getElementById('winOrLose').classList.add('dnone')
         document.getElementById('winOrLose').innerHTML = "";
-        document.getElementById('mobileBtn').innerHTML = ""
         document.getElementById('hudID').innerHTML = ""
         startGame()     
     }
@@ -252,18 +252,27 @@ function sycnIconinTemplate(){
  */
     function fullscreen() {
     const gameWindow = document.getElementById('gameWindow');
+    document.getElementById('mobileBtn').innerHTML = '';
+    document.getElementById('hudID').innerHTML = '';
 
         if (!document.fullscreenElement) {
+            setBtn('hudID');  
             toggleForFullscreen();
             enterfullScreen(gameWindow);
-            toggleBurgerMenu('burgerOutOfUI')
+            toggleBurgerMenu('burgerOutOfUI');
+            mobileControls();
+        
         } else {
+            document.getElementById('hudID').innerHTML = '';
             toggleForFullscreen();
             toggleBurgerMenu('burgerInUI')
             toggleBurgerMenu('burgerOutOfUI')
-            exitFullscreen()
+            exitFullscreen();
+            setBtn('mobileBtn');   
+            mobileControls();
         }
     }
+
 
 /**
  * Help function for fullscreen
@@ -279,15 +288,14 @@ function sycnIconinTemplate(){
  */
     function enterfullScreen(element){
         if(element.requestFullscreen)
-            element.requestFullscreen()
+            element.requestFullscreen();
         else if (element.msRequestFullscreen)
             element.msRequestFullscreen();
         else if(element.webkitRequestFullscreen)
             element.webkitRequestFullscreen();
-        else exitFullscreen(element)
+        else exitFullscreen(element);
         document.getElementById('hudID').classList.add('MobileBtnFullscreen')
         document.getElementById('mobileBtn').innerHTML = ""
-        setBtn('hudID')
     }
 
 /**
@@ -353,7 +361,7 @@ function sycnIconinTemplate(){
  */
     function setBtn(hudcontainer) {
        const btnContainer = document.getElementById(hudcontainer)
-       btnContainer.innerHTML += mobileBtn();  
+       btnContainer.innerHTML = mobileBtn();  
     }
 
 
