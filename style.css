@@ -81,14 +81,6 @@ h1 {
   text-shadow: 2px 2px 2px rgb(236, 229, 230);
 }
 
-.menuButtonLine{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 16px;
-}
-
-
 #soundmode,
 #info,
 #fullscreen,
@@ -496,10 +488,6 @@ margin: auto;
   width: clamp(2rem, 5vw, 3rem);
 }
 
-
-#menuButtonLine { 
-        display: none;
-    }
 /* ################################################################################################################# */
 @keyframes fadeIn {
   from {
@@ -582,6 +570,10 @@ margin: auto;
   .menuButton {
     display: none;
   }
+
+  #burgerBtn{
+    display: flex;
+  }
   .burgerOutOfUI{
     top:84px
   }
@@ -611,8 +603,9 @@ margin: auto;
   width: 48px;
   }
     .buttonLineWinOrLose {
-    top: 60%;
+    top: 65%;
   }
+
 }
 
 @media only screen and (max-height: 480px) {
@@ -650,9 +643,6 @@ margin: auto;
 }
 
 @media (pointer: fine) {
-    #menuButtonLine{
-      display: flex;
-    }
 
     #uiSwitchMobileDevice,
     #switchMobileDevice {

@@ -197,7 +197,6 @@ const IMAGE_CACHE = {};
         document.getElementById('canvas').classList.add('dnone')
         document.getElementById('footer').classList.remove('dnone')
         document.getElementById('mainButton').classList.remove('dnone')
-        document.getElementById('menuButtonLine').classList.add('dnone')
         document.getElementById('burgerBtn').classList.add('dnone')
         document.getElementById('winOrLose').innerHTML = "";
         document.getElementById('hudID').innerHTML = ""
@@ -352,7 +351,6 @@ function sycnIconinTemplate(){
  */
     function startGameButtons() {
         document.getElementById('burgerBtn').classList.remove('dnone')
-        document.getElementById('menuButtonLine').classList.remove('dnone')
     }
 
 /**
