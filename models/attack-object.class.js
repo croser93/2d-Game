@@ -28,12 +28,12 @@ class Attack extends MovableObject {
         this.throwInterval = setInterval(() => {
             if (this.otherDirection) 
                 this.x = 0;
-            else 
+            else if (this.y >= 274) {
+           this.y = 274;             
+           clearInterval(this.throwInterval);
+           this.playExplosion();
+            }else 
                 this.x += 15;
-            if(this.y >= 274) {
-                clearInterval(this.throwInterval);
-                this.playExplosion();
-            }
         }, 60);
     }
 

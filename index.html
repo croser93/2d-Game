@@ -31,7 +31,7 @@
     <script src="./script/sound.js"></script>
     <script src="./script/movabels.js"></script>
     <script src="./script/game.js"></script>
-    <script src="./gameassets/templates/template.js"></script>
+    <script src="./templates/template.js"></script>
   </head>
   
   <body onload="init()" oncontextmenu="return true">
@@ -41,7 +41,7 @@
     </header>
     
     <main id="gameSection" class="gameSection">
-      <button id="burgerBtn" class="burgerMenu " onclick="toggleBurgerMenu('burgerOutOfUI')"><img src="gameassets/img/icons/burger menu.png" alt="Burger Menu Button" /></button>
+      <button id="burgerBtn" class="burgerMenu dnone" onclick="toggleBurgerMenu('burgerOutOfUI')"><img src="gameassets/img/icons/burger menu.png" alt="Burger Menu Button" /></button>
 
 
       <section id="gameWindow" class="content_beg_1440px">
@@ -107,7 +107,7 @@
     <dialog>
       <div>
         <img class="dialogImg" src="./gameassets/img/dialog.png" alt="" />
-        <button class="closeBtnDialog" class="dialoCloseBtn" onclick="closeInfoDialog()">X</button>
+        <button class="closeBtnDialog" class="dialoCloseBtn" onclick="closeInfoDialog()"><img src="gameassets/img/icons/closebtn.png" alt=""></button>
       </div>
     </dialog>
     

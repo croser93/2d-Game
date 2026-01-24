@@ -99,6 +99,10 @@ const preloadStartSound = [
 let soundmodeON = false;
 let intervals = []
 
+/**
+ * Plays a sound once if sound mode is enabled.
+ * @param {Object} sound - Object containing sound data.
+ */
 function playSound(sound) {
     if (!soundmodeON) return;
 
@@ -110,6 +114,10 @@ function playSound(sound) {
 
 }
 
+/**
+ * Plays a cloned version of a sound so it can be played multiple times simultaneously.
+ * @param {Object} sound - Object containing sound data.
+ */
 function playSoundclone(sound){
     if (soundmodeON) { 
         soundSnipped = sound.SOUND.cloneNode(true);
@@ -119,6 +127,10 @@ function playSoundclone(sound){
     } 
 }
 
+/**
+ * Plays or pauses a looping sound depending on whether sound mode is enabled.
+ * @param {Object} sound - Object containing sound data.
+ */
 function playSoundloop(sound) {
     const audio = sound.SOUND;
     audio.volume = sound.VOLUME;
@@ -133,6 +145,10 @@ function playSoundloop(sound) {
     }
 }
 
+/**
+ * Controls a looping background/world sound based on the sound mode state.
+ * @param {Object} sound - Object containing sound data.
+ */
 function worldsound(sound)  {
     let soundSnipped = sound.SOUND
     volume = sound.VOLUME

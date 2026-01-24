@@ -191,7 +191,6 @@ class Character extends MovableObject{
 /**
  * Starts the idle timer for long idle animation.
 */
-
     startIdleTimer() {
     this.idleTime = 0;
 

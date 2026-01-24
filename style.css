@@ -187,6 +187,7 @@ dialog {
   z-index: 2;
   max-width: 720px;
   max-height: 480px;
+
 }
 
 .resultImage {
@@ -195,6 +196,7 @@ dialog {
   opacity: 0.2;
   animation: fadeInWithScale 1s ease forwards;
   background-size: cover;
+
 }
 
 .fadeIn {
@@ -551,13 +553,14 @@ strong {
   height: 48px;
   width: 48px;
   }
+  
 }
 
 @media only screen and (max-height: 480px) {
   .resultImage,
   .winOrLose,
   canvas {
-    height: 100vh;
+    height: 99vh;
   }
   main {
     padding: 0px;
@@ -627,15 +630,18 @@ margin: auto;
 }
 .closeBtnDialog{
   position: absolute;
-  top: 8px; 
-  right: 16px;
-  background-color: #212121c0;
-  height: 32px;
-  width: 32px;
-  border-radius: 50%;
+  top: 4px; 
+  right: 4px;
+  background-color: transparent;
+  height: 48px;
+  width: 48px;
   border: none;
-  font-size: 1rem;
-  font-weight: 600;
+  cursor: pointer;
+}
+
+.closeBtnDialog img {
+  height: clamp(2rem, 5vw, 3em);
+  width: clamp(2rem, 5vw, 3rem);
 }
 
 

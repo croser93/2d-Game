@@ -13,7 +13,7 @@ class World {
     live = level_1.live;
     attack = [];
     intervals = [];
-    debugMode = true;
+    debugMode = false;
 
     manaSound = SOUNDS.collectables.MANA;
     coinSound = SOUNDS.collectables.COIN;
@@ -111,7 +111,7 @@ class World {
                 if (enemy.live <= 0 && !enemy.dead) 
                     this.enemyDead(enemy);
                 this.character.setSpeedY(12);       
-                enemy.live -= 10
+                enemy.live -= 15
             }
         });
     }
