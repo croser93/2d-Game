@@ -625,6 +625,18 @@ max-width: 1440px;
 box-sizing: border-box;
 margin: auto;
 }
+.closeBtnDialog{
+  position: absolute;
+  top: 8px; 
+  right: 16px;
+  background-color: #212121c0;
+  height: 32px;
+  width: 32px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+}
 
 
 #menuButtonLine { 

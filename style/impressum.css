@@ -22,3 +22,25 @@ body{
     align-items: center;
     flex-direction: column;
 }
+
+.homeContainer{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    background-color: white;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+}
+
+.home:hover {
+    background-color: rgba(128, 128, 128, 0.37);
+}
