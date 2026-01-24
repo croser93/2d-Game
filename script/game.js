@@ -106,6 +106,7 @@ const IMAGE_CACHE = {};
         document.getElementById('canvas').classList.remove('dnone')
         document.getElementById('mainButton').classList.add('dnone')
         document.getElementById('footer').classList.add('dnone')
+        document.getElementById('info').classList.add('dnone')
         document.documentElement.style.backgroundImage = "url('gameassets/img/game-background-image.png')";
         preloadAssets()
     }
@@ -196,6 +197,7 @@ const IMAGE_CACHE = {};
         document.getElementById('canvas').classList.add('dnone')
         document.getElementById('footer').classList.remove('dnone')
         document.getElementById('mainButton').classList.remove('dnone')
+        document.getElementById('info').classList.remove('dnone')
         document.getElementById('burgerBtn').classList.add('dnone')
         document.getElementById('winOrLose').innerHTML = "";
         document.getElementById('hudID').innerHTML = ""

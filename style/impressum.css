@@ -1,46 +1,99 @@
-*{
+
+* {
+    box-sizing: border-box;
     margin: 0;
-    
+    padding: 0; 
 }
 
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 24px;
+html{
+height: 100vh;
+  background: url("../gameassets/img/impressum.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
 }
 
-.border{
-    padding: 24px;
+main{
+    max-height: calc(100vh - 48px);
+    overflow-x: auto;
     max-width: 1440px;
+    margin: 24px;
+   
+
 }
 
-.dpf{
+.dpf_ccc{
     display: flex;
-    justify-content: center;
+    justify-content:center;
     align-items: center;
     flex-direction: column;
 }
 
-.homeContainer{
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
+.mg_b{
+    margin-bottom: 16px;
 }
 
-.home{
+.impressum-wrapper {
+    max-width: 750px;
+    padding: 8px 64px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 48px;
+    scrollbar-width: none;
+}
+
+
+.homeContainer {
+    margin-bottom: 2rem;
+}
+
+
+.home {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
     cursor: pointer;
-    background-color: white;
     height: 48px;
     width: 48px;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.home:hover{
+    background-color: rgba(128, 128, 128, 0.8);
 }
 
-.home:hover {
-    background-color: rgba(128, 128, 128, 0.37);
+
+h1 {
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    margin-bottom: 0.5rem;
+}
+
+
+p {
+    margin-bottom: 0.5rem;
+}
+
+
+ul {
+    padding-left: 1.5rem;
+}
+
+li {
+    margin-bottom: 1rem;
+}
+
+.seal {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+
+@media only screen and (max-width: 450px) {
+    .impressum-wrapper {
+
+    padding: 8px 16px;
+
+    }
 }

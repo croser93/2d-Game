@@ -62,8 +62,8 @@ cursor: pointer;
 
 #burgerBtnInCanvas img,
 .burgerMenu img {
-  width: 32px;
-  height: 32px;
+  width: 64px;
+  height: 64px;
 }
 
 .burgerIcon {
@@ -71,6 +71,7 @@ cursor: pointer;
   width: 64px;
 }
 
+#info,
 .burgerMenu {
   display: flex;
   position: absolute;
