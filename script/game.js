@@ -193,7 +193,6 @@ const IMAGE_CACHE = {};
     function goHome() {
         levelGenerator ;
         level_1 ;
-        document.getElementById('winOrLose').classList.add('dnone')
         document.getElementById('canvas').classList.add('dnone')
         document.getElementById('footer').classList.remove('dnone')
         document.getElementById('mainButton').classList.remove('dnone')
@@ -251,27 +250,20 @@ function sycnIconinTemplate(){
  */
     function fullscreen() {
     const gameWindow = document.getElementById('gameWindow');
-    document.getElementById('mobileBtn').innerHTML = '';
-    document.getElementById('hudID').innerHTML = '';
-
         if (!document.fullscreenElement) {
+            document.getElementById('mobileBtn').innerHTML = '';
             setBtn('hudID');  
-            toggleForFullscreen();
             enterfullScreen(gameWindow);
-            toggleBurgerMenu('burgerOutOfUI');
-            mobileControls();
-        
+            toggleBurgerMenu('burgerOutOfUI');        
         } else {
             document.getElementById('hudID').innerHTML = '';
-            toggleForFullscreen();
             toggleBurgerMenu('burgerInUI')
-            toggleBurgerMenu('burgerOutOfUI')
             exitFullscreen();
             setBtn('mobileBtn');   
-            mobileControls();
         }
+        toggleForFullscreen();
+        mobileControls();
     }
-
 
 /**
  * Help function for fullscreen
