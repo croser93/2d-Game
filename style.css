@@ -29,7 +29,7 @@ body {
 .gameSection {
   background-repeat: no-repeat;
   background-size: cover;
-  height: calc(100vh - 63px - 125px);
+  height: calc(100vh - 63px - 123px);
 }
 canvas {
   background-color: black;
@@ -63,8 +63,6 @@ main {
   padding: 24px 0px;
   position: relative;
 }
-
-
 
 .dpf {
   display: flex;
@@ -264,7 +262,7 @@ p {
   touch-action: manipulation;
   display: inline-block;
   outline: none;
-  font-family: inherit;
+  font-family: "Avalors Personal Use";
   font-size: 1em;
   box-sizing: border-box;
   border: none;
@@ -440,7 +438,7 @@ strong {
 footer{
 border-top: 3px solid rgba(0, 0, 0, 0.192);
 background-color: #33333380;
-padding: 10px 0px;
+padding: 6px 0px;
 }
 
 .footerLine{
