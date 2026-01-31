@@ -11,7 +11,7 @@ You play as a **Night Elf warrior** who must fight through hostile realms, defea
 
 * ⚔️ 2D side-scrolling platformer combat
 * 👹 Multiple enemy types + final boss fight
-* ❤️ Health, ⚡ energy and 🪙 coins to collect
+* ❤️ Health, ⚡ energy and 🥯 coins to collect
 * 💬 In-game dialog showing key bindings
 * 🖥️ Fullscreen mode supported
 * 🎵 Sound effects for actions and combat
@@ -26,9 +26,9 @@ The full key bindings are explained via an in-game dialog.
 
 ## 🛠️ Tech Stack
 
-* **HTML5**
-* **CSS3**
-* **JavaScript (Vanilla)**
+* **HTML**
+* **CSS**
+* **JavaScript**
 
 No external game engine was used.
 
