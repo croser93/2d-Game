@@ -447,21 +447,6 @@ padding: 6px 0px;
   align-items: center;
 }
 
-.buttonFooter{
-  display:flex;
-  justify-content: center;
-  background-image: linear-gradient(to right, #FF512F 0%, #F09819  51%, #FF512F  100%);
-  width: 144px;
-  border: silver 3px solid;
-  padding: 8px 24px;
-  border-radius: 16px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: none;
-  color: white
-}
-
 .broder {
 margin: 20px 80px;
 }
